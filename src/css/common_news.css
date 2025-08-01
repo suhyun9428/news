@@ -1,0 +1,28 @@
+.list-item {
+  .tag__red {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 1px;
+    padding: 0 4px;
+    border-radius: 2px;
+    background-color: #f25050;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 18px;
+    vertical-align: text-bottom;
+  }
+  .tag__blue {
+    display: inline-block;
+    margin-right: 5px;
+    margin-bottom: 1px;
+    padding: 0 4px;
+    border-radius: 2px;
+    background-color: #4c70e8;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 18px;
+    vertical-align: text-bottom;
+  }
+}
