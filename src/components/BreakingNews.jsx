@@ -11,8 +11,10 @@ const BreakingNewsContents = ({ data }) => {
         </div>
         <div className="box__info">
           <div className="box__title">
-            {data.hasBreakingTag && <span className="tag__red">속보</span>}
-            <strong className="text__title">{data.title}</strong>
+            <strong className="text__title">
+              {data.hasBreakingTag && <span className="tag__red">속보</span>}
+              {data.title}
+            </strong>
           </div>
           {data.hasDescript && (
             <span className="text__description">{data.desc}</span>

@@ -71,6 +71,7 @@ header {
     }
     .box__submenu {
       display: none;
+      animation: updown-back 0.3s linear;
       .list__submenu {
         display: flex;
         flex-wrap: wrap;
@@ -83,6 +84,7 @@ header {
       }
       &.box__submenu--active {
         display: block;
+        animation: updown 0.3s linear;
       }
     }
   }
@@ -141,5 +143,22 @@ header {
   }
   100% {
     transform: rotate(0deg);
+  }
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(10%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes updown-back {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(10%);
   }
 }

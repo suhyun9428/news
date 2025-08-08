@@ -1,0 +1,35 @@
+.box__category-wrap {
+  margin: 0 20px;
+  padding: 16px 0 0;
+  border-bottom: 3px solid #000;
+  .text__title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #151515;
+    line-height: 42px;
+  }
+  .list__sub-category {
+    display: flex;
+    padding: 11px 0 8px;
+    overflow-x: scroll;
+    .list-item {
+      margin-right: 20px;
+      .link__category {
+        .text {
+          display: block;
+          width: max-content;
+          padding: 5px 0;
+          font-size: 17px;
+          font-weight: 600;
+          color: #aaa;
+          line-height: 22px;
+        }
+        &.link__category--selected {
+          .text {
+            color: #151515;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,6 @@
 .box__main-news {
   padding: 0 16px;
   .list__main-news {
-    display: flex;
-    flex-wrap: wrap;
     .list-item {
       padding: 11px 0 12px;
       border-top: 1px solid #eee;

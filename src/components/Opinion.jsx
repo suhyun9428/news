@@ -1,0 +1,15 @@
+import Header from "./Header";
+import CategoryHeader from "./CategoryHeader";
+import CategorySection from "./CategorySection";
+import dummyData from "../dummyData/dummyData";
+
+const Opinion = () => {
+  return (
+    <>
+      <CategoryHeader data={dummyData.menuBar} />
+      <CategorySection />
+    </>
+  );
+};
+
+export default Opinion;

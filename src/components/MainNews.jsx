@@ -7,9 +7,11 @@ const MainNewsContents = ({ data }) => {
     <li className="list-item">
       <a href="#" className="link__news">
         <div className="box__info">
-          {data.hasOnlyTag && <span className="tag__blue">단독</span>}
-          {data.hasBreakingTag && <span className="tag__red">속보</span>}
-          <span className="text__title">{data.title}</span>
+          <span className="text__title">
+            {data.hasOnlyTag && <span className="tag__blue">단독</span>}
+            {data.hasBreakingTag && <span className="tag__red">속보</span>}
+            {data.title}
+          </span>
         </div>
         <div className="box__image">
           <img src={imgUrl} alt={data.title} className="image" />
@@ -18,6 +20,7 @@ const MainNewsContents = ({ data }) => {
     </li>
   );
 };
+
 const MainNews = ({ data }) => {
   return (
     <div className="box__main-news">

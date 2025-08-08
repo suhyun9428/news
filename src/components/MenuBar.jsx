@@ -1,6 +1,9 @@
+import { useAtom } from "jotai";
 import { useState } from "react";
+import { selectedSectionIndex } from "../atom/atom";
 
 const MenuBarItem = ({ data }) => {
+  const [index, setIndex] = useAtom(selectedSectionIndex);
   const [toggleOpen, setToggleOpen] = useState(
     new Array(data.length).fill(false)
   );
@@ -16,7 +19,10 @@ const MenuBarItem = ({ data }) => {
       }
     }
     setToggleOpen(newToggleOpen);
-    // console.log(e.target.classList, "e클래스이름");
+  };
+  const handleIndex = (e, idx) => {
+    e.preventDefault();
+    setIndex(idx);
   };
 
   return (
@@ -25,7 +31,11 @@ const MenuBarItem = ({ data }) => {
         return (
           <div className="box__menu-wrap" key={idx}>
             <div className="box__menu-inner">
-              <a href="#" className="link__menu">
+              <a
+                href="#"
+                className="link__menu"
+                onClick={(e) => handleIndex(e, idx)}
+              >
                 {item.title}
               </a>
               <button

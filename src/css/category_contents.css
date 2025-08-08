@@ -1,0 +1,61 @@
+.box__category-contents {
+  margin: 0 20px;
+  padding-bottom: 52px;
+  .text__title {
+    padding: 14px 0 16px;
+    font-size: 20px;
+    color: #151515;
+    line-height: 24px;
+  }
+  .box__inner {
+    padding: 20px;
+    border-radius: 8px;
+    background: #f5f5f5;
+    .list__articles {
+      overflow: hidden;
+      .list-item {
+        padding: 19px 0 20px;
+        border-bottom: 1px solid #e2e2e2;
+        .box__image {
+          border-radius: 8px;
+          overflow: hidden;
+          .image {
+            width: 100%;
+          }
+        }
+        .box__info {
+          margin-top: 14px;
+          .text__title {
+            -webkit-line-clamp: 3;
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 700;
+            -webkit-box-orient: vertical;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .text__description {
+            padding-top: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #888;
+            line-height: 23px;
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+          }
+        }
+        &:first-child {
+          padding-top: 0;
+        }
+        &:last-child {
+          border-bottom: 0;
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+}

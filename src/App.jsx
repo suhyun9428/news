@@ -1,20 +1,30 @@
-import { useState } from "react";
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import Header from "./components/Header";
 import HotKeywords from "./components/HotKeywords";
 import BreakingNews from "./components/BreakingNews";
 import MainNews from "./components/MainNews";
 import dummyData from "./dummyData/dummyData";
-import "./App.css";
+import Opinion from "./components/Opinion";
+import Column from "./components/Column";
+import { useAtom } from "jotai";
+import { selectedSectionIndex } from "./atom/atom";
 
 function App() {
+  const [index, setIndex] = useAtom(selectedSectionIndex);
   return (
     <>
       <Header />
-      <HotKeywords data={dummyData.HotKeywords} />
-      <BreakingNews data={dummyData.BreakingNews} />
-      <MainNews data={dummyData.MainNews} />
+      {index == null ? (
+        <>
+          <HotKeywords data={dummyData.HotKeywords} />
+          <BreakingNews data={dummyData.BreakingNews} />
+          <MainNews data={dummyData.MainNews} />
+        </>
+      ) : (
+        <>
+          <Opinion />
+          <Column data={dummyData.Column} />
+        </>
+      )}
     </>
   );
 }

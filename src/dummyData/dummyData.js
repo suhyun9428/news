@@ -110,6 +110,18 @@ const dummyData = {
       hasOnlyTag: false,
     },
   ],
+  Column: [
+    {
+      title: "서의동 칼럼",
+      summary: "'두번째 분단'의 해소가 급선무다",
+      imgUrl: "//dummyimage.com/160x160/000/fff",
+    },
+    {
+      title: "국제칼럼",
+      summary: "이제는 멈춰야 할 산업재해",
+      imgUrl: "//dummyimage.com/160x160/000/fff",
+    },
+  ],
 };
 
 export default dummyData;

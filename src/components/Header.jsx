@@ -1,12 +1,18 @@
 // import Weather from "./Weather";
+import { useAtom } from "jotai";
 import { useState } from "react";
 import MenuBar from "./MenuBar";
 import SearchBar from "./SearchBar";
 import dummyData from "../dummyData/dummyData";
+import { selectedSectionIndex } from "../atom/atom";
 
 const Header = () => {
+  const [index, setIndex] = useAtom(selectedSectionIndex);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+  const moveToMain = () => {
+    setIndex(null);
+  };
 
   return (
     <header>
@@ -18,7 +24,9 @@ const Header = () => {
         >
           <span className="for-a11y">메뉴</span>
         </button>
-        <h1 className="text__title">SUN NEWS</h1>
+        <a href="#" onClick={() => moveToMain()}>
+          <h1 className="text__title">SUN NEWS</h1>
+        </a>
         <button
           type="button"
           className={`button__search ${
