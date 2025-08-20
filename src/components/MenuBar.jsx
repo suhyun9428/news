@@ -1,9 +1,10 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
-import { selectedSectionIndex } from "../atom/atom";
+import { selectedSectionIndex, doesMenuOpen } from "../atom/atom";
 
 const MenuBarItem = ({ data }) => {
   const [index, setIndex] = useAtom(selectedSectionIndex);
+  const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpen);
   const [toggleOpen, setToggleOpen] = useState(
     new Array(data.length).fill(false)
   );
@@ -23,6 +24,7 @@ const MenuBarItem = ({ data }) => {
   const handleIndex = (e, idx) => {
     e.preventDefault();
     setIndex(idx);
+    setIsMenuOpen(false);
   };
 
   return (

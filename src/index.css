@@ -6,6 +6,7 @@
 @import "../src/css/category_header.css";
 @import "../src/css/category_contents.css";
 @import "../src/css/column_contents.css";
+@import "../src/css/issue.css";
 
 * {
   margin: 0;
@@ -170,7 +171,7 @@ input[type="tel"] {
   &:has(.box__category-wrap) {
     header {
       .box__header {
-        border-bottom: 0;
+        border-bottom: 1px solid #eee;
       }
     }
   }

@@ -5,19 +5,30 @@ import MainNews from "./components/MainNews";
 import dummyData from "./dummyData/dummyData";
 import Opinion from "./components/Opinion";
 import Column from "./components/Column";
+import Issue from "./components/Issue";
 import { useAtom } from "jotai";
-import { selectedSectionIndex } from "./atom/atom";
+import { selectedSectionIndex, selectedKeyword } from "./atom/atom";
 
 function App() {
   const [index, setIndex] = useAtom(selectedSectionIndex);
+  const [newKeyword, setNewKeyword] = useAtom(selectedKeyword);
+  // const [hasKeywords, setHasKeywords] = useAtom(isThereAnyKeywords);
+  // setHasKeywords(true);
+
   return (
     <>
       <Header />
       {index == null ? (
         <>
           <HotKeywords data={dummyData.HotKeywords} />
-          <BreakingNews data={dummyData.BreakingNews} />
-          <MainNews data={dummyData.MainNews} />
+          {newKeyword !== null ? (
+            <Issue />
+          ) : (
+            <>
+              <BreakingNews data={dummyData.BreakingNews} />
+              <MainNews data={dummyData.MainNews} />
+            </>
+          )}
         </>
       ) : (
         <>

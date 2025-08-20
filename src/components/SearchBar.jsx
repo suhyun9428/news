@@ -5,6 +5,7 @@ import { selectedKeyword } from "../atom/atom";
 const SearchBar = () => {
   const [inputVal, setInputVal] = useState("");
   const [searchKeyword, setSearchKeyword] = useAtom(selectedKeyword);
+
   const handleChange = (e) => {
     setInputVal(e.target.value);
   };

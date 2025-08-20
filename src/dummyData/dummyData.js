@@ -26,16 +26,13 @@ const dummyData = {
     },
   ],
   HotKeywords: [
-    "technology",
-    "Trump",
-    "Business",
+    "아이폰",
+    "윤석열",
+    "코스피",
+    "부동산",
+    "커피",
+    "자율주행",
     "AI",
-    "coin",
-    "technology",
-    "Trump",
-    "Business",
-    "AI",
-    "coin",
   ],
   BreakingNews: [
     {
