@@ -5,9 +5,9 @@ import { useEffect } from "react";
 const HotKeywords = ({ data }) => {
   const [newKeyword, setNewKeyword] = useAtom(selectedKeyword);
 
-  useEffect(() => {
-    console.log(newKeyword, "?");
-  }, [newKeyword]);
+  // useEffect(() => {
+  //   console.log(newKeyword, "?");
+  // }, [newKeyword]);
 
   return (
     <div className="box__recent">

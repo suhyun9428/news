@@ -47,7 +47,7 @@ const Header = () => {
           <span className="for-a11y">검색</span>
         </button>
       </div>
-      {isMenuOpen && <MenuBar data={dummyData.menuBar} />}
+      {isMenuOpen && <MenuBar data={dummyData.MenuBar} />}
       {/* <Weather /> */}
       {searchOpen && <SearchBar />}
     </header>

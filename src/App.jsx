@@ -22,7 +22,7 @@ function App() {
         <>
           <HotKeywords data={dummyData.HotKeywords} />
           {newKeyword !== null ? (
-            <Issue />
+            <Issue data={dummyData.Articles} />
           ) : (
             <>
               <BreakingNews data={dummyData.BreakingNews} />

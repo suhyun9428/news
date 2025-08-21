@@ -6,7 +6,7 @@ import dummyData from "../dummyData/dummyData";
 const Opinion = () => {
   return (
     <>
-      <CategoryHeader data={dummyData.menuBar} />
+      <CategoryHeader data={dummyData.MenuBar} />
       <CategorySection />
     </>
   );
