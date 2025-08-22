@@ -1,13 +1,8 @@
 import { useAtom } from "jotai";
 import { selectedKeyword } from "../atom/atom";
-import { useEffect } from "react";
 
 const HotKeywords = ({ data }) => {
   const [newKeyword, setNewKeyword] = useAtom(selectedKeyword);
-
-  // useEffect(() => {
-  //   console.log(newKeyword, "?");
-  // }, [newKeyword]);
 
   return (
     <div className="box__recent">

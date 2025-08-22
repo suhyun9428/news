@@ -7,13 +7,16 @@ import Opinion from "./components/Opinion";
 import Column from "./components/Column";
 import Issue from "./components/Issue";
 import { useAtom } from "jotai";
-import { selectedSectionIndex, selectedKeyword } from "./atom/atom";
+import {
+  selectedSectionIndex,
+  selectedKeyword,
+  doesSearchOpen,
+} from "./atom/atom";
 
 function App() {
   const [index, setIndex] = useAtom(selectedSectionIndex);
   const [newKeyword, setNewKeyword] = useAtom(selectedKeyword);
-  // const [hasKeywords, setHasKeywords] = useAtom(isThereAnyKeywords);
-  // setHasKeywords(true);
+  const [searchOpen, setSearchOpen] = useAtom(doesSearchOpen);
 
   return (
     <>
@@ -35,6 +38,12 @@ function App() {
           <Opinion />
           <Column data={dummyData.Column} />
         </>
+      )}
+      {searchOpen && (
+        <div
+          className="box__dimmed"
+          onClick={() => setSearchOpen((prev) => !prev)}
+        ></div>
       )}
     </>
   );

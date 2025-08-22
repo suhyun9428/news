@@ -114,7 +114,7 @@ const dummyData = {
   Articles: [
     {
       filterWord: "아이폰",
-      imgUrl: "../../assets/apple.png",
+      imgUrl: "../src/assets/apple.png",
       title: "‘모르는 번호’ 전화, 아이폰이 대신 받고 통화 목적 묻는다",
       date: {
         year: 2025,
@@ -126,13 +126,13 @@ const dummyData = {
     {
       filterWord: "코스피",
       imgUrl:
-        "https://m.samsungfund.com/upload/kodex/product/visual/2023030916123259.png",
-      title: "2222코스피, 장중 3100선 붕괴…사흘 연속 하락",
+        "https://img.wowtv.co.kr/wowtv_news/dnrs/20250818/B20250818063846617.jpg",
+      title: "반짝 반등에도 코스피 '암울'...파월 입 오늘 열린다",
       date: {
         year: 2025,
         month: 8,
-        date: 20,
-        time: "18:08",
+        date: 22,
+        time: "08:50",
       },
     },
     {
@@ -197,7 +197,7 @@ const dummyData = {
     {
       filterWord: "자율주행",
       imgUrl:
-        "https://thumbnews.nateimg.co.kr/view610///news.nateimg.co.kr/orgImg/ed/2025/08/21/PS25082100263.jpg",
+        "../src/assets/kia.jpg",
       title: "에이투지, APEC 회의서 자율주행 '기아 PV5' 선봬",
       date: {
         year: 2025,
@@ -253,6 +253,18 @@ const dummyData = {
         month: 8,
         date: 21,
         time: "10:57",
+      },
+    },
+    {
+      filterWord: "아이폰",
+      imgUrl:
+        "../src/assets/indiaiphone.jpg",
+      title: "단호한 애플, 아이폰17 全 모델 인도서 생산한다... “사상 처음”",
+      date: {
+        year: 2025,
+        month: 8,
+        date: 20,
+        time: "10:46",
       },
     },
   ],

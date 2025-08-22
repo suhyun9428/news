@@ -8,6 +8,7 @@ const MenuBarItem = ({ data }) => {
   const [toggleOpen, setToggleOpen] = useState(
     new Array(data.length).fill(false)
   );
+
   const handleToggle = (e, idx) => {
     const newToggleOpen = [...toggleOpen];
     if (!newToggleOpen[idx]) {
