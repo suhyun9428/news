@@ -114,7 +114,7 @@ const dummyData = {
   Articles: [
     {
       filterWord: "아이폰",
-      imgUrl: "../src/assets/apple.png",
+      imgUrl: "../../apple.png",
       title: "‘모르는 번호’ 전화, 아이폰이 대신 받고 통화 목적 묻는다",
       date: {
         year: 2025,
@@ -196,8 +196,7 @@ const dummyData = {
     },
     {
       filterWord: "자율주행",
-      imgUrl:
-        "../src/assets/kia.jpg",
+      imgUrl: "../../kia.jpg",
       title: "에이투지, APEC 회의서 자율주행 '기아 PV5' 선봬",
       date: {
         year: 2025,
@@ -257,8 +256,7 @@ const dummyData = {
     },
     {
       filterWord: "아이폰",
-      imgUrl:
-        "../src/assets/indiaiphone.jpg",
+      imgUrl: "../../indiaiphone.jpg",
       title: "단호한 애플, 아이폰17 全 모델 인도서 생산한다... “사상 처음”",
       date: {
         year: 2025,

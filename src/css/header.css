@@ -11,9 +11,9 @@ header {
       left: 0;
       width: 36px;
       height: 36px;
-      background: url(../src/assets/image__menu.svg);
+      background: url(../../image__menu.svg);
       &.button__menu-open {
-        background: url(../src/assets/image__close.svg);
+        background: url(../../image__close.svg);
         & ~ .button__search {
           display: none;
         }
@@ -35,9 +35,9 @@ header {
       right: 0;
       width: 36px;
       height: 36px;
-      background: url(../src/assets/image__search.svg);
+      background: url(../../image__search.svg);
       &.button__search--active {
-        background: url(../src/assets/image__close.svg);
+        background: url(../../image__close.svg);
       }
     }
     &:has(.button__search--active) {
@@ -65,7 +65,7 @@ header {
       .button__toggle {
         width: 32px;
         height: 32px;
-        background: url(../assets/image__plus.svg) no-repeat;
+        background: url(../../image__plus.svg) no-repeat;
         background-position: center;
         animation: rotate-back 0.3s linear;
         &.button__toggle-active {

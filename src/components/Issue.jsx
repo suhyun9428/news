@@ -52,20 +52,21 @@ const Issue = ({ data }) => {
   });
 
   const grouped = sorted.reduce((acc, item) => {
-    // acc 누적값(결과를 담는 곳)
-    // item 배열의 현재 요소
-
-    const key = `${item.date.year}-${item.date.month}-${item.date.date}`;
+    const key = `${item.date.year}-${item.date.month}-${item.date.date}`; // key는 기사 작성 일자
 
     if (!acc[key]) {
       // 날짜가 있으면
       acc[key] = {
-        date: item.date,
-        articles: [item],
+        date: item.date, // 그룹 날짜
+        articles: [item], // 첫 번째 기사 배열에 넣기
       };
+      // acc은 아티클 내용들 push 받은 배열
+      // item은 sorted에서 가져온 기사 데이터
+      console.log("! acc : ", acc, "item : ", item, "key : ", key);
     } else {
       // 날짜가 없으면 생성
       acc[key].articles.push(item);
+      console.log("0 acc : ", acc, "item : ", item, "key : ", key);
     }
     return acc;
   }, {});
