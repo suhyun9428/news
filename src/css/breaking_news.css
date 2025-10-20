@@ -3,7 +3,7 @@
   .list-breaking-news {
     & > .list-item {
       & + .list-item {
-        padding-top: 40px;
+        padding-top: 30px;
       }
     }
   }

@@ -1,4 +1,4 @@
-// import Weather from "./Weather";
+import Weather from "./Weather";
 import { useAtom } from "jotai";
 import MenuBar from "./MenuBar";
 import SearchBar from "./SearchBar";
@@ -10,7 +10,7 @@ import {
   selectedKeyword,
 } from "../atom/atom";
 
-const Header = () => {
+const Header = ({data}) => {
   const [index, setIndex] = useAtom(selectedSectionIndex);
   const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpen);
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpen);
@@ -37,6 +37,7 @@ const Header = () => {
         <a href="#" className="link__main" onClick={() => moveToMain()}>
           <h1 className="text__title">SUN NEWS</h1>
         </a>
+         <Weather />
         <button
           type="button"
           className={`button__search ${
@@ -47,8 +48,7 @@ const Header = () => {
           <span className="for-a11y">검색</span>
         </button>
       </div>
-      {isMenuOpen && <MenuBar data={dummyData.MenuBar} />}
-      {/* <Weather /> */}
+      {isMenuOpen && <MenuBar data={data}/>}
       {searchOpen && <SearchBar />}
     </header>
   );

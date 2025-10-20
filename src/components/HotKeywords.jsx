@@ -1,8 +1,11 @@
 import { useAtom } from "jotai";
 import { selectedKeyword } from "../atom/atom";
+import { useNewsApi } from "../hooks/useNewsApi";
 
 const HotKeywords = ({ data }) => {
   const [newKeyword, setNewKeyword] = useAtom(selectedKeyword);
+  const {article, loading} = useNewsApi('');
+  console.log(article, loading, "?")
 
   return (
     <div className="box__recent">

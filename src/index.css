@@ -7,6 +7,7 @@
 @import "../src/css/category_contents.css";
 @import "../src/css/column_contents.css";
 @import "../src/css/issue.css";
+@import "../src/css/loading.css";
 
 * {
   margin: 0;

@@ -32,10 +32,11 @@ const IssueContent = ({ data }) => {
 
 const Issue = ({ data }) => {
   const [newKeyword, setNewKeyword] = useAtom(selectedKeyword);
-
+  
   const filtered = data.filter((item) => item.filterWord === newKeyword);
 
   const sorted = filtered.sort((a, b) => {
+    // data.publishedAt
     const dateA = new Date(
       a.date.year,
       a.date.month - 1,

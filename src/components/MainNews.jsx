@@ -1,15 +1,16 @@
 const MainNewsContents = ({ data }) => {
-  const imgUrl = data.imgUrl
-    ? data.imgUrl
+  const imgUrl = data.image
+    ? data.image
     : "//dummyimage.com/216x154/f5f5f5/000";
-
+  const isBreakingNews = data.content.includes('breaking') || data.description.includes('breaking');
+  
   return (
     <li className="list-item">
       <a href="#" className="link__news">
         <div className="box__info">
           <span className="text__title">
             {data.hasOnlyTag && <span className="tag__blue">단독</span>}
-            {data.hasBreakingTag && <span className="tag__red">속보</span>}
+            {isBreakingNews && <span className="tag__red">속보</span>}
             {data.title}
           </span>
         </div>

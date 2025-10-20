@@ -1,3 +1,6 @@
+import { useAtom } from "jotai";
+import { selectedSectionIndex, selectedPage } from "../atom/atom";
+
 const CategorySection = () => {
   return (
     <div className="box__category-contents">

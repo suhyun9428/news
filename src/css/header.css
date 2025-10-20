@@ -14,6 +14,7 @@ header {
       background: url(../../image__menu.svg);
       &.button__menu-open {
         background: url(../../image__close.svg);
+        & ~ .box__weather,
         & ~ .button__search {
           display: none;
         }
@@ -27,6 +28,31 @@ header {
       padding: 15px;
       .text__title {
         font-size: 16px;
+      }
+    }
+    .box__weather {
+      position: absolute;
+      top: 8px;
+      right: 40px;
+      width: 42px;
+      overflow: hidden;
+      .image {
+        display: block;
+        width: 28px;
+        height: 28px;
+        margin: 0 auto;
+      }
+      .text__temp {
+        font-size: 10px;
+        text-align: center;
+        line-height: 1;
+      }
+      &.box__weather--error{
+        .text{
+          font-size: 10px;
+          text-align: center;
+          line-height: 42px;
+        }
       }
     }
     .button__search {
@@ -59,6 +85,7 @@ header {
       align-items: center;
       justify-content: space-between;
       .link__menu {
+        width: calc(100% - 32px);
         padding: 18px 18px 18px 0;
         font-size: 18px;
       }
@@ -123,7 +150,6 @@ header {
     height: 100vh;
     background: #fff;
     z-index: 1;
-
     & ~ .box__recent {
       display: none;
     }
@@ -174,6 +200,9 @@ header {
       position: relative;
       background-color: #fff;
       z-index: 100;
+      .box__weather{
+        display: none;
+      }
     }
     .box__dimmed {
       width: 100%;

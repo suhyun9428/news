@@ -1,23 +1,24 @@
 const BreakingNewsContents = ({ data }) => {
-  const imgUrl = data.imgUrl
-    ? data.imgUrl
+  const imgUrl = data.image
+    ? data.image
     : "//dummyimage.com/720x480/f5f5f5/000";
-
+  const isBreakingNews = data.content.includes('breaking') || data.description.includes('breaking');
+  
   return (
     <>
-      <a className="link__big-news" href="#">
+      <a className="link__big-news" href={data.url}>
         <div className="box__image">
           <img src={imgUrl} alt={data.title} />
         </div>
         <div className="box__info">
           <div className="box__title">
             <strong className="text__title">
-              {data.hasBreakingTag && <span className="tag__red">속보</span>}
+              {isBreakingNews && <span className="tag__red">속보</span>}
               {data.title}
             </strong>
           </div>
-          {data.hasDescript && (
-            <span className="text__description">{data.desc}</span>
+          {data.description && (
+            <span className="text__description">{data.description}</span>
           )}
         </div>
       </a>

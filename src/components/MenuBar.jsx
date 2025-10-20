@@ -1,13 +1,14 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
-import { selectedSectionIndex, doesMenuOpen } from "../atom/atom";
+import { selectedSectionIndex, doesMenuOpen, selectedPage } from "../atom/atom";
 
-const MenuBarItem = ({ data }) => {
+const MenuBarItem = ({data}) => {
   const [index, setIndex] = useAtom(selectedSectionIndex);
   const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpen);
   const [toggleOpen, setToggleOpen] = useState(
     new Array(data.length).fill(false)
   );
+  const [page, setPage] = useAtom(selectedPage);
 
   const handleToggle = (e, idx) => {
     const newToggleOpen = [...toggleOpen];
@@ -22,10 +23,11 @@ const MenuBarItem = ({ data }) => {
     }
     setToggleOpen(newToggleOpen);
   };
-  const handleIndex = (e, idx) => {
+  const handleIndex = (e, idx, id) => {
     e.preventDefault();
     setIndex(idx);
     setIsMenuOpen(false);
+    setPage(id);
   };
 
   return (
@@ -37,9 +39,9 @@ const MenuBarItem = ({ data }) => {
               <a
                 href="#"
                 className="link__menu"
-                onClick={(e) => handleIndex(e, idx)}
+                onClick={(e) => handleIndex(e, idx, item.id)}
               >
-                {item.title}
+                {item.id}
               </a>
               <button
                 type="button"
@@ -76,7 +78,7 @@ const MenuBarItem = ({ data }) => {
 const MenuBar = ({ data }) => {
   return (
     <div className="box__menubar">
-      <MenuBarItem data={data} />
+      <MenuBarItem data={data}/>
     </div>
   );
 };
