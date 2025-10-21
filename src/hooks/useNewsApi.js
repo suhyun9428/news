@@ -15,12 +15,12 @@ export const useNewsApi = (category = "General") => {
             q: category,
             lang: "en",
             max: 5,
-            apikey: API_KEY,
+            token: API_KEY,
           },
         });
         setArticles(res.data.articles);
       } catch (err) {
-        console.error("❌ Fetch error:", err);
+        setArticles([]);
       } finally {
         setLoading(false);
       }

@@ -32,7 +32,6 @@ function App() {
   const [index, setIndex] = useAtom(selectedSectionIndex);
   const [newKeyword, setNewKeyword] = useAtom(selectedKeyword);
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpen);
-  // const { article, loading } = useNewsApi();
   const [page] = useAtom(selectedPage);
   const { articles, loading } = useNewsApi(page || "general");
 
