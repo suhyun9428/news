@@ -5,6 +5,11 @@ export const useNewsApi = (category = "General") => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
+  console.log("category1:", category);
+  const query = category || 'general';
+
+  console.log("API_KEY:", import.meta.env.VITE_NEWS_API_KEY);
+  console.log("category2:", category, query);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -12,7 +17,7 @@ export const useNewsApi = (category = "General") => {
         setLoading(true);
         const res = await axios.get("https://gnews.io/api/v4/search", {
           params: {
-            q: category,
+            q: query,
             lang: "en",
             max: 5,
             token: API_KEY,
