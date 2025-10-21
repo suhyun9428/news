@@ -5,10 +5,12 @@ export const useNewsApi = (category = "General") => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
-  console.log("category1:", category);
+//   console.log("category1:", category);
   const query = category || 'general';
 
-  console.log("API_KEY:", import.meta.env.VITE_NEWS_API_KEY);
+  if(import.meta.env.VITE_NEWS_API_KEY){
+      console.log("돌아와제발");
+  }
   console.log("category2:", category, query);
 
   useEffect(() => {
