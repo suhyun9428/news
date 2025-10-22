@@ -3,14 +3,15 @@ const MainNewsContents = ({ data }) => {
     ? data.image
     : "//dummyimage.com/216x154/f5f5f5/000";
   const isBreakingNews = data.content.includes('breaking') || data.description.includes('breaking');
+  const isExclusive = data.content.includes('exclusive') || data.description.includes('scoop');
   
   return (
     <li className="list-item">
       <a href="#" className="link__news">
         <div className="box__info">
           <span className="text__title">
-            {data.hasOnlyTag && <span className="tag__blue">단독</span>}
-            {isBreakingNews && <span className="tag__red">속보</span>}
+            {isExclusive && <span className="tag__blue">exclusive</span>}
+            {isBreakingNews && <span className="tag__red">breaking</span>}
             {data.title}
           </span>
         </div>

@@ -3,6 +3,7 @@ import { useAtom } from "jotai";
 import MenuBar from "./MenuBar";
 import SearchBar from "./SearchBar";
 import dummyData from "../dummyData/dummyData";
+import { useEffect } from "react";
 import {
   selectedSectionIndex,
   doesMenuOpen,
@@ -10,7 +11,7 @@ import {
   selectedKeyword,
 } from "../atom/atom";
 
-const Header = ({data}) => {
+const Header = ({ data }) => {
   const [index, setIndex] = useAtom(selectedSectionIndex);
   const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpen);
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpen);
@@ -21,6 +22,21 @@ const Header = ({data}) => {
     setIsMenuOpen(false);
     setNewKeyword(null);
   };
+
+  useEffect(() => {
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > 55) {
+        document.getElementById("root").classList.add("js-fixed");
+      } else {
+        document.getElementById("root").classList.remove("js-fixed");
+      }
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   return (
     <header>
@@ -37,7 +53,7 @@ const Header = ({data}) => {
         <a href="#" className="link__main" onClick={() => moveToMain()}>
           <h1 className="text__title">SUN NEWS</h1>
         </a>
-         <Weather />
+        <Weather />
         <button
           type="button"
           className={`button__search ${
@@ -48,7 +64,7 @@ const Header = ({data}) => {
           <span className="for-a11y">검색</span>
         </button>
       </div>
-      {isMenuOpen && <MenuBar data={data}/>}
+      {isMenuOpen && <MenuBar data={data} />}
       {searchOpen && <SearchBar />}
     </header>
   );

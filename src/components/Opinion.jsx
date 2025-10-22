@@ -6,7 +6,7 @@ const Opinion = ({data}) => {
   return (
     <>
       <CategoryHeader data={data} />
-      <CategorySection />
+      <CategorySection data={data} />
     </>
   );
 };

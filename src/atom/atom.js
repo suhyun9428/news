@@ -6,3 +6,4 @@ export const selectedSectionIndex = atom(null);
 export const doesMenuOpen = atom(false);
 export const doesSearchOpen = atom(false);
 export const selectedPage = atom('General');
+export const mischiefPopup = atom(false);

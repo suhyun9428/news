@@ -6,12 +6,14 @@ import dummyData from "./dummyData/dummyData";
 import Opinion from "./components/Opinion";
 import Column from "./components/Column";
 import Issue from "./components/Issue";
+import MischiefPopup from "./components/MischiefPopup";
 import { useAtom } from "jotai";
 import {
   selectedSectionIndex,
   selectedKeyword,
   doesSearchOpen,
   selectedPage,
+  mischiefPopup,
 } from "./atom/atom";
 import { useNewsApi } from "./hooks/useNewsApi";
 import { Loading } from "./components/Loading";
@@ -33,42 +35,47 @@ function App() {
   const [newKeyword, setNewKeyword] = useAtom(selectedKeyword);
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpen);
   const [page] = useAtom(selectedPage);
-  const { articles, loading } = useNewsApi(page || "general");
-  console.log('내 페이지의 오리진은? ', location.origin)
+  const { articles, loading } = useNewsApi(page?.toLowerCase() || "general", newKeyword);
+  const [isOpen, setIsOpen] = useAtom(mischiefPopup);
+  // console.log("내 페이지의 오리진은? ", location.origin);
+  console.log("해킹당했어? ", isOpen, '지금 카테고리 : ', page);
 
   return (
     <>
       <Header data={categoryList} />
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          {index == null ? (
-            <>
-              <HotKeywords data={dummyData.HotKeywords} />
-              {newKeyword !== null ? (
-                <Issue data={dummyData.Articles} />
-              ) : (
-                <>
-                  <BreakingNews data={articles} />
-                  <MainNews data={articles} />
-                </>
-              )}
-            </>
-          ) : (
-            <>
-              <Opinion data={categoryList} />
-              <Column data={dummyData.Column} />
-            </>
-          )}
-          {searchOpen && (
-            <div
-              className="box__dimmed"
-              onClick={() => setSearchOpen((prev) => !prev)}
-            ></div>
-          )}
-        </>
-      )}
+      <div className="box__container">
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            {index == null ? (
+              <>
+                <HotKeywords data={dummyData.HotKeywords} />
+                {newKeyword !== null ? (
+                  <Issue data={dummyData.Articles} />
+                ) : (
+                  <>
+                    <BreakingNews data={articles} />
+                    <MainNews data={articles} />
+                  </>
+                )}
+              </>
+            ) : (
+              <>
+                <Opinion data={categoryList} />
+                <Column data={dummyData.Column} />
+              </>
+            )}
+            {searchOpen && (
+              <div
+                className="box__dimmed"
+                onClick={() => setSearchOpen((prev) => !prev)}
+              ></div>
+            )}
+          </>
+        )}
+      </div>
+      {isOpen && <MischiefPopup />}
     </>
   );
 }

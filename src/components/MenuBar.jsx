@@ -27,6 +27,7 @@ const MenuBarItem = ({data}) => {
     e.preventDefault();
     setIndex(idx);
     setIsMenuOpen(false);
+    console.log(id,'!!')
     setPage(id);
   };
 

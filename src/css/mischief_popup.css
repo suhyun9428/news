@@ -1,0 +1,115 @@
+.box__mischief-popup{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 200px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    z-index: 1;
+    .text__title{
+
+    }
+    .button__close{
+        appearance: none;
+        background-color: pink;
+    }
+}
+
+/* overlay */
+.mischief-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6, 10, 20, 0.55);
+  z-index: 9999;
+  animation: mischief-fade-in 180ms ease-out;
+}
+
+/* card */
+.mischief-card {
+  width: min(420px, 92%);
+  background: linear-gradient(180deg, #0b1020 0%, #0f1626 100%);
+  color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(2,6,23,0.7);
+  padding: 18px;
+  transform: translateY(-8px) scale(.98);
+  animation: mischief-pop 220ms cubic-bezier(.2,.9,.2,1) forwards;
+  border: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* header */
+.mischief-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.mischief-badge {
+  font-size: 22px;
+}
+
+.mischief-title {
+  font-size: 16px;
+  margin: 0;
+  letter-spacing: 0.6px;
+}
+
+/* body */
+.mischief-body {
+  padding: 8px 6px 12px;
+}
+
+.mischief-msg {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 6px 0;
+  color: #ffb86b; /* playful hacking color */
+  text-shadow: 0 1px 0 rgba(0,0,0,0.6);
+}
+
+.mischief-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+  margin: 4px 0 0;
+  opacity: 0.95;
+}
+
+/* footer/button */
+.mischief-footer {
+  margin-top: 12px;
+}
+
+.mischief-btn {
+  background: linear-gradient(180deg,#ff6b6b,#ff3b3b);
+  border: none;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(255,75,75,0.16);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.mischief-btn:active { transform: translateY(1px) scale(.995); }
+.mischief-btn:focus { outline: 2px solid rgba(255,255,255,0.12); outline-offset: 3px; }
+
+/* animations */
+@keyframes mischief-pop {
+  0% { opacity: 0; transform: translateY(-10px) scale(.95); }
+  60% { transform: translateY(2px) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes mischief-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

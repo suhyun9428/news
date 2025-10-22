@@ -8,6 +8,7 @@
 @import "../src/css/column_contents.css";
 @import "../src/css/issue.css";
 @import "../src/css/loading.css";
+@import "../src/css/mischief_popup.css";
 
 * {
   margin: 0;
@@ -169,6 +170,7 @@ input[type="tel"] {
 }
 
 #root {
+  position: relative;
   max-width: 768px;
   margin:0 auto;
   &:has(.box__category-wrap) {
