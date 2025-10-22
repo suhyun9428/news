@@ -34,6 +34,7 @@ function App() {
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpen);
   const [page] = useAtom(selectedPage);
   const { articles, loading } = useNewsApi(page || "general");
+  console.log('내 페이지의 오리진은? ', location.origin)
 
   return (
     <>

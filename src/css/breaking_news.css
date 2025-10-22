@@ -9,12 +9,17 @@
   }
   .link__big-news {
     .box__image {
+      position: relative;
       width: 100%;
-      height: auto;
+      height: 300px;
       border-radius: 8px;
       overflow: hidden;
       img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
         width: 100%;
+        transform: translate(-50%, -50%);
       }
     }
     .box__info {
@@ -75,3 +80,21 @@
     }
   }
 }
+ @media all and (min-width: 360px){
+  .box__breaking-news {
+    .link__big-news {
+      .box__image{
+        height: 200px;
+      }
+    }
+  }
+ }
+ @media all and (min-width: 768px){
+  .box__breaking-news {
+    .link__big-news {
+      .box__image{
+        height: 400px;
+      }
+    }
+  }
+ }

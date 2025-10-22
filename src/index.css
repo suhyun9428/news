@@ -169,6 +169,8 @@ input[type="tel"] {
 }
 
 #root {
+  max-width: 768px;
+  margin:0 auto;
   &:has(.box__category-wrap) {
     header {
       .box__header {
