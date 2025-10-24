@@ -1,6 +1,6 @@
 import { mischiefPopupAtom } from "../atom/atom";
 import { useAtom } from "jotai";
-import useLink from "../hooks/useLink";
+import { useLink } from "../hooks/useLink";
 
 const MainNewsContents = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
@@ -10,7 +10,7 @@ const MainNewsContents = ({ data }) => {
     data.content.includes("exclusive") || data.description.includes("scoop");
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
   const popupRef = useLink(() => setIsOpen(false));
-  
+
   return (
     <li className="list-item">
       <a

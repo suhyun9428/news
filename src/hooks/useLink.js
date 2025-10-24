@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const useLink = (callback) => {
+export const useLink = (callback) => {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -21,5 +21,3 @@ const useLink = (callback) => {
 
   return ref;
 };
-
-export default useLink;

@@ -1,9 +1,9 @@
-import useLink from "../hooks/useLink";
+import { useLink } from "../hooks/useLink";
 import { mischiefPopupAtom } from "../atom/atom";
 import { useAtom } from "jotai";
 
 const BreakingNewsContents = ({ data }) => {
-  const dummyImage = '/image__hi.jpg';
+  const dummyImage = "/image__hi.jpg";
   const isBreakingNews =
     data.content.includes("breaking") || data.description.includes("breaking");
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
@@ -15,26 +15,25 @@ const BreakingNewsContents = ({ data }) => {
         className="link__big-news"
         href={data.url}
         ref={popupRef}
-        onClick={(e) => 
-          {
-            e.preventDefault();
-            e.stopPropagation();
-            setIsOpen(true);
-            setTimeout(() => {
-              window.location.href = data.url;
-            }, 3000);
-          }
-        }
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setIsOpen(true);
+          setTimeout(() => {
+            window.location.href = data.url;
+          }, 3000);
+        }}
       >
         <div className="box__image">
-          <img 
+          <img
             src={data.image}
             onError={(e) => {
               e.currentTarget.onerror = null;
-              e.currentTarget.src=dummyImage;
-            }} 
-            alt={data.title} 
-            className="image" />
+              e.currentTarget.src = dummyImage;
+            }}
+            alt={data.title}
+            className="image"
+          />
         </div>
         <div className="box__info">
           <div className="box__title">

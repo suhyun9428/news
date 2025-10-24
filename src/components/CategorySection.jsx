@@ -2,10 +2,10 @@ import { useAtom } from "jotai";
 import { selectedPageAtom } from "../atom/atom";
 import { useNewsApi } from "../hooks/useNewsApi";
 import { mischiefPopupAtom } from "../atom/atom";
-import useLink from "../hooks/useLink";
+import { useLink } from "../hooks/useLink";
 
 const Contents = ({ data }) => {
-  const dummyImage = '/image__hi.jpg';
+  const dummyImage = "/image__hi.jpg";
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
   const popupRef = useLink(() => setIsOpen(false));
 
@@ -24,14 +24,15 @@ const Contents = ({ data }) => {
       }}
     >
       <div className="box__image">
-        <img 
+        <img
           src={data.image}
           onError={(e) => {
             e.currentTarget.onerror = null;
-            e.currentTarget.src=dummyImage;
-          }} 
-          alt={data.title} 
-          className="image" />
+            e.currentTarget.src = dummyImage;
+          }}
+          alt={data.title}
+          className="image"
+        />
       </div>
       <div className="box__info">
         <strong className="text__ttile">{data.title}</strong>
@@ -44,8 +45,8 @@ const Contents = ({ data }) => {
 };
 
 const CategorySection = () => {
-  const [page, ] = useAtom(selectedPageAtom);
-  const { articles,  } = useNewsApi(page);
+  const [page] = useAtom(selectedPageAtom);
+  const { articles } = useNewsApi(page);
 
   return (
     <div className="box__category-contents">

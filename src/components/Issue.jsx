@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 import { selectedKeywordAtom } from "../atom/atom";
 import { useNewsApi } from "../hooks/useNewsApi";
+import { useLink } from "../hooks/useLink";
 
 const IssueContent = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
