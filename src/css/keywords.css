@@ -9,13 +9,23 @@
     padding: 10px 20px 16px;
   }
   .list-item {
+    display: inline-block;
+    width: max-content;
     position: relative;
     padding: 0 14px;
+    font-size: 0;
+    line-height: 1;
     .link__recent {
-      display: block;
-      width: max-content;
+      display: inline-block;
       font-size: 14px;
       line-height: 20px;
+      vertical-align: top;
+    }
+    .button__close{
+      width: 16px;
+      height: 16px;
+      margin-top: 3px;
+      background-color: transparent;
     }
     &::after {
       content: "";

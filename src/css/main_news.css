@@ -33,3 +33,9 @@
     }
   }
 }
+.box__container{
+  padding-top: 20px;
+   &:has(.box__recent){
+    padding-top: 0;
+   }
+}

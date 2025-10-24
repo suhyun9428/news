@@ -19,24 +19,24 @@ import { useNewsApi } from "./hooks/useNewsApi";
 import { Loading } from "./components/Loading";
 
 const categoryList = [
-  { id: "General", label: "전체", submenu: ["전체"] },
-  { id: "World", label: "세계", submenu: ["전체"] },
-  { id: "Nation", label: "국가", submenu: ["전체"] },
-  { id: "Business", label: "비즈니스", submenu: ["전체"] },
-  { id: "Technology", label: "IT/기술", submenu: ["전체"] },
-  { id: "Entertainment", label: "연예", submenu: ["전체"] },
-  { id: "Sports", label: "스포츠", submenu: ["전체"] },
-  { id: "Science", label: "과학", submenu: ["전체"] },
-  { id: "Health", label: "건강", submenu: ["전체"] },
+  { id: "General", label: "전체" },
+  { id: "World", label: "세계" },
+  { id: "Nation", label: "국가" },
+  { id: "Business", label: "비즈니스" },
+  { id: "Technology", label: "IT/기술" },
+  { id: "Entertainment", label: "연예" },
+  { id: "Sports", label: "스포츠" },
+  { id: "Science", label: "과학" },
+  { id: "Health", label: "건강" },
 ];
 
 function App() {
-  const [index, setIndex] = useAtom(selectedSectionIndexAtom);
-  const [newKeyword, setNewKeyword] = useAtom(selectedKeywordAtom);
+  const [index, ] = useAtom(selectedSectionIndexAtom);
+  const [newKeyword, ] = useAtom(selectedKeywordAtom);
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpenAtom);
   const [page] = useAtom(selectedPageAtom);
   const { articles, loading } = useNewsApi(page?.toLowerCase() || "general", newKeyword);
-  const [isOpen, setIsOpen] = useAtom(mischiefPopupAtom);
+  const [isOpen, ] = useAtom(mischiefPopupAtom);
   // console.log("내 페이지의 오리진은? ", location.origin);
   // console.log("해킹당했어? ", isOpen, '지금 카테고리 : ', page);
 

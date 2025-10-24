@@ -1,28 +1,46 @@
 import { useAtom } from "jotai";
-import { selectedKeywordAtom } from "../atom/atom";
+import { selectedKeywordAtom, keywordListAtom } from "../atom/atom";
+import { IoIosClose } from "react-icons/io";
 
 const HotKeywords = ({ data }) => {
-  const [, setNewKeyword] = useAtom(selectedKeywordAtom);
+  const [newKeyword, setNewKeyword] = useAtom(selectedKeywordAtom);
+  const [keywordList, setKeywordList] = useAtom(keywordListAtom);
+
+  const delKeyword = (keyword) => {
+    setKeywordList(keywordList.filter((item) => item !== keyword));
+  };
 
   return (
-    <div className="box__recent">
-      <p className="for-a11y">최근 이슈</p>
-      <ul className="list__recent">
-        {data.map((item, idx) => {
-          return (
-            <li key={idx} className="list-item">
-              <a
-                href="#"
-                className="link__recent"
-                onClick={() => setNewKeyword(item)}
-              >
-                {item}
-              </a>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    <>
+      {keywordList.length > 0 && (
+        <div className="box__recent">
+          <p className="for-a11y">최근 검색어</p>
+          <ul className="list__recent">
+            {keywordList.map((item, idx) => {
+              return (
+                <li key={`keywordlist-${idx}`} className="list-item">
+                  <a
+                    href="#"
+                    className="link__recent"
+                    onClick={() => setNewKeyword(item)}
+                  >
+                    {item}
+                  </a>
+                  <button
+                    type="button"
+                    className="button__close"
+                    onClick={() => delKeyword(item)}
+                  >
+                    <span className="for-a11y">닫기</span>
+                    <IoIosClose/>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
 

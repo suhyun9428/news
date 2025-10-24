@@ -59,7 +59,7 @@ const MenuBarItem = ({data}) => {
                 toggleOpen[idx] ? "box__submenu--active" : ""
               }`}
             >
-              <ul className="list__submenu">
+              {/* <ul className="list__submenu">
                 {item.submenu.map((item, idx) => {
                   return (
                     <li key={`item-${idx}`} className="list-item">
@@ -67,7 +67,7 @@ const MenuBarItem = ({data}) => {
                     </li>
                   );
                 })}
-              </ul>
+              </ul> */}
             </div>
           </div>
         );

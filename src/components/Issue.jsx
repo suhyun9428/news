@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { selectedKeywordAtom } from "../atom/atom";
+import { selectedKeywordAtom, mischiefPopupAtom } from "../atom/atom";
 import { useNewsApi } from "../hooks/useNewsApi";
 import { useLink } from "../hooks/useLink";
 

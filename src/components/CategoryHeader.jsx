@@ -13,7 +13,7 @@ const CategoryHeader = ({ data = [] }) => {
   return (
     <div className="box__category-wrap">
       <h2 className="text__title">{section.id}</h2>
-      <ul className="list__sub-category">
+      {/* <ul className="list__sub-category">
         {Array.isArray(section.submenu) &&
           section.submenu.map((item, idx) => (
             <li key={idx} className="list-item">
@@ -31,7 +31,7 @@ const CategoryHeader = ({ data = [] }) => {
               </a>
             </li>
           ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
