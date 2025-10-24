@@ -1,9 +1,9 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
-import { selectedSectionIndex } from "../atom/atom";
+import { selectedSectionIndexAtom } from "../atom/atom";
 
 const CategoryHeader = ({ data = [] }) => {
-  const [index, setIndex] = useAtom(selectedSectionIndex);
+  const [index, setIndex] = useAtom(selectedSectionIndexAtom);
   const [selected, setSelected] = useState(0);
 
   if (!data[index]) return null;

@@ -9,11 +9,11 @@ import Issue from "./components/Issue";
 import MischiefPopup from "./components/MischiefPopup";
 import { useAtom } from "jotai";
 import {
-  selectedSectionIndex,
-  selectedKeyword,
-  doesSearchOpen,
-  selectedPage,
-  mischiefPopup,
+  selectedSectionIndexAtom,
+  selectedKeywordAtom,
+  doesSearchOpenAtom,
+  selectedPageAtom,
+  mischiefPopupAtom,
 } from "./atom/atom";
 import { useNewsApi } from "./hooks/useNewsApi";
 import { Loading } from "./components/Loading";
@@ -31,18 +31,19 @@ const categoryList = [
 ];
 
 function App() {
-  const [index, setIndex] = useAtom(selectedSectionIndex);
-  const [newKeyword, setNewKeyword] = useAtom(selectedKeyword);
-  const [searchOpen, setSearchOpen] = useAtom(doesSearchOpen);
-  const [page] = useAtom(selectedPage);
+  const [index, setIndex] = useAtom(selectedSectionIndexAtom);
+  const [newKeyword, setNewKeyword] = useAtom(selectedKeywordAtom);
+  const [searchOpen, setSearchOpen] = useAtom(doesSearchOpenAtom);
+  const [page] = useAtom(selectedPageAtom);
   const { articles, loading } = useNewsApi(page?.toLowerCase() || "general", newKeyword);
-  const [isOpen, setIsOpen] = useAtom(mischiefPopup);
+  const [isOpen, setIsOpen] = useAtom(mischiefPopupAtom);
   // console.log("내 페이지의 오리진은? ", location.origin);
-  console.log("해킹당했어? ", isOpen, '지금 카테고리 : ', page);
+  // console.log("해킹당했어? ", isOpen, '지금 카테고리 : ', page);
 
   return (
     <>
       <Header data={categoryList} />
+      {/* 여기 내부 SearchBar에서 검색 */}
       <div className="box__container">
         {loading ? (
           <Loading />
@@ -52,7 +53,7 @@ function App() {
               <>
                 <HotKeywords data={dummyData.HotKeywords} />
                 {newKeyword !== null ? (
-                  <Issue data={dummyData.Articles} />
+                  <Issue data={articles} /> // 여기서 검색된 뉴스 페이지 노출
                 ) : (
                   <>
                     <BreakingNews data={articles} />

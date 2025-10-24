@@ -1,4 +1,5 @@
 .box__issue {
+  padding-bottom: 50px;
   .box__issue-title {
     .text__title {
       margin: 0 20px;

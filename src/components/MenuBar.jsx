@@ -1,14 +1,14 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
-import { selectedSectionIndex, doesMenuOpen, selectedPage } from "../atom/atom";
+import { selectedSectionIndexAtom, doesMenuOpenAtom, selectedPageAtom } from "../atom/atom";
 
 const MenuBarItem = ({data}) => {
-  const [index, setIndex] = useAtom(selectedSectionIndex);
-  const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpen);
+  const [, setIndex] = useAtom(selectedSectionIndexAtom);
+  const [, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
   const [toggleOpen, setToggleOpen] = useState(
     new Array(data.length).fill(false)
   );
-  const [page, setPage] = useAtom(selectedPage);
+  const [, setPage] = useAtom(selectedPageAtom);
 
   const handleToggle = (e, idx) => {
     const newToggleOpen = [...toggleOpen];
@@ -27,7 +27,7 @@ const MenuBarItem = ({data}) => {
     e.preventDefault();
     setIndex(idx);
     setIsMenuOpen(false);
-    console.log(id,'!!')
+    // console.log(id,'!!')
     setPage(id);
   };
 

@@ -1,9 +1,8 @@
 import { atom } from "jotai";
 
-export const selectedKeyword = atom(null);
-export const homePagination = atom(1);
-export const selectedSectionIndex = atom(null);
-export const doesMenuOpen = atom(false);
-export const doesSearchOpen = atom(false);
-export const selectedPage = atom('General');
-export const mischiefPopup = atom(false);
+export const selectedKeywordAtom = atom(null);
+export const selectedSectionIndexAtom = atom(null);
+export const doesMenuOpenAtom = atom(false);
+export const doesSearchOpenAtom = atom(false);
+export const selectedPageAtom = atom('General');
+export const mischiefPopupAtom = atom(false);

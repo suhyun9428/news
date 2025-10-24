@@ -1,20 +1,12 @@
-import { useState } from "react";
 import useLink from "../hooks/useLink";
-import { useImageValidation } from "../hooks/useImageValidation";
-import { mischiefPopup } from "../atom/atom";
+import { mischiefPopupAtom } from "../atom/atom";
 import { useAtom } from "jotai";
 
 const BreakingNewsContents = ({ data }) => {
-  var imgUrl;
-    // const imgUrl = data.image
-    // ? data.image
-    // : "//dummyimage.com/720x480/f5f5f5/000";
-  const dummyImage = '../../public/image__hi.jpg';
-  const isValidImage = useImageValidation(data.image);
-  {isValidImage === null ? (dummyImage):(imgUrl = data.image)}
+  const dummyImage = '/image__hi.jpg';
   const isBreakingNews =
     data.content.includes("breaking") || data.description.includes("breaking");
-  const [isOpen, setIsOpen] = useAtom(mischiefPopup);
+  const [, setIsOpen] = useAtom(mischiefPopupAtom);
   const popupRef = useLink(() => setIsOpen(false));
 
   return (
@@ -35,7 +27,14 @@ const BreakingNewsContents = ({ data }) => {
         }
       >
         <div className="box__image">
-          <img src={imgUrl} alt={data.title} />
+          <img 
+            src={data.image}
+            onError={(e) => {
+              e.currentTarget.onerror = null;
+              e.currentTarget.src=dummyImage;
+            }} 
+            alt={data.title} 
+            className="image" />
         </div>
         <div className="box__info">
           <div className="box__title">

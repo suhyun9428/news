@@ -33,6 +33,7 @@ export const useNewsApi = (category = "general", keyword = "" ) => {
         const res = await fetch(url);
         const data = await res.json();
         setArticles(data.articles || []);
+        // console.log('category : ', category, 'keyword : ', keyword,"?!")
       } catch (err) {
         setArticles([]);
       } finally {

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { selectedKeyword } from "../atom/atom";
+import { selectedKeywordAtom } from "../atom/atom";
 
 const SearchBar = () => {
   const [inputVal, setInputVal] = useState("");
-  const [searchKeyword, setSearchKeyword] = useAtom(selectedKeyword);
+  const [, setSearchKeyword] = useAtom(selectedKeywordAtom);
 
   const handleChange = (e) => {
     setInputVal(e.target.value);
@@ -12,7 +12,7 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setSearchKeyword(inputVal);
+    setSearchKeyword(inputVal.trim());
   };
 
   return (

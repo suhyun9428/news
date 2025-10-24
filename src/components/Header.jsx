@@ -2,20 +2,19 @@ import Weather from "./Weather";
 import { useAtom } from "jotai";
 import MenuBar from "./MenuBar";
 import SearchBar from "./SearchBar";
-import dummyData from "../dummyData/dummyData";
 import { useEffect } from "react";
 import {
-  selectedSectionIndex,
-  doesMenuOpen,
-  doesSearchOpen,
-  selectedKeyword,
+  selectedSectionIndexAtom,
+  doesMenuOpenAtom,
+  doesSearchOpenAtom,
+  selectedKeywordAtom,
 } from "../atom/atom";
 
 const Header = ({ data }) => {
-  const [index, setIndex] = useAtom(selectedSectionIndex);
-  const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpen);
-  const [searchOpen, setSearchOpen] = useAtom(doesSearchOpen);
-  const [newKeyword, setNewKeyword] = useAtom(selectedKeyword);
+  const [, setIndex] = useAtom(selectedSectionIndexAtom);
+  const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
+  const [searchOpen, setSearchOpen] = useAtom(doesSearchOpenAtom);
+  const [, setNewKeyword] = useAtom(selectedKeywordAtom);
 
   const moveToMain = () => {
     setIndex(null);

@@ -1,7 +1,12 @@
 import { useAtom } from "jotai";
-import { selectedKeyword } from "../atom/atom";
+import { selectedKeywordAtom } from "../atom/atom";
+import { useNewsApi } from "../hooks/useNewsApi";
 
 const IssueContent = ({ data }) => {
+  const dummyImage = "/image__hi.jpg";
+  const [, setIsOpen] = useAtom(mischiefPopupAtom);
+  const popupRef = useLink(() => setIsOpen(false));
+
   return (
     <li className="list-item">
       <p className="text__date">
@@ -10,7 +15,19 @@ const IssueContent = ({ data }) => {
       <ul className="list__issue-perday">
         {data.articles.map((article, i) => (
           <li className="list-item" key={i}>
-            <a href="#" className="link__news">
+            <a
+              href={article.url}
+              className="link__news"
+              ref={popupRef}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setIsOpen(true);
+                setTimeout(() => {
+                  window.location.href = data.url;
+                }, 3000);
+              }}
+            >
               <div className="box__info">
                 <span className="text__title">{article.title}</span>
                 <p className="text__time">{article.date.time}</p>
@@ -18,7 +35,11 @@ const IssueContent = ({ data }) => {
               <div className="box__image">
                 <img
                   className="image"
-                  src={article.imgUrl}
+                  src={article.image}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = dummyImage;
+                  }}
                   alt={article.title}
                 />
               </div>
@@ -30,53 +51,46 @@ const IssueContent = ({ data }) => {
   );
 };
 
-const Issue = ({ data }) => {
-  const [newKeyword, setNewKeyword] = useAtom(selectedKeyword);
-  
-  const filtered = data.filter((item) => item.filterWord === newKeyword);
+const Issue = () => {
+  const [newKeyword] = useAtom(selectedKeywordAtom);
+  const { articles } = useNewsApi("general", newKeyword);
 
-  const sorted = filtered.sort((a, b) => {
-    // data.publishedAt
-    const dateA = new Date(
-      a.date.year,
-      a.date.month - 1,
-      a.date.date,
-      ...a.date.time.split(":")
-    );
-    const dateB = new Date(
-      b.date.year,
-      b.date.month - 1,
-      b.date.date,
-      ...b.date.time.split(":")
-    );
-    return dateB - dateA; // 최신순
+  const sorted = articles.sort((a, b) => {
+    return new Date(b.publishAt) - new Date(a.publishAt);
   });
 
   const grouped = sorted.reduce((acc, item) => {
-    const key = `${item.date.year}-${item.date.month}-${item.date.date}`; // key는 기사 작성 일자
+    const date = new Date(item.publishedAt);
+
+    // 날짜 포맷 만들기
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+
+    const key = `${year}-${month}-${day}`;
 
     if (!acc[key]) {
-      // 날짜가 있으면
       acc[key] = {
-        date: item.date, // 그룹 날짜
-        articles: [item], // 첫 번째 기사 배열에 넣기
+        date: { year, month, date: day },
+        articles: [],
       };
-      // acc은 아티클 내용들 push 받은 배열
-      // item은 sorted에서 가져온 기사 데이터
-      console.log("! acc : ", acc, "item : ", item, "key : ", key);
-    } else {
-      // 날짜가 없으면 생성
-      acc[key].articles.push(item);
-      console.log("0 acc : ", acc, "item : ", item, "key : ", key);
     }
+
+    acc[key].articles.push({
+      ...item,
+      date: { year, month, date: day, time: `${hours}:${minutes}` },
+    });
+
     return acc;
   }, {});
 
   const merged = Object.values(grouped).map((group) => {
     group.articles.sort((a, b) => {
-      const [hA, mA] = a.date.time.split(":").map(Number);
-      const [hB, mB] = b.date.time.split(":").map(Number);
-      return hB - hA || mB - mA; // 시 → 분 순서로 비교
+      const dateA = new Date(a.publishedAt);
+      const dateB = new Date(b.publishedAt);
+      return dateB - dateA;
     });
     return group;
   });
@@ -89,7 +103,7 @@ const Issue = ({ data }) => {
       </div>
       <div className="box__issue-contents">
         <p className="text__title">
-          전체 기사 <span className="text__emphasis">{filtered.length}</span>건
+          전체 기사 <span className="text__emphasis">{articles.length}</span>건
         </p>
         <ul className="list__issue">
           {merged.map((group, idx) => (
