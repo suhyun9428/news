@@ -38,7 +38,7 @@ function App() {
   const { articles, loading } = useNewsApi(page?.toLowerCase() || "general", newKeyword);
   const [isOpen, ] = useAtom(mischiefPopupAtom);
   // console.log("내 페이지의 오리진은? ", location.origin);
-  // console.log("해킹당했어? ", isOpen, '지금 카테고리 : ', page);
+  console.log("해킹당했어? ", isOpen, '지금 카테고리 : ', page);
 
   return (
     <>
