@@ -9,6 +9,8 @@
 @import "../src/css/issue.css";
 @import "../src/css/loading.css";
 @import "../src/css/mischief_popup.css";
+@import "../src/css/menu_bar.css";
+@import "../src/css/footer.css";
 
 * {
   margin: 0;

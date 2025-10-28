@@ -1,6 +1,6 @@
-import { mischiefPopupAtom } from "../atom/atom";
+import { mischiefPopupAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
-import { useLink } from "../hooks/useLink";
+import { useLink } from "../../hooks/useLink";
 
 const MainNewsContents = ({ data }) => {
   const dummyImage = "/image__hi.jpg";

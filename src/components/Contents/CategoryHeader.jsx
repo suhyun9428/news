@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
-import { selectedSectionIndexAtom } from "../atom/atom";
+import { selectedSectionIndexAtom } from "../../atom/atom";
 
 const CategoryHeader = ({ data = [] }) => {
   const [index, setIndex] = useAtom(selectedSectionIndexAtom);

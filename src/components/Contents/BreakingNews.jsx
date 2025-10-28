@@ -1,5 +1,5 @@
-import { useLink } from "../hooks/useLink";
-import { mischiefPopupAtom } from "../atom/atom";
+import { useLink } from "../../hooks/useLink";
+import { mischiefPopupAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
 
 const BreakingNewsContents = ({ data }) => {

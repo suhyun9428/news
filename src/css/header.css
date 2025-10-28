@@ -17,8 +17,8 @@ header {
       &.button__menu-open {
         background: url(../../image__close.svg);
 
-        &~.box__weather,
-        &~.button__search {
+        & ~ .box__weather,
+        & ~ .button__search {
           display: none;
         }
       }
@@ -85,63 +85,6 @@ header {
     }
   }
 
-  .box__menubar {
-    position: relative;
-    margin: 0 12px;
-    background: #fff;
-
-    .box__menu-wrap {
-      border-bottom: 1px solid #eee;
-    }
-
-    .box__menu-inner {
-      display: flex;
-      height: 65px;
-      align-items: center;
-      justify-content: space-between;
-
-      .link__menu {
-        width: calc(100% - 32px);
-        padding: 18px 18px 18px 0;
-        font-size: 18px;
-      }
-
-      .button__toggle {
-        width: 32px;
-        height: 32px;
-        background: url(../../image__plus.svg) no-repeat;
-        background-position: center;
-        animation: rotate-back 0.3s linear;
-
-        &.button__toggle-active {
-          animation: rotate 0.3s linear;
-        }
-      }
-    }
-
-    .box__submenu {
-      display: none;
-      animation: updown-back 0.3s linear;
-
-      .list__submenu {
-        display: flex;
-        flex-wrap: wrap;
-        padding-bottom: 8px;
-
-        .list-item {
-          flex: 1 1 50%;
-          padding-top: 0;
-          padding-bottom: 12px;
-        }
-      }
-
-      &.box__submenu--active {
-        display: block;
-        animation: updown 0.3s linear;
-      }
-    }
-  }
-
   .box__search-bar {
     width: 100%;
     margin: 0;
@@ -168,20 +111,12 @@ header {
   }
 
   &:has(.button__menu-open) {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    height: 100vh;
-    background: #fff;
-    z-index: 1;
 
-    &~.box__recent {
+    & ~ .box__recent {
       display: none;
     }
 
-    &~.box__breaking-news {
+    & ~ .box__breaking-news {
       display: none;
     }
   }
@@ -254,7 +189,9 @@ header {
   &.js-fixed {
     header {
       position: fixed;
+      top: 0;
       width: 100%;
+      max-width: 768px;
       background: #fff;
       z-index: 1;
     }

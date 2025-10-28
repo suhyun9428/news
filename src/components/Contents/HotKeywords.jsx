@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { selectedKeywordAtom, keywordListAtom } from "../atom/atom";
+import { selectedKeywordAtom, keywordListAtom } from "../../atom/atom";
 import { IoIosClose } from "react-icons/io";
 
 const HotKeywords = ({ data }) => {

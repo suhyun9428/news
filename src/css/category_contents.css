@@ -17,10 +17,17 @@
         padding: 19px 0 20px;
         border-bottom: 1px solid #e2e2e2;
         .box__image {
+          position: relative;
+          height: 200px;
           border-radius: 8px;
           overflow: hidden;
           .image {
             width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
           }
         }
         .box__info {

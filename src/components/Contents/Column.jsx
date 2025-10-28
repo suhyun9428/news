@@ -1,7 +1,7 @@
 const Column = ({ data }) => {
   return (
     <div className="box__column-contents">
-      <h3 className="text__title">칼럼</h3>
+      <h3 className="text__title">Column</h3>
       <ul className="list__articles">
         {data.map((item, idx) => {
           return (

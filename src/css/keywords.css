@@ -1,12 +1,15 @@
 .box__recent {
+  width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
   .list__recent {
-    margin: 0 auto;
+    max-width: 768px;
+    margin: 16px 0;
     overflow-x: scroll;
-    padding-left: 20px;
-    padding-right: 20px;
-    display: flex;
-    align-items: center;
-    padding: 10px 20px 16px;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    font-size: 0;
+    white-space: nowrap;
   }
   .list-item {
     display: inline-block;
@@ -15,6 +18,7 @@
     padding: 0 14px;
     font-size: 0;
     line-height: 1;
+    vertical-align: top;
     .link__recent {
       display: inline-block;
       font-size: 14px;

@@ -1,16 +1,15 @@
 import Weather from "./Weather";
-import { useAtom } from "jotai";
-import MenuBar from "./MenuBar";
 import SearchBar from "./SearchBar";
+import { useAtom } from "jotai";
 import { useEffect } from "react";
 import {
   selectedSectionIndexAtom,
   doesMenuOpenAtom,
   doesSearchOpenAtom,
   selectedKeywordAtom,
-} from "../atom/atom";
+} from "../../atom/atom";
 
-const Header = ({ data }) => {
+const Header = () => {
   const [, setIndex] = useAtom(selectedSectionIndexAtom);
   const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpenAtom);
@@ -63,7 +62,6 @@ const Header = ({ data }) => {
           <span className="for-a11y">검색</span>
         </button>
       </div>
-      {isMenuOpen && <MenuBar data={data} />}
       {searchOpen && <SearchBar />}
     </header>
   );

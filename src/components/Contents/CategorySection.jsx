@@ -1,8 +1,8 @@
 import { useAtom } from "jotai";
-import { selectedPageAtom } from "../atom/atom";
-import { useNewsApi } from "../hooks/useNewsApi";
-import { mischiefPopupAtom } from "../atom/atom";
-import { useLink } from "../hooks/useLink";
+import { selectedPageAtom } from "../../atom/atom";
+import { useNewsApi } from "../../hooks/useNewsApi";
+import { mischiefPopupAtom } from "../../atom/atom";
+import { useLink } from "../../hooks/useLink";
 
 const Contents = ({ data }) => {
   const dummyImage = "/image__hi.jpg";

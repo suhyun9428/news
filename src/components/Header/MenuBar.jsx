@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { useState } from "react";
-import { selectedSectionIndexAtom, doesMenuOpenAtom, selectedPageAtom } from "../atom/atom";
+import { selectedSectionIndexAtom, doesMenuOpenAtom, selectedPageAtom } from "../../atom/atom";
 
 const MenuBarItem = ({data}) => {
   const [, setIndex] = useAtom(selectedSectionIndexAtom);

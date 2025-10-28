@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
-import { selectedKeywordAtom, mischiefPopupAtom } from "../atom/atom";
-import { useNewsApi } from "../hooks/useNewsApi";
-import { useLink } from "../hooks/useLink";
+import { selectedKeywordAtom, mischiefPopupAtom } from "../../atom/atom";
+import { useNewsApi } from "../../hooks/useNewsApi";
+import { useLink } from "../../hooks/useLink";
 
 const IssueContent = ({ data }) => {
   const dummyImage = "/image__hi.jpg";

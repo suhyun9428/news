@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { selectedKeywordAtom, keywordListAtom, doesSearchOpenAtom } from "../atom/atom";
+import { selectedKeywordAtom, keywordListAtom, doesSearchOpenAtom } from "../../atom/atom";
 
 const SearchBar = () => {
   const [inputVal, setInputVal] = useState("");
