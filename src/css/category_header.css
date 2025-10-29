@@ -2,6 +2,7 @@
   margin: 0 20px;
   border-bottom: 3px solid #000;
   .text__title {
+    padding-bottom: 3px;
     font-size: 32px;
     font-weight: 700;
     color: #151515;

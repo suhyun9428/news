@@ -16,12 +16,25 @@
     justify-content: space-between;
 
     .link__menu {
-      width: calc(100% - 32px);
-      padding: 18px 18px 18px 0;
+      position: relative;
+      width: 100%;
+      /* width: calc(100% - 32px); */
+      padding: 18px;
       font-size: 18px;
+      &::after{
+        content: "";
+        position: absolute;
+        right: 10px;
+        top: 13px;
+        width: 32px;
+        height: 32px;
+        background: url(../../image__plus.svg) no-repeat;
+        background-position: center;
+        animation: rotate-back 0.3s linear;
+      }
     }
 
-    .button__toggle {
+    /* .button__toggle {
       width: 32px;
       height: 32px;
       background: url(../../image__plus.svg) no-repeat;
@@ -31,7 +44,7 @@
       &.button__toggle-active {
         animation: rotate 0.3s linear;
       }
-    }
+    } */
   }
 
   .box__submenu {

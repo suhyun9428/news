@@ -13,7 +13,7 @@ const SearchBar = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setSearchKeyword(inputVal.trim());
     addKeyword(inputVal.trim());
     // console.log(inputVal)

@@ -20,6 +20,7 @@ export const useNewsApi = (category = "general", keyword = "" ) => {
           apikey: import.meta.env.VITE_NEWS_API_KEY,
           lang : 'en',
           max:5
+          // max:10
         });
 
         if (endpoint === "top-headlines") { // 카테고리 > 최신 뉴스

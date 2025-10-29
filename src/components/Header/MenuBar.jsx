@@ -10,19 +10,20 @@ const MenuBarItem = ({data}) => {
   );
   const [, setPage] = useAtom(selectedPageAtom);
 
-  const handleToggle = (e, idx) => {
-    const newToggleOpen = [...toggleOpen];
-    if (!newToggleOpen[idx]) {
-      newToggleOpen[idx] = true;
-      e.target.classList.add("button__toggle-active");
-    } else {
-      newToggleOpen[idx] = false;
-      if (e.target.classList.contains("button__toggle-active")) {
-        e.target.classList.remove("button__toggle-active");
-      }
-    }
-    setToggleOpen(newToggleOpen);
-  };
+  // const handleToggle = (e, idx) => {
+  //   const newToggleOpen = [...toggleOpen];
+  //   if (!newToggleOpen[idx]) {
+  //     newToggleOpen[idx] = true;
+  //     e.target.classList.add("button__toggle-active");
+  //   } else {
+  //     newToggleOpen[idx] = false;
+  //     if (e.target.classList.contains("button__toggle-active")) {
+  //       e.target.classList.remove("button__toggle-active");
+  //     }
+  //   }
+  //   setToggleOpen(newToggleOpen);
+  // };
+
   const handleIndex = (e, idx, id) => {
     e.preventDefault();
     setIndex(idx);
@@ -44,7 +45,7 @@ const MenuBarItem = ({data}) => {
               >
                 {item.id}
               </a>
-              <button
+              {/* <button
                 type="button"
                 className="button__toggle"
                 onClick={(e) => {
@@ -52,7 +53,7 @@ const MenuBarItem = ({data}) => {
                 }}
               >
                 <span className="for-a11y">펼치기</span>
-              </button>
+              </button> */}
             </div>
             <div
               className={`box__submenu ${

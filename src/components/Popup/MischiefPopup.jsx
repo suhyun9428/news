@@ -13,7 +13,7 @@ const MischiefPopup = () => {
           <button
             type="button"
             className="button__confirm"
-            onClick={() => setIsOpen(!isOpen)}
+            // onClick={() => window.alert('메롱')}
           >
             OK
           </button>

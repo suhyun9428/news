@@ -12,14 +12,14 @@ const dummyData = {
   ],
   Column: [
     {
-      title: "서의동 칼럼",
-      summary: "'두번째 분단'의 해소가 급선무다",
-      imgUrl: "//dummyimage.com/160x160/000/fff",
+      title: "Daily Tar Heel",
+      summary: "Column: The press secretary is helping quell the free press",
+      imgUrl: "//snworksceo.imgix.net/dth/080b01c3-9309-4ff1-a599-08d9b73c900e.sized-1000x1000.jpg?format=auto&w=1000&fit=fill&ar=4%3A3&fill=blur",
     },
     {
-      title: "국제칼럼",
-      summary: "이제는 멈춰야 할 산업재해",
-      imgUrl: "//dummyimage.com/160x160/000/fff",
+      title: "Chicago Tribune",
+      summary: "Column: Seasonal jobs already being filled, and fewer hires expected",
+      imgUrl: "//www.chicagotribune.com/wp-content/uploads/2025/10/STA-L-matteson-amazon-hire-01.jpg?w=785",
     },
   ],
 };
