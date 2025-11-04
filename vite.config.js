@@ -10,7 +10,11 @@ export default defineConfig({
         target: 'https://gnews.io/api/v4',
         changeOrigin: true,
         rewrite: path => path.replace(/^\/api/, '')
-      }
+      },
+      '/auth': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+      },
     }
   }
 })

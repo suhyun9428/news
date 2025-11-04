@@ -39,7 +39,7 @@ header {
     .box__weather {
       position: absolute;
       top: 8px;
-      right: 40px;
+      left: 40px;
       width: 42px;
       overflow: hidden;
 
@@ -64,7 +64,18 @@ header {
         }
       }
     }
-
+    .button__login {
+      position: absolute;
+      top: 10px;
+      right: 40px;
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      .image {
+        width: 26px;
+        height: 26px;
+      }
+    }
     .button__search {
       position: absolute;
       top: 8px;
@@ -111,7 +122,6 @@ header {
   }
 
   &:has(.button__menu-open) {
-
     & ~ .box__recent {
       display: none;
     }

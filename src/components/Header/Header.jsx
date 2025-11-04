@@ -1,4 +1,5 @@
 import Weather from "./Weather";
+import Member from "./Member";
 import SearchBar from "./SearchBar";
 import { useAtom } from "jotai";
 import { useEffect } from "react";
@@ -52,6 +53,7 @@ const Header = () => {
           <h1 className="text__title">SUN NEWS</h1>
         </a>
         <Weather />
+        <Member />
         <button
           type="button"
           className={`button__search ${
