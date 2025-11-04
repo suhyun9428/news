@@ -38,9 +38,9 @@ function SignupSection() {
   };
 
   return (
-    <div>
-      <h2>회원가입</h2>
-      <form onSubmit={handleSignup}>
+    <div className="box__signup-container">
+      <h2 className="text__title">회원가입</h2>
+      <form className="form__signup" onSubmit={handleSignup}>
         <label htmlFor="email">이메일</label>
         <input
           id="email"
@@ -60,7 +60,7 @@ function SignupSection() {
           required
         />
         <br />
-        <button type="submit">회원가입</button>
+        <button type="submit" className="button__signup">회원가입</button>
       </form>
       {/* 가입 상태 어떤지 */}
       {message && <p>{message}</p>}

@@ -22,7 +22,7 @@ const SearchBar = () => {
 
   const addKeyword = (searchKeyword) => {
     if (!searchKeyword || keywordList.includes(searchKeyword)) return;
-    setKeywordList([...keywordList, searchKeyword]);
+    setKeywordList([searchKeyword, ...keywordList]);
   };
 
   return (

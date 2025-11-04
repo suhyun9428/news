@@ -4,7 +4,11 @@ import TopButton from "./TopButton";
 import MischiefPopup from "../Popup/MischiefPopup";
 import MenuBar from "../Header/MenuBar";
 import { useAtom } from "jotai";
-import { doesMenuOpenAtom, mischiefPopupAtom } from "../../atom/atom";
+import {
+  doesMenuOpenAtom,
+  mischiefPopupAtom,
+  signupAtom,
+} from "../../atom/atom";
 import dummyData from "../../dummyData/dummyData";
 import { useState } from "react";
 import SignUp from "../Section/SignUpSection";
@@ -14,21 +18,25 @@ import { Routes, Route } from "react-router-dom";
 const NewsLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
   const [isOpen] = useAtom(mischiefPopupAtom);
+  const [openSignup, setOpenSignup] = useAtom(signupAtom);
+  // console.log(openSignup,"왜 열려있어?")
   const [isMember, setIsMember] = useState(false);
 
   return (
     <>
       <Header />
-      {isMember ? <LoginSection /> : <SignUp />}
-      {/* <Routes>
-        <Route path="./signup" element={<SignUp />} />
-        <Route path="./login" element={<LoginSection />} />
-      </Routes> */}
-      {isMenuOpen ? (
+      {openSignup ? (
+        <SignUp />
+      ) : // isMember ? <LoginSection /> : <SignUp />
+      isMenuOpen ? (
         <MenuBar data={dummyData.MenuBar} />
       ) : (
         <NewsContent categoryList={dummyData.MenuBar} />
       )}
+      {/* <Routes>
+        <Route path="./signup" element={<SignUp />} />
+        <Route path="./login" element={<LoginSection />} />
+      </Routes> */}
       <TopButton />
       {isOpen && <MischiefPopup />}
     </>
