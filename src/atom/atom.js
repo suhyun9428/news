@@ -9,3 +9,4 @@ export const doesSearchOpenAtom = atom(false);
 export const selectedPageAtom = atom('General');
 export const mischiefPopupAtom = atom(false);
 export const signupAtom = atom(false);
+export const loginAtom = atom(false);

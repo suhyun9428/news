@@ -1,46 +1,36 @@
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import app from "../../firebase";
+import { useAtom } from "jotai";
+import { loginAtom } from "../../atom/atom";
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+
+const auth = getAuth(app);
 
 function SignupSection() {
+  const [openLogin, setOpenLogin] = useAtom(loginAtom);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
 
-  const navigate = useNavigate();
-
-  const handleSignup = async (e) => {
-    e.preventDefault();
-
+  const onSubmit = async (e) => {
+    e.preventDefault(); // 새로고침 방지!
     try {
-      const res = await fetch("/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      });
-
-      const data = await res.json();
-      console.log(data, "?data");
-
-      if (res.ok) {
-        setMessage("회원가입 성공!!" + data.message);
-        // 로그인 페이지로 이동해야 하는데
-      } else {
-        setMessage("실패ㅠㅠ" + data.message);
-      }
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log("회원가입 성공!");
+      setOpenLogin(true);
     } catch (err) {
-      setMessage("에러 " + err.message);
+      console.log("에러 발생", err);
     }
   };
 
   return (
     <div className="box__signup-container">
       <h2 className="text__title">회원가입</h2>
-      <form className="form__signup" onSubmit={handleSignup}>
+      <form className="form__signup" onSubmit={onSubmit}>
+        {/* 이름이랑 비밀번호 찾을 이메일 정보도 받으면 그럴듯해 보일거 같은데..! */}
         <label htmlFor="email">이메일</label>
         <input
           id="email"
@@ -60,12 +50,11 @@ function SignupSection() {
           required
         />
         <br />
-        <button type="submit" className="button__signup">회원가입</button>
+        <button type="submit" className="button__signup">
+          회원가입
+        </button>
       </form>
-      {/* 가입 상태 어떤지 */}
-      {message && <p>{message}</p>}
     </div>
   );
 }
-
 export default SignupSection;

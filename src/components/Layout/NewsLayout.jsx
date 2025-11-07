@@ -26,17 +26,16 @@ const NewsLayout = () => {
     <>
       <Header />
       {openSignup ? (
-        <SignUp />
-      ) : // isMember ? <LoginSection /> : <SignUp />
-      isMenuOpen ? (
+        isMember ? (//가입된 정보인지 확인이 필요해
+          <SignUp />
+        ) : (
+          <LoginSection />
+        )
+      ) : isMenuOpen ? (
         <MenuBar data={dummyData.MenuBar} />
       ) : (
         <NewsContent categoryList={dummyData.MenuBar} />
       )}
-      {/* <Routes>
-        <Route path="./signup" element={<SignUp />} />
-        <Route path="./login" element={<LoginSection />} />
-      </Routes> */}
       <TopButton />
       {isOpen && <MischiefPopup />}
     </>

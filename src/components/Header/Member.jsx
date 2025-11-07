@@ -10,8 +10,6 @@ const Member = () => {
       type="button"
       className="button__login"
       onClick={()=>setOpenSignup(true)}
-      // 회원 가입 페이지
-      // 로그인 하는 페이지
     >
       <GoPerson className="image" color="#000" />
     </button>
