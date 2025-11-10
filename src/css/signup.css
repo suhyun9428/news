@@ -1,4 +1,5 @@
-.box__signup-container {
+.box__signup-container,
+.box__login-container {
   display: flex;
   height: calc(100vh - 55px);
   margin: 0 30px;
@@ -7,7 +8,8 @@
   .text__title {
     font-size: 22px;
   }
-  .form__signup {
+  .form__signup,
+  .form__login {
     display: flex;
     width: 100%;
     margin-top: 20px;
@@ -27,7 +29,8 @@
       text-indent: 10px;
       appearance: none;
     }
-    .button__signup{
+    .button__signup,
+    .button__login{
       height: 48px;
       border-radius: 8px;
       background-color: #e9e9e9;

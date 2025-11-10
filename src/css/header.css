@@ -120,7 +120,18 @@ header {
       color: #fff;
     }
   }
-
+  .button__logout{
+    position: absolute;
+    top: 10px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    .image{
+      width: 36px;
+      height: 22px;
+    }
+  }
   &:has(.button__menu-open) {
     & ~ .box__recent {
       display: none;

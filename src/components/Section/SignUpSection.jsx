@@ -1,15 +1,21 @@
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
+  getAuth,
+  SignInMethod,
+} from "firebase/auth";
 import app from "../../firebase";
 import { useAtom } from "jotai";
 import { loginAtom } from "../../atom/atom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const auth = getAuth(app);
 
 function SignupSection() {
-  const [openLogin, setOpenLogin] = useAtom(loginAtom);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault(); // 새로고침 방지!
@@ -20,9 +26,16 @@ function SignupSection() {
         password
       );
       console.log("회원가입 성공!");
-      setOpenLogin(true);
+      navigate("./login");
     } catch (err) {
-      console.log("에러 발생", err);
+      fetchSignInMethodsForEmail(auth, email)
+        .then((SignInMethod) => {
+          navigate("./login");
+          alert("이미 회원 가입된 정보입니다. 로그인해주세요");
+        })
+        .catch((err) => {
+          console.log("err fetching", err);
+        });
     }
   };
 

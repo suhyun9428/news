@@ -1,37 +1,38 @@
-import Header from "../Header/Header";
 import NewsContent from "./NewsContent";
 import TopButton from "./TopButton";
 import MischiefPopup from "../Popup/MischiefPopup";
 import MenuBar from "../Header/MenuBar";
 import { useAtom } from "jotai";
-import {
-  doesMenuOpenAtom,
-  mischiefPopupAtom,
-  signupAtom,
-} from "../../atom/atom";
+import { doesMenuOpenAtom, mischiefPopupAtom, loginAtom, memberAtom } from "../../atom/atom";
 import dummyData from "../../dummyData/dummyData";
-import { useState } from "react";
-import SignUp from "../Section/SignUpSection";
-import LoginSection from "../Section/LoginSection";
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const NewsLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
   const [isOpen] = useAtom(mischiefPopupAtom);
-  const [openSignup, setOpenSignup] = useAtom(signupAtom);
-  // console.log(openSignup,"왜 열려있어?")
-  const [isMember, setIsMember] = useState(false);
+  const [isLoggedin, setIsLoggedIn] = useAtom(loginAtom);
+  const [isMember, setIsMember] = useAtom(memberAtom);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("로그인 되어 있음", user);
+        setIsLoggedIn(true);
+        setIsMember(true);
+      } else {
+        console.log("로그아웃 상태");
+        setIsLoggedIn(false);
+        setIsMember(false);
+      }
+    });
+    return () => unsubscribe();
+  }, [setIsLoggedIn, setIsMember]);
 
   return (
     <>
-      <Header />
-      {openSignup ? (
-        isMember ? (//가입된 정보인지 확인이 필요해
-          <SignUp />
-        ) : (
-          <LoginSection />
-        )
-      ) : isMenuOpen ? (
+      {isMenuOpen ? (
         <MenuBar data={dummyData.MenuBar} />
       ) : (
         <NewsContent categoryList={dummyData.MenuBar} />

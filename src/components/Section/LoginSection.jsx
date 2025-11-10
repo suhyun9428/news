@@ -1,42 +1,40 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  browserSessionPersistence,
+  getAuth,
+  setPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
 function LoginSection() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    const auth = getAuth();
 
     try {
-      const res = await fetch("/auth/login", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json" 
-        },
-        body: JSON.stringify({ 
-          email : email, 
-          password : password 
-        }),
-      });
-
-      const data = await res.json();
-      if (res.ok) {
-        setMessage("로그인 성공!! 토큰이 머냐면~ " + data.token);
-        // 여기서 토큰 localStorage에 저장
-        // localStorage.setItem('token', data.token);
-      } else {
-        setMessage("실패ㅠㅠㅠㅠ " + data.message);
-      }
+      await setPersistence(auth, browserSessionPersistence);
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log("로그인 완료", userCredential.user);
+      navigate("/"); // 로그인 후 뉴스 메인으로 이동
     } catch (err) {
-      setMessage("에러!! " + err.message);
+      console.error("로그인 실패", err);
     }
   };
 
   return (
-    <div>
-      <h2>로그인</h2>
-      <form onSubmit={handleLogin}>
+    <div className="box__login-container">
+      <h2 className="text__title">로그인</h2>
+      <form className="form__login" onSubmit={handleLogin}>
         <label htmlFor="email">이메일</label>
         <input
           type="email"
@@ -54,10 +52,12 @@ function LoginSection() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
-        /><br />
-        <button type="submit">로그인</button>
+        />
+        <br />
+        <button type="submit" className="button__login">
+          로그인
+        </button>
       </form>
-      {message && <p>{message}</p>}
     </div>
   );
 }

@@ -8,18 +8,36 @@ import {
   doesMenuOpenAtom,
   doesSearchOpenAtom,
   selectedKeywordAtom,
+  loginAtom,
+  memberAtom,
 } from "../../atom/atom";
+import { FiLogOut } from "react-icons/fi";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+// import {auth} from './firebase';
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const [, setIndex] = useAtom(selectedSectionIndexAtom);
+  const [index, setIndex] = useAtom(selectedSectionIndexAtom);
   const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpenAtom);
-  const [, setNewKeyword] = useAtom(selectedKeywordAtom);
+  const [newKeyword, setNewKeyword] = useAtom(selectedKeywordAtom);
+  const [isLoggedin, setIsLoggedin] = useAtom(loginAtom);
+  const [isMember, setIsMember] = useAtom(memberAtom);
 
   const moveToMain = () => {
     setIndex(null);
     setIsMenuOpen(false);
     setNewKeyword(null);
+  };
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    const auth = getAuth();
+    signOut(auth).then(()=>{
+      console.log('로그아웃!')
+      moveToMain()
+    }).catch((err)=>{
+      console.log('err', err)
+    })
   };
 
   useEffect(() => {
@@ -54,6 +72,16 @@ const Header = () => {
         </a>
         <Weather />
         <Member />
+        {isLoggedin && isMenuOpen && (
+          <button
+            type="button"
+            className="button__logout"
+            onClick={handleLogout}
+          >
+            <FiLogOut className="image" />
+            <span className="for-a11y">로그아웃</span>
+          </button>
+        )}
         <button
           type="button"
           className={`button__search ${

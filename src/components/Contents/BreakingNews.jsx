@@ -1,6 +1,10 @@
 import { useLink } from "../../hooks/useLink";
 import { mischiefPopupAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
+import { MdOutlineFavoriteBorder } from "react-icons/md";
+import { MdOutlineFavorite } from "react-icons/md";
+import classNames from "classnames";
+import { useState } from "react";
 
 const BreakingNewsContents = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
@@ -8,11 +12,15 @@ const BreakingNewsContents = ({ data }) => {
     data.content.includes("breaking") || data.description.includes("breaking");
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
   const popupRef = useLink(() => setIsOpen(false));
-
+  const [isInterest, setIsInterest] = useState(false);
+  const handelFavorite = () => {
+    console.log("관심있어!");
+    setIsInterest(true);
+  };
   return (
     <>
       <a
-        className="link__big-news"
+        className="link__news"
         href={data.url}
         ref={popupRef}
         onClick={(e) => {
@@ -35,6 +43,18 @@ const BreakingNewsContents = ({ data }) => {
             className="image"
           />
         </div>
+      </a>
+      <a className="link__news-stories"
+        href={data.url}
+        ref={popupRef}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setIsOpen(true);
+          setTimeout(() => {
+            window.location.href = data.url;
+          }, 3000);
+        }}>
         <div className="box__info">
           <div className="box__title">
             <strong className="text__title">
@@ -62,6 +82,18 @@ const BreakingNewsContents = ({ data }) => {
           </li>
         </ul>
       )}
+      <button
+        type="button"
+        className="button__favorite"
+        onClick={handelFavorite}
+      >
+        {isInterest ? (
+          <MdOutlineFavorite className="image" />
+        ) : (
+          <MdOutlineFavoriteBorder className="image" color="#fff" />
+        )}
+        <span className="for-a11y">관심</span>
+      </button>
     </>
   );
 };
