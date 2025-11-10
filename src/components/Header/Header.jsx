@@ -25,6 +25,7 @@ const Header = () => {
   const [isMember, setIsMember] = useAtom(memberAtom);
 
   const moveToMain = () => {
+    console.log('move to main!')
     setIndex(null);
     setIsMenuOpen(false);
     setNewKeyword(null);

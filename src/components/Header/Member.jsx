@@ -19,10 +19,6 @@ const Member = () => {
       // 로그인 상태일 때 관심 리스트 노출
       navigate("/interest");
     } 
-    // else {
-    //   // 로그인 상태 아닐 때 회원가입 페이지 이동
-    //   navigate("/login");
-    // }
   };
 
   return (

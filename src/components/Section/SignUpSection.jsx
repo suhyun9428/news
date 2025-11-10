@@ -30,14 +30,18 @@ function SignupSection() {
     } catch (err) {
       fetchSignInMethodsForEmail(auth, email)
         .then((SignInMethod) => {
-          navigate("./login");
           alert("이미 회원 가입된 정보입니다. 로그인해주세요");
+          navigate('../login');
         })
         .catch((err) => {
           console.log("err fetching", err);
         });
     }
   };
+
+  const moveToLogin = () => {
+navigate('../login')
+  }
 
   return (
     <div className="box__signup-container">
@@ -67,6 +71,8 @@ function SignupSection() {
           회원가입
         </button>
       </form>
+      <p>회원이신가요?</p>
+      <button type="button" className="button__login" onClick={moveToLogin}>로그인하러 가기</button>
     </div>
   );
 }

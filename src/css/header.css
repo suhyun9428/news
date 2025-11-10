@@ -18,7 +18,8 @@ header {
         background: url(../../image__close.svg);
 
         & ~ .box__weather,
-        & ~ .button__search {
+        & ~ .button__search,
+        & ~ .button__login {
           display: none;
         }
       }
