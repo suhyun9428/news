@@ -13,8 +13,6 @@ import {
 } from "../../atom/atom";
 import { FiLogOut } from "react-icons/fi";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-// import {auth} from './firebase';
-import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [index, setIndex] = useAtom(selectedSectionIndexAtom);
@@ -29,6 +27,7 @@ const Header = () => {
     setIndex(null);
     setIsMenuOpen(false);
     setNewKeyword(null);
+
   };
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -40,6 +39,11 @@ const Header = () => {
       console.log('err', err)
     })
   };
+
+  const handleMenu = () => {
+    console.log("열려라 메뉴")
+    setIsMenuOpen((prev) => !prev);
+  }
 
   useEffect(() => {
     const onScroll = () => {
@@ -62,9 +66,7 @@ const Header = () => {
         <button
           type="button"
           className={`button__menu ${isMenuOpen ? "button__menu-open" : ""}`}
-          onClick={() => {
-            setIsMenuOpen((prev) => !prev);
-          }}
+          onClick={()=>handleMenu()}
         >
           <span className="for-a11y">메뉴</span>
         </button>

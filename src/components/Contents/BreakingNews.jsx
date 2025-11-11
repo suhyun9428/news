@@ -3,7 +3,6 @@ import { mischiefPopupAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
 import { MdOutlineFavorite } from "react-icons/md";
-import classNames from "classnames";
 import { useState } from "react";
 
 const BreakingNewsContents = ({ data }) => {
@@ -88,7 +87,7 @@ const BreakingNewsContents = ({ data }) => {
         onClick={handelFavorite}
       >
         {isInterest ? (
-          <MdOutlineFavorite className="image" />
+          <MdOutlineFavorite className="image" color="#fff"/>
         ) : (
           <MdOutlineFavoriteBorder className="image" color="#fff" />
         )}

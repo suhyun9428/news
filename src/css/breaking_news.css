@@ -68,8 +68,7 @@
   .button__favorite {
     position: absolute;
     right: 10px;
-    top: 230px;
-    /* bottom: 10px; */
+    top: 170px;
     width: 24px;
     height: 20px;
     background: transparent;

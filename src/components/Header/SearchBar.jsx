@@ -12,11 +12,9 @@ const SearchBar = () => {
     setInputVal(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    // e.preventDefault();
+  const handleSubmit = () => {
     setSearchKeyword(inputVal.trim());
     addKeyword(inputVal.trim());
-    // console.log(inputVal)
     setSearchOpen((prev) => !prev)
   };
 

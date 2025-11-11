@@ -2,7 +2,6 @@ import { useAtom } from "jotai";
 import { GoPerson } from "react-icons/go";
 import { signupAtom, loginAtom, memberAtom } from "../../atom/atom";
 import { GoPersonFill } from "react-icons/go";
-import classNames from "classnames";
 import { useNavigate } from "react-router-dom";
 
 const Member = () => {
