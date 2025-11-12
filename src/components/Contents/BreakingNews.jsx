@@ -1,13 +1,19 @@
 import { useLink } from "../../hooks/useLink";
-import { bookmarkAtom, mischiefPopupAtom } from "../../atom/atom";
+import {
+  bookmarkAtom,
+  mischiefPopupAtom,
+  isLoggedInAtom,
+} from "../../atom/atom";
 import { useAtom } from "jotai";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { useState, useEffect } from "react";
 
 const BreakingNewsContents = ({ data }) => {
+  // console.log(data,"???data")
   const dummyImage = "/image__hi.jpg";
   const isBreakingNews =
-    data.content?.includes("breaking") || data.description?.includes("breaking");
+    data.content?.includes("breaking") ||
+    data.description?.includes("breaking");
 
   // 팝업 관련
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
@@ -19,6 +25,9 @@ const BreakingNewsContents = ({ data }) => {
   // 로컬 상태: 관심 여부
   const [isInterest, setIsInterest] = useState(false);
 
+  // 로그인되어 있는지 확인
+  const [isLoggedin, setIsLoggedIn] = useAtom(isLoggedInAtom);
+
   // data.url 기반으로 초기 관심 여부 체크
   useEffect(() => {
     setIsInterest(bookmark.some((a) => a.url === data.url));
@@ -26,21 +35,28 @@ const BreakingNewsContents = ({ data }) => {
 
   // 관심 토글 함수
   const handelFavorite = () => {
-    const exists = bookmark.some((a) => a.url === data.url);
-
-    if (exists) {
-      // 이미 북마크 있음 → 제거
-      setBookmark(bookmark.filter((a) => a.url !== data.url));
-      setIsInterest(false);
+    if (!isLoggedin) {
+      console.log("헤이헤이 로그인 먼저");
+      window.alert("로그인 해주세요!");
+      return;
     } else {
-      // 북마크 추가
-      const newItem = {
-        url: data.url,
-        title: data.title,
-        image: data.image,
-      };
-      setBookmark([...bookmark, newItem]);
-      setIsInterest(true);
+      console.log("ok 로그인 완료");
+      const exists = bookmark.some((a) => a.url === data.url);
+
+      if (exists) {
+        // 이미 북마크 있음 -> 제거
+        setBookmark(bookmark.filter((a) => a.url !== data.url));
+        setIsInterest(false);
+      } else {
+        // 북마크 추가
+        const newItem = {
+          url: data.url,
+          title: data.title,
+          image: data.image,
+        };
+        setBookmark([newItem, ...bookmark]);
+        setIsInterest(true);
+      }
     }
   };
 
@@ -131,4 +147,20 @@ const BreakingNewsContents = ({ data }) => {
   );
 };
 
-export default BreakingNewsContents;
+const BreakingNews = ({ data }) => {
+  return (
+    <div className="box__breaking-news">
+      <ul className="list-breaking-news">
+        {data.map((item, idx) => {
+          return (
+            <li key={`item-${idx}`} className="list-item">
+              <BreakingNewsContents data={item} />
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};
+
+export default BreakingNews;

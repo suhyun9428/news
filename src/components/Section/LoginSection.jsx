@@ -6,8 +6,11 @@ import {
   setPersistence,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import { isLoggedInAtom } from "../../atom/atom";
+import { useAtom } from "jotai";
 
 function LoginSection() {
+  const [isLoggedin, setIsLoggedin] = useAtom(isLoggedInAtom);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,17 +20,30 @@ function LoginSection() {
     e.preventDefault();
     const auth = getAuth();
 
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+
     try {
       await setPersistence(auth, browserSessionPersistence);
       const userCredential = await signInWithEmailAndPassword(
         auth,
-        email,
-        password
+        trimmedEmail,
+        trimmedPassword
       );
       console.log("로그인 완료", userCredential.user);
+      setIsLoggedin(true);
       navigate("/"); // 로그인 후 뉴스 메인으로 이동
     } catch (err) {
       console.error("로그인 실패", err);
+      if (err.code === "auth/user-not-found") {
+        window.alert("존재하지 않는 계정 정보입니다.");
+      } else if (err.code === "auth/wrong-password") {
+        window.alert("비밀 번호를 확인해주세요.");
+      } else if (err.code === "auth/invalid-credential") {
+        window.alert(" 잘못된 인증");
+      } else {
+        console.log(err.code, "로그인 에러코드");
+      }
     }
   };
 

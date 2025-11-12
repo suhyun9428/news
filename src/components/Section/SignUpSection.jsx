@@ -1,6 +1,5 @@
 import {
   createUserWithEmailAndPassword,
-  fetchSignInMethodsForEmail,
   getAuth,
 } from "firebase/auth";
 import app from "../../firebase";
@@ -16,23 +15,35 @@ function SignupSection() {
 
   const onSubmit = async (e) => {
     e.preventDefault(); // 새로고침 방지!
+
+    const trimmedEmail = email.trim();
+    const trimmedPassword = password.trim();
+
+    if (!trimmedEmail || !trimmedPassword) {
+      alert("이메일과 비밀번호를 입력해주세요");
+      return;
+    }
+
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
-        email,
-        password
+        trimmedEmail,
+        trimmedPassword
       );
       console.log("회원가입 성공!");
       navigate("../login");
     } catch (err) {
-      fetchSignInMethodsForEmail(auth, email)
-        .then((SignInMethod) => {
-          alert("이미 회원 가입된 정보입니다. 로그인해주세요");
-          navigate("../login");
-        })
-        .catch((err) => {
-          console.log("err fetching", err);
-        });
+      if (err.code === "auth/email-already-in-use") {
+        window.alert("이미 회원 가입된 정보입니다. 로그인해주세요");
+        navigate("../login");
+      } else if (err.code === "auth/invalid-email") {
+        window.alert("유효하지 않은 이메일 형식입니다");
+      } else if (err.code === "auth/weak-password") {
+        window.alert("비밀번호가 너무 약합니다 (최소 6자리 필요)");
+      } else {
+        console.log("회원가입 에러:", err);
+        window.alert("회원가입 중 오류가 발생했습니다");
+      }
     }
   };
 

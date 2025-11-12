@@ -9,10 +9,10 @@ import {
   doesSearchOpenAtom,
   selectedKeywordAtom,
   isLoggedInAtom,
-  isMemberAtom,
 } from "../../atom/atom";
 import { FiLogOut } from "react-icons/fi";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [index, setIndex] = useAtom(selectedSectionIndexAtom);
@@ -20,31 +20,31 @@ const Header = () => {
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpenAtom);
   const [newKeyword, setNewKeyword] = useAtom(selectedKeywordAtom);
   const [isLoggedin, setIsLoggedin] = useAtom(isLoggedInAtom);
-  const [isMember, setIsMember] = useAtom(isMemberAtom);
+
+  const navigate = useNavigate();
 
   const moveToMain = () => {
-    console.log('move to main!')
+    console.log("떠나요~메인으로~");
     setIndex(null);
     setIsMenuOpen(false);
     setNewKeyword(null);
-
+    navigate("/");
   };
+
   const handleLogout = async (e) => {
     e.preventDefault();
     const auth = getAuth();
-    signOut(auth).then(()=>{
-      console.log('로그아웃!')
-      window.alert('로그아웃 되었습니다.')
-      // moveToMain();
-    }).catch((err)=>{
-      console.log('err', err)
-    })
+    signOut(auth)
+      .then(() => {
+        console.log("로그아웃!");
+        window.alert("로그아웃 되었습니다.");
+        setIsMenuOpen(false);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log("로그아웃 err", err);
+      });
   };
-
-  const handleMenu = () => {
-    console.log("열려라 메뉴")
-    setIsMenuOpen((prev) => !prev);
-  }
 
   useEffect(() => {
     const onScroll = () => {
@@ -61,19 +61,33 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      navigate("/menubar");
+      setIsMenuOpen(true);
+    } else {
+      navigate("/");
+      setIsMenuOpen(false);
+    }
+  }, [isMenuOpen]);
+
+  const handleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
   return (
     <header>
       <div className="box__header">
         <button
           type="button"
           className={`button__menu ${isMenuOpen ? "button__menu-open" : ""}`}
-          onClick={()=>handleMenu()}
+          onClick={() => handleMenu()}
         >
           <span className="for-a11y">메뉴</span>
         </button>
-        <a href="#" className="link__main" onClick={() => moveToMain()}>
+        <Link to="/" className="link__main" onClick={() => moveToMain()}>
           <h1 className="text__title">SUN NEWS</h1>
-        </a>
+        </Link>
         <Weather />
         <Member />
         {isLoggedin && isMenuOpen && (

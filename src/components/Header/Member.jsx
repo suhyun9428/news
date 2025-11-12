@@ -1,13 +1,11 @@
 import { useAtom } from "jotai";
-import { GoPerson } from "react-icons/go";
-import { signupAtom, isLoggedInAtom, isMemberAtom } from "../../atom/atom";
-import { GoPersonFill } from "react-icons/go";
+import { isLoggedInAtom } from "../../atom/atom";
 import { useNavigate } from "react-router-dom";
+import { GoPerson } from "react-icons/go";
+import { GoPersonFill } from "react-icons/go";
 
 const Member = () => {
-  const [openSignup, setOpenSignup] = useAtom(signupAtom);
   const [isLoggedin, setIsLoggedin] = useAtom(isLoggedInAtom);
-  const [isMember, setIsMember] = useAtom(isMemberAtom);
 
   const navigate = useNavigate();
 

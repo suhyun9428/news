@@ -12,6 +12,5 @@ export const selectedPageAtom = atom("General");
 export const mischiefPopupAtom = atom(false);
 export const signupAtom = atom(false);
 export const isLoggedInAtom = atom(null);
-export const isMemberAtom = atom(false);
 export const newsCacheAtom = atomWithStorage("newsCache", {});
 export const bookmarkAtom = atomWithStorage('bookmarkNews', []);

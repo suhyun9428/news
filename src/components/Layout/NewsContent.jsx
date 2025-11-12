@@ -10,8 +10,9 @@ import { Loading } from "../Loading";
 import GeneralSection from "../Section/GeneralSection";
 import KeywordSection from "../Section/KeywordSection";
 import OpinionSection from "../Section/OpinionSection";
+import dummyData from "../../dummyData/dummyData";
 
-const NewsContent = ({ categoryList }) => {
+const NewsContent = ({ categoryList = dummyData.MenuBar }) => {
   const [index] = useAtom(selectedSectionIndexAtom);
   const [newKeyword] = useAtom(selectedKeywordAtom);
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpenAtom);
