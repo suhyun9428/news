@@ -8,7 +8,9 @@
     }
   }
   .list-item{
-    position: relative;
+    .box__card{
+      position: relative;
+    }
   }
   .link__news {
     .box__image {
@@ -68,12 +70,12 @@
   .button__favorite {
     position: absolute;
     right: 10px;
-    top: 170px;
-    width: 24px;
-    height: 20px;
+    top: 158px;
+    width: 32px;
+    height: 32px;
     background: transparent;
     .image {
-      width: 24px;
+      width: 100%;
     }
   }
   .list__breaking-news {
@@ -96,20 +98,17 @@
     }
   }
 }
-@media all and (min-width: 360px) {
-  .box__breaking-news {
-    .link__big-news {
-      .box__image {
-        height: 55vw;
-      }
-    }
-  }
-}
+
 @media all and (min-width: 768px) {
   .box__breaking-news {
-    .link__big-news {
-      .box__image {
-        height: 300px;
+    .box__card{
+      .link__news {
+        .box__image {
+          height: 300px;
+        }
+      }
+      .button__favorite{
+        top: 258px;
       }
     }
   }

@@ -17,7 +17,7 @@ const BreakingNewsContents = ({ data }) => {
     setIsInterest(true);
   };
   return (
-    <>
+    <div className="box__card">
       <a
         className="link__news"
         href={data.url}
@@ -43,7 +43,8 @@ const BreakingNewsContents = ({ data }) => {
           />
         </div>
       </a>
-      <a className="link__news-stories"
+      <a
+        className="link__news-stories"
         href={data.url}
         ref={popupRef}
         onClick={(e) => {
@@ -53,7 +54,8 @@ const BreakingNewsContents = ({ data }) => {
           setTimeout(() => {
             window.location.href = data.url;
           }, 3000);
-        }}>
+        }}
+      >
         <div className="box__info">
           <div className="box__title">
             <strong className="text__title">
@@ -87,13 +89,22 @@ const BreakingNewsContents = ({ data }) => {
         onClick={handelFavorite}
       >
         {isInterest ? (
-          <MdOutlineFavorite className="image" color="#fff"/>
+          <MdOutlineFavorite
+            className="image"
+            color="#fff"
+            style={{ width: "32px", height: "32px" }}
+            // viewBox="0 0 40 40"
+          />
         ) : (
-          <MdOutlineFavoriteBorder className="image" color="#fff" />
+          <MdOutlineFavoriteBorder
+            className="image"
+            color="#fff"
+            style={{ width: "32px", height: "32px" }}
+          />
         )}
         <span className="for-a11y">관심</span>
       </button>
-    </>
+    </div>
   );
 };
 

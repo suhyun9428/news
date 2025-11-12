@@ -4,5 +4,9 @@
       "source": "/api/:path*",
       "destination": "https://gnews.io/api/v4/:path*"
     }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "/index.html" }
   ]
 }

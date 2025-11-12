@@ -34,7 +34,8 @@ const Header = () => {
     const auth = getAuth();
     signOut(auth).then(()=>{
       console.log('로그아웃!')
-      moveToMain()
+      window.alert('로그아웃 되었습니다.')
+      // moveToMain();
     }).catch((err)=>{
       console.log('err', err)
     })
