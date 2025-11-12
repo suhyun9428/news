@@ -14,3 +14,4 @@ export const signupAtom = atom(false);
 export const loginAtom = atom(null);
 export const memberAtom = atom(false);
 export const newsCacheAtom = atomWithStorage("newsCache", {});
+export const bookmarkAtom = atomWithStorage('bookmarkNews', []);

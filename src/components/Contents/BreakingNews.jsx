@@ -1,21 +1,49 @@
 import { useLink } from "../../hooks/useLink";
-import { mischiefPopupAtom } from "../../atom/atom";
+import { bookmarkAtom, mischiefPopupAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
-import { MdOutlineFavoriteBorder } from "react-icons/md";
-import { MdOutlineFavorite } from "react-icons/md";
-import { useState } from "react";
+import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import { useState, useEffect } from "react";
 
 const BreakingNewsContents = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
   const isBreakingNews =
-    data.content.includes("breaking") || data.description.includes("breaking");
+    data.content?.includes("breaking") || data.description?.includes("breaking");
+
+  // 팝업 관련
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
   const popupRef = useLink(() => setIsOpen(false));
+
+  // 북마크 atom
+  const [bookmark, setBookmark] = useAtom(bookmarkAtom);
+
+  // 로컬 상태: 관심 여부
   const [isInterest, setIsInterest] = useState(false);
+
+  // data.url 기반으로 초기 관심 여부 체크
+  useEffect(() => {
+    setIsInterest(bookmark.some((a) => a.url === data.url));
+  }, [bookmark, data.url]);
+
+  // 관심 토글 함수
   const handelFavorite = () => {
-    console.log("관심있어!");
-    setIsInterest(true);
+    const exists = bookmark.some((a) => a.url === data.url);
+
+    if (exists) {
+      // 이미 북마크 있음 → 제거
+      setBookmark(bookmark.filter((a) => a.url !== data.url));
+      setIsInterest(false);
+    } else {
+      // 북마크 추가
+      const newItem = {
+        url: data.url,
+        title: data.title,
+        image: data.image,
+      };
+      setBookmark([...bookmark, newItem]);
+      setIsInterest(true);
+    }
   };
+
   return (
     <div className="box__card">
       <a
@@ -70,17 +98,13 @@ const BreakingNewsContents = ({ data }) => {
       </a>
       {data.hasConnectedNews && (
         <ul className="list__breaking-news">
-          <li className="list-item">
-            <a href="#" className="link__news">
-              2주내로 정상회담할거임
-            </a>
-          </li>
-          <li className="list-item">
-            <a href="#" className="link__news">
-              통상교섭본부장 “관세 합의, 소나기 피한 것···구조적 근본적 대비
-              필요”
-            </a>
-          </li>
+          {data.connectedNews.map((news, idx) => (
+            <li key={idx} className="list-item">
+              <a href={news.url} className="link__news">
+                {news.title}
+              </a>
+            </li>
+          ))}
         </ul>
       )}
       <button
@@ -93,7 +117,6 @@ const BreakingNewsContents = ({ data }) => {
             className="image"
             color="#fff"
             style={{ width: "32px", height: "32px" }}
-            // viewBox="0 0 40 40"
           />
         ) : (
           <MdOutlineFavoriteBorder
@@ -108,19 +131,4 @@ const BreakingNewsContents = ({ data }) => {
   );
 };
 
-const BreakingNews = ({ data }) => {
-  return (
-    <div className="box__breaking-news">
-      <ul className="list-breaking-news">
-        {data.map((item, idx) => {
-          return (
-            <li key={`item-${idx}`} className="list-item">
-              <BreakingNewsContents data={item} />
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-};
-export default BreakingNews;
+export default BreakingNewsContents;
