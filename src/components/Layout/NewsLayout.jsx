@@ -3,7 +3,7 @@ import TopButton from "./TopButton";
 import MischiefPopup from "../Popup/MischiefPopup";
 import MenuBar from "../Header/MenuBar";
 import { useAtom } from "jotai";
-import { doesMenuOpenAtom, mischiefPopupAtom, loginAtom, memberAtom } from "../../atom/atom";
+import { doesMenuOpenAtom, mischiefPopupAtom, isLoggedInAtom, isMemberAtom } from "../../atom/atom";
 import dummyData from "../../dummyData/dummyData";
 import { useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -11,8 +11,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 const NewsLayout = () => {
   const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
   const [isOpen] = useAtom(mischiefPopupAtom);
-  const [isLoggedin, setIsLoggedIn] = useAtom(loginAtom);
-  const [isMember, setIsMember] = useAtom(memberAtom);
+  const [isLoggedin, setIsLoggedIn] = useAtom(isLoggedInAtom);
+  const [isMember, setIsMember] = useAtom(isMemberAtom);
 
   useEffect(() => {
     const auth = getAuth();

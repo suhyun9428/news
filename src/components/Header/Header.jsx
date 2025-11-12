@@ -8,8 +8,8 @@ import {
   doesMenuOpenAtom,
   doesSearchOpenAtom,
   selectedKeywordAtom,
-  loginAtom,
-  memberAtom,
+  isLoggedInAtom,
+  isMemberAtom,
 } from "../../atom/atom";
 import { FiLogOut } from "react-icons/fi";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
@@ -19,8 +19,8 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpenAtom);
   const [newKeyword, setNewKeyword] = useAtom(selectedKeywordAtom);
-  const [isLoggedin, setIsLoggedin] = useAtom(loginAtom);
-  const [isMember, setIsMember] = useAtom(memberAtom);
+  const [isLoggedin, setIsLoggedin] = useAtom(isLoggedInAtom);
+  const [isMember, setIsMember] = useAtom(isMemberAtom);
 
   const moveToMain = () => {
     console.log('move to main!')

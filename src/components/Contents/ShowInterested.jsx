@@ -6,7 +6,7 @@ const ShowInterested = () => {
   const someBookmark = Array.from(
     new Map(bookmark.map((item) => [item.url, item])).values()
   )
-  console.log("isInterest", bookmark, someBookmark);
+  // console.log("isInterest", bookmark, someBookmark);
 
   return (
     <div className="box__interested">

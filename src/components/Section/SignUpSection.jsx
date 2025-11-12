@@ -23,7 +23,7 @@ function SignupSection() {
         password
       );
       console.log("회원가입 성공!");
-      navigate("./login");
+      navigate("../login");
     } catch (err) {
       fetchSignInMethodsForEmail(auth, email)
         .then((SignInMethod) => {
