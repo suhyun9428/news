@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { selectedKeywordAtom, keywordListAtom, doesSearchOpenAtom } from "../../atom/atom";
+import {
+  selectedKeywordAtom,
+  keywordListAtom,
+  doesSearchOpenAtom,
+} from "../../atom/atom";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const [inputVal, setInputVal] = useState("");
@@ -8,14 +13,22 @@ const SearchBar = () => {
   const [keywordList, setKeywordList] = useAtom(keywordListAtom);
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpenAtom);
 
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setInputVal(e.target.value);
   };
 
-  const handleSubmit = () => {
-    setSearchKeyword(inputVal.trim());
-    addKeyword(inputVal.trim());
-    setSearchOpen((prev) => !prev)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const value = inputVal.trim();
+    const lowerValue = value.toLocaleLowerCase()
+    // console.log(value,'trim만 한 상태')
+    setSearchKeyword(lowerValue);
+    // console.log(lowerValue, 'val 소문자로');
+    addKeyword(lowerValue);
+    setSearchOpen((prev) => !prev);
+    navigate("/issue");
   };
 
   const addKeyword = (searchKeyword) => {

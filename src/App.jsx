@@ -33,8 +33,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
-        <Route path="signup" element={<SignUpSection />}/>
-        <Route path="login" element={<LoginSection />}/>
+        <Route path="signup" element={<SignUpSection />} />
+        <Route path="login" element={<LoginSection />} />
         <Route path="interest" element={<ShowInterested />} />
         <Route path="issue" element={<Issue />} />
         <Route path="menubar" element={<MenuBar data={dummyData.MenuBar} />} />

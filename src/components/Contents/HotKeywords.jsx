@@ -32,7 +32,7 @@ const HotKeywords = ({ data }) => {
                     onClick={() => delKeyword(item)}
                   >
                     <span className="for-a11y">닫기</span>
-                    <IoIosClose/>
+                    <IoIosClose />
                   </button>
                 </li>
               );

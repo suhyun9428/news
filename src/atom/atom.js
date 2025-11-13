@@ -13,4 +13,4 @@ export const mischiefPopupAtom = atom(false);
 export const signupAtom = atom(false);
 export const isLoggedInAtom = atom(null);
 export const newsCacheAtom = atomWithStorage("newsCache", {});
-export const bookmarkAtom = atomWithStorage('bookmarkNews', []);
+export const bookmarkAtom = atomWithStorage("bookmarkNews", []);
