@@ -112,12 +112,3 @@
   }
 }
 
-#root {
-  &.js-fixed {
-    .box__container {
-      .box__breaking-news {
-        padding-top: 70px;
-      }
-    }
-  }
-}

@@ -6,13 +6,17 @@ import {
 } from "../../atom/atom";
 import { IoIosClose } from "react-icons/io";
 
+const normalize = (str) => str.trim().toLocaleLowerCase(); // trim하고 소문자로 통일
+
 const HotKeywords = ({ data }) => {
   const [newKeyword, setNewKeyword] = useAtom(selectedKeywordAtom);
   const [keywordList, setKeywordList] = useAtom(keywordListAtom);
   const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
   const fillColor = isDarkMode ? "#fff" : "#000";
+
   const delKeyword = (keyword) => {
-    setKeywordList(keywordList.filter((item) => item !== keyword));
+    const normalized = normalize(keyword);
+    setKeywordList(keywordList.filter((item) => item !== normalized));
   };
 
   return (

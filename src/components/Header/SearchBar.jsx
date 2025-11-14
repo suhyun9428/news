@@ -7,6 +7,8 @@ import {
 } from "../../atom/atom";
 import { useNavigate } from "react-router-dom";
 
+const normalize = (str) => str.trim().toLocaleLowerCase(); // trim하고 소문자로 통일
+
 const SearchBar = () => {
   const [inputVal, setInputVal] = useState("");
   const [searchKeyword, setSearchKeyword] = useAtom(selectedKeywordAtom);
@@ -21,19 +23,23 @@ const SearchBar = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const value = inputVal.trim();
-    const lowerValue = value.toLocaleLowerCase()
-    // console.log(value,'trim만 한 상태')
-    setSearchKeyword(lowerValue);
-    // console.log(lowerValue, 'val 소문자로');
-    addKeyword(lowerValue);
+
+    const normalized = normalize(inputVal);
+    if(!normalized) return;
+
+    setSearchKeyword(normalized);
+    addKeyword(normalized);
+
     setSearchOpen((prev) => !prev);
     navigate("/issue");
   };
 
-  const addKeyword = (searchKeyword) => {
-    if (!searchKeyword || keywordList.includes(searchKeyword)) return;
-    setKeywordList([searchKeyword, ...keywordList]);
+  const addKeyword = (keyword) => {
+    const normalized = normalize(keyword);
+
+    if(!normalized || keywordList.includes(normalized)) return;
+
+    setKeywordList([normalized, ...keywordList]);
   };
 
   return (

@@ -1,6 +1,8 @@
 header {
+  height: 55px;
   .box__header {
     position: sticky;
+    width: calc(100% - 24px);
     height: 55px;
     margin: 0 12px;
     font-size: 0;
@@ -16,12 +18,13 @@ header {
         height: 30px;
       }
       &.button__menu-open {
-        .image{
+        .image {
           width: 30px;
         }
         & ~ .box__weather,
         & ~ .button__search,
-        & ~ .button__login {
+        & ~ .button__login,
+        & ~ .button__dark {
           display: none;
         }
       }
@@ -30,17 +33,17 @@ header {
       position: absolute;
       top: 0;
       left: 50%;
+      padding: 18px 0;
       transform: translateX(-50%);
-      padding: 15px;
       .text__title {
         font-size: 16px;
       }
     }
     .box__weather {
       position: absolute;
-      top: 8px;
-      left: 40px;
-      width: 42px;
+      top: 9px;
+      left: 36px;
+      width: 38px;
       overflow: hidden;
       .image {
         display: block;
@@ -63,10 +66,10 @@ header {
     }
     .button__dark {
       position: absolute;
-      top: 8px;
-      left: 82px;
-      width: 40px;
-      height: 40px;
+      top: 10px;
+      left: 74px;
+      width: 36px;
+      height: 36px;
       .image {
         width: 24px;
         height: 24px;
@@ -75,7 +78,7 @@ header {
     .button__login {
       position: absolute;
       top: 8px;
-      right: 40px;
+      right: 36px;
       width: 36px;
       height: 36px;
       background: transparent;
@@ -90,19 +93,20 @@ header {
       right: 0;
       width: 36px;
       height: 36px;
-      .image{
+      .image {
         width: 26px;
         height: 26px;
       }
       &.button__search--active {
-        .image{
+        .image {
           width: 30px;
           height: 30px;
         }
       }
     }
     &:has(.button__search--active) {
-      .button__menu {
+      .button__menu,
+      .button__dark {
         display: none;
       }
     }
@@ -111,6 +115,7 @@ header {
     width: 100%;
     margin: 0;
     padding: 16px 12px;
+    background-color: var(--White);
     .form__keyword {
       width: calc(100% - 68px);
       padding: 14px 16px 14px 24px;
@@ -143,10 +148,7 @@ header {
     }
   }
   &:has(.button__menu-open) {
-    & ~ .box__recent {
-      display: none;
-    }
-
+    & ~ .box__recent,
     & ~ .box__breaking-news {
       display: none;
     }
@@ -157,32 +159,26 @@ header {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(90deg);
   }
 }
-
 @keyframes rotate-back {
   0% {
     transform: rotate(90deg);
   }
-
   100% {
     transform: rotate(0deg);
   }
 }
-
 @keyframes updown {
   0% {
     transform: translateY(10%);
   }
-
   100% {
     transform: translateY(0);
   }
 }
-
 @keyframes updown-back {
   0% {
     transform: translateY(0);
@@ -215,22 +211,30 @@ header {
       top: 0;
       left: 0;
     }
-    &.js-fixed {
-      header {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        max-width: 768px;
-        background: var(--White);
-        z-index: 1;
-      }
-    }
   }
   &:has(.box__category-wrap) {
     header {
       .box__header {
         border-bottom: 1px solid var(--gray-400);
       }
+    }
+  }
+  &.js-fixed {
+    header {
+      .box__header {
+        position: fixed;
+        top: 0;
+        max-width: 768px;
+        background: var(--White);
+        z-index: 1;
+      }
+      .box__search-bar {
+        position: fixed;
+        top: 55px;
+      }
+    }
+    &:has(.box__recent) {
+      padding-top: 20px;
     }
   }
 }

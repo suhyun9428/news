@@ -31,20 +31,24 @@ function App() {
     return () => unsubscribe();
   }, [setIsLoggedIn]);
 
-  const container = document.documentElement;
-  container.dataset.theme = 'light';
+  //   const container = document.documentElement;
+  //   container.dataset.theme = 'light';
 
+  //   useEffect(() => {
+  //   container.dataset.theme = isDarkMode ? "dark" : "light";
+  //     // if(isDarkMode){
+  //     //   container.dataset.theme = 'dark'
+  //     // }else{
+  //     //   container.dataset.theme = 'light'
+  //     // }
+  // console.log("isDarkMode:", isDarkMode);
+  //   }, [isDarkMode]);
+  //   const container = document.documentElement; // <html> 선택
+  // container.dataset.theme = isDarkMode ? 'dark' : 'light';
+  
   useEffect(() => {
-    isDarkMode ? container.dataset.theme = 'dark' : container.dataset.theme = 'light'
-    // if(isDarkMode){
-    //   container.dataset.theme = 'dark'
-    // }else{
-    //   container.dataset.theme = 'light'
-    // }
-    console.log(container, 'root')
+    document.documentElement.dataset.theme = isDarkMode ? "dark" : "light";
   }, [isDarkMode]);
-//   const container = document.documentElement; // <html> 선택
-// container.dataset.theme = isDarkMode ? 'dark' : 'light';
 
   return (
     <Routes>

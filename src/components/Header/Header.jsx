@@ -10,6 +10,7 @@ import useFixedHeader from "../../hooks/useFixedHeader";
 import useToggleMenu from "../../hooks/useToggleMenu";
 import useHandleLogout from "../../hooks/useHandleLogout";
 import { IoClose } from "react-icons/io5";
+import { useEffect } from "react";
 
 const Header = () => {
   const {
@@ -25,7 +26,10 @@ const Header = () => {
 
   const fillColor = isDarkMode ? "#fff" : "#000";
   useFixedHeader();
-
+  useEffect(() => {
+    document.documentElement.dataset.theme = isDarkMode ? "dark" : "light";
+  }, [isDarkMode]);
+  
   return (
     <header>
       <div className="box__header">
@@ -45,8 +49,8 @@ const Header = () => {
           <h1 className="text__title">SUN NEWS</h1>
         </Link>
         <Weather />
-        <Member />
         <ControlDarkMode />
+        <Member />
         {isLoggedin && isMenuOpen && (
           <button
             type="button"
