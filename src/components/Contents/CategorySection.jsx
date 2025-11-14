@@ -3,6 +3,7 @@ import { selectedPageAtom } from "../../atom/atom";
 import { useNewsApi } from "../../hooks/useNewsApi";
 import { mischiefPopupAtom } from "../../atom/atom";
 import { useLink } from "../../hooks/useLink";
+import NewsList from "./NewsList";
 
 const Contents = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
@@ -56,7 +57,10 @@ const CategorySection = () => {
           {articles.map((item, idx) => {
             return (
               <li className="list-item" key={`item-${idx}`}>
-                <Contents data={item} />
+                {/* <Contents data={item} /> */}
+                <div className="box__card">
+                  <NewsList data={item} />
+                </div>
               </li>
             );
           })}

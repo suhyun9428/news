@@ -5,7 +5,7 @@
   justify-content: center;
   .text__icon {
     font-size: 24px;
-    animation: rotate_image 10s linear infinite;
+    animation: rotate_image var(--anim-slow) linear infinite;
   }
   .text__loading {
     font-size: 24px;

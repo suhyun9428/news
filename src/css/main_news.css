@@ -3,7 +3,7 @@
   .list__main-news {
     .list-item {
       padding: 11px 0 12px;
-      border-top: 1px solid #eee;
+      border-top: 1px solid var(--gray-400);
       .link__news {
         display: flex;
         align-items: center;
@@ -22,7 +22,7 @@
         .box__image {
           width: 108px;
           height: 72px;
-          background: #9e9e9e;
+          background: var(--gray-650);
           border-radius: 4px;
           overflow: hidden;
           .image {

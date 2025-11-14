@@ -1,0 +1,121 @@
+@font-face {
+  /* noto-sans-kr-300 - korean */
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Noto Sans KR Light"), local("NotoSansKR-Light"),
+    url("//script.gmarket.com/fonts/noto-sans-kr-v11-korean-300.woff2")
+      format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("//script.gmarket.com/fonts/noto-sans-kr-v11-korean-300.woff")
+      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+@font-face {
+  /* noto-sans-kr-regular - korean */
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Noto Sans KR Regular"), local("NotoSansKR-Regular"),
+    url("//script.gmarket.com/fonts/noto-sans-kr-v11-korean-regular.woff2")
+      format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("//script.gmarket.com/fonts/noto-sans-kr-v11-korean-regular.woff")
+      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+@font-face {
+  /* noto-sans-kr-500 - korean */
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  src: local("Noto Sans KR Medium"), local("NotoSansKR-Medium"),
+    url("//script.gmarket.com/fonts/noto-sans-kr-v11-korean-500.woff2")
+      format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("//script.gmarket.com/fonts/noto-sans-kr-v11-korean-500.woff")
+      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+@font-face {
+  /* noto-sans-kr-700 - korean */
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Noto Sans KR Bold"), local("NotoSansKR-Bold"),
+    url("//script.gmarket.com/fonts/noto-sans-kr-v11-korean-700.woff2")
+      format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+      url("//script.gmarket.com/fonts/noto-sans-kr-v11-korean-700.woff")
+      format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+:root {
+  --Font: -apple-system, BlinkMacSystemFont, Apple SD Gothic Neo, Roboto,
+    Noto Sans CJK KR, Tahoma, "Noto Sans KR", sans-serif;
+
+  --White: #ffffff;
+  --gray-100: #f5f5f5;
+  --gray-200: #f2f2f2;
+  --gray-300: #e9e9e9;
+  --gray-400: #eee;
+  --gray-450: #e2e2e2;
+  --gray-500: #ddd;
+  --gray-600: #aaa;
+  --gray-650: #9e9e9e;
+  --gray-700: #888;
+  --gray-800: #444;
+  --gray-900: #151515;
+  --Black: #000;
+
+  --text-default: #333;
+
+  --blue-500: #4c70e8;
+  --blue-800: #0f1626;
+  --blue-900: #0b1020;
+  --red-400: #ff6b6b;
+  --red-500: #f25050;
+  --orange-400: #ffb86b;
+  --brown-500: #ba9571;
+
+  /* Effects */
+  --overlay: rgba(6, 10, 20, 0.55);
+
+  /* animation */
+  --anim-fast: 120ms;
+  --anim-normal: 220ms;
+  --anim-medium: 300ms;
+  --anim-slow: 1s;
+
+  --ease-out: cubic-bezier(0.2, 0.9, 0.2, 1);
+  --ease-smooth: ease-out;
+}
+
+/* 다크모드 */
+:root[data-theme="dark"] {
+  --White: #1c1c1c;
+  --gray-100: #2a2a2a;
+  --gray-200: #333333;
+  --gray-300: #3d3d3d;
+  --gray-400: #444444;
+  --gray-450: #4a4a4a;
+  --gray-500: #555555;
+  --gray-600: #888888;
+  --gray-650: #999999;
+  --gray-700: #aaaaaa;
+  --gray-800: #cccccc;
+  --gray-900: #f5f5f5;
+  --Black: #ffffff;
+
+  /* Text */
+  --text-default: #eeeeee;
+
+  /* Brand / Accent */
+  --blue-500: #3b57c6;
+  --blue-800: #0c1420;
+  --blue-900: #070c16;
+  --red-400: #ff5757;
+  --red-500: #e03b3b;
+  --orange-400: #ff9f4d;
+  --brown-500: #a77f61;
+
+  /* Effects */
+  --overlay: rgba(0, 0, 0, 0.65);
+}

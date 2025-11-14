@@ -1,11 +1,16 @@
 import { useAtom } from "jotai";
-import { selectedKeywordAtom, keywordListAtom } from "../../atom/atom";
+import {
+  selectedKeywordAtom,
+  keywordListAtom,
+  isDarkModeAtom,
+} from "../../atom/atom";
 import { IoIosClose } from "react-icons/io";
 
 const HotKeywords = ({ data }) => {
   const [newKeyword, setNewKeyword] = useAtom(selectedKeywordAtom);
   const [keywordList, setKeywordList] = useAtom(keywordListAtom);
-
+  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
+  const fillColor = isDarkMode ? "#fff" : "#000";
   const delKeyword = (keyword) => {
     setKeywordList(keywordList.filter((item) => item !== keyword));
   };
@@ -32,7 +37,10 @@ const HotKeywords = ({ data }) => {
                     onClick={() => delKeyword(item)}
                   >
                     <span className="for-a11y">닫기</span>
-                    <IoIosClose />
+                    <IoIosClose
+                      className="image"
+                      style={{ color: fillColor }}
+                    />
                   </button>
                 </li>
               );

@@ -5,6 +5,7 @@ import {
   doesSearchOpenAtom,
   selectedKeywordAtom,
   isLoggedInAtom,
+  isDarkModeAtom,
 } from "../atom/atom";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +15,7 @@ const useToggleMenu = () => {
   const [index, setIndex] = useAtom(selectedSectionIndexAtom);
   const [newKeyword, setNewKeyword] = useAtom(selectedKeywordAtom);
   const [isLoggedin, setIsLoggedin] = useAtom(isLoggedInAtom);
+  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
 
   const navigate = useNavigate();
 
@@ -42,6 +44,7 @@ const useToggleMenu = () => {
     toggleSearch,
     moveToMain,
     isLoggedin,
+    isDarkMode,
   };
 };
 

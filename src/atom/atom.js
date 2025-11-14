@@ -14,3 +14,4 @@ export const signupAtom = atom(false);
 export const isLoggedInAtom = atom(null);
 export const newsCacheAtom = atomWithStorage("newsCache", {});
 export const bookmarkAtom = atomWithStorage("bookmarkNews", []);
+export const isDarkModeAtom = atom(false);

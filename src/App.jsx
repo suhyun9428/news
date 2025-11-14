@@ -1,4 +1,8 @@
 import { Routes, Route } from "react-router-dom";
+import { useAtom } from "jotai";
+import { isDarkModeAtom, isLoggedInAtom } from "./atom/atom";
+import { useEffect } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Layout from "./components/Layout/Layout";
 import MainPage from "./components/Section/MainPage";
 import SignUpSection from "./components/Section/SignUpSection";
@@ -6,14 +10,12 @@ import LoginSection from "./components/Section/LoginSection";
 import ShowInterested from "./components/Contents/ShowInterested";
 import Issue from "./components/Contents/Issue";
 import MenuBar from "./components/Header/MenuBar";
+
 import dummyData from "./dummyData/dummyData";
-import { useAtom } from "jotai";
-import { isLoggedInAtom } from "./atom/atom";
-import { useEffect } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function App() {
   const [isLoggedin, setIsLoggedIn] = useAtom(isLoggedInAtom);
+  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
 
   useEffect(() => {
     const auth = getAuth();
@@ -28,6 +30,21 @@ function App() {
     });
     return () => unsubscribe();
   }, [setIsLoggedIn]);
+
+  const container = document.documentElement;
+  container.dataset.theme = 'light';
+
+  useEffect(() => {
+    isDarkMode ? container.dataset.theme = 'dark' : container.dataset.theme = 'light'
+    // if(isDarkMode){
+    //   container.dataset.theme = 'dark'
+    // }else{
+    //   container.dataset.theme = 'light'
+    // }
+    console.log(container, 'root')
+  }, [isDarkMode]);
+//   const container = document.documentElement; // <html> 선택
+// container.dataset.theme = isDarkMode ? 'dark' : 'light';
 
   return (
     <Routes>

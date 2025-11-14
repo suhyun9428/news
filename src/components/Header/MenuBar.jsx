@@ -5,6 +5,7 @@ import {
   doesMenuOpenAtom,
   selectedPageAtom,
 } from "../../atom/atom";
+import { useNavigate } from "react-router-dom";
 
 const MenuBarItem = ({ data }) => {
   const [, setIndex] = useAtom(selectedSectionIndexAtom);
@@ -13,6 +14,7 @@ const MenuBarItem = ({ data }) => {
     new Array(data.length).fill(false)
   );
   const [, setPage] = useAtom(selectedPageAtom);
+  const navigate = useNavigate();
 
   // const handleToggle = (e, idx) => {
   //   const newToggleOpen = [...toggleOpen];
@@ -32,8 +34,8 @@ const MenuBarItem = ({ data }) => {
     e.preventDefault();
     setIndex(idx);
     setIsMenuOpen(false);
-    // console.log(id,'!!')
     setPage(id);
+    navigate("/");
   };
 
   return (

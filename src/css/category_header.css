@@ -5,7 +5,7 @@
     padding-bottom: 3px;
     font-size: 32px;
     font-weight: 700;
-    color: #151515;
+    color: var(--gray-900);
     line-height: 42px;
   }
   .list__sub-category {
@@ -21,12 +21,12 @@
           padding: 5px 0;
           font-size: 17px;
           font-weight: 600;
-          color: #aaa;
+          color: var(--gray-600);
           line-height: 22px;
         }
         &.link__category--selected {
           .text {
-            color: #151515;
+            color: var(--gray-900);
           }
         }
       }
