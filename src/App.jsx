@@ -45,7 +45,7 @@ function App() {
   //   }, [isDarkMode]);
   //   const container = document.documentElement; // <html> 선택
   // container.dataset.theme = isDarkMode ? 'dark' : 'light';
-  
+
   useEffect(() => {
     document.documentElement.dataset.theme = isDarkMode ? "dark" : "light";
   }, [isDarkMode]);
