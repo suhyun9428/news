@@ -55,6 +55,7 @@ const Header = () => {
           <button
             type="button"
             className="button__logout"
+            style={{ color: fillColor }}
             onClick={handleLogout}
           >
             <FiLogOut className="image" />

@@ -1,16 +1,17 @@
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 import app from "../../firebase";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { LuEye } from "react-icons/lu";
+import { HiEyeSlash } from "react-icons/hi2";
 
 const auth = getAuth(app);
 
 function SignupSection() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [pwVisible, setPwVisible] = useState(false);
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
@@ -56,6 +57,16 @@ function SignupSection() {
       <h2 className="text__title">회원가입</h2>
       <form className="form__signup" onSubmit={onSubmit}>
         {/* 이름이랑 비밀번호 찾을 이메일 정보도 받으면 그럴듯해 보일거 같은데..! */}
+        {/* 길어지니까 이 영역을 flex로 잡으면 안되겠네;; */}
+        <label htmlFor="name">이름</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="이름 입력"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
         <label htmlFor="email">이메일</label>
         <input
           id="email"
@@ -66,15 +77,25 @@ function SignupSection() {
           required
         />
         <label htmlFor="password">비밀번호</label>
-        <input
-          id="password"
-          type="password"
-          placeholder="비밀번호 입력"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <br />
+        <div style={{ position: "relative", "marginBottom": "20px" }}>
+          <input
+            id="password"
+            type={pwVisible ? ("text") : ("password")}
+            placeholder="비밀번호 입력"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            required
+          />
+          <button
+            type="button"
+            onClick={() => setPwVisible((prev) => !prev)}
+            className="button__visible"
+          >
+            {pwVisible ? <LuEye className="image" /> : <HiEyeSlash />}
+          </button>
+        </div>
         <button type="submit" className="button__signup">
           회원가입
         </button>

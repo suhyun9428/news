@@ -4,12 +4,17 @@ import {
   selectedSectionIndexAtom,
   doesMenuOpenAtom,
   selectedPageAtom,
+  isDarkModeAtom,
 } from "../../atom/atom";
+import { FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 const MenuBarItem = ({ data }) => {
   const [, setIndex] = useAtom(selectedSectionIndexAtom);
   const [, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
+  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
+  
+  const fillColor = isDarkMode ? "#fff" : "#000";
   const [toggleOpen, setToggleOpen] = useState(
     new Array(data.length).fill(false)
   );
@@ -50,6 +55,7 @@ const MenuBarItem = ({ data }) => {
                 onClick={(e) => handleIndex(e, idx, item.id)}
               >
                 {item.id}
+                <FaPlus className="image" style={{ color: fillColor }}/>
               </a>
               {/* <button
                 type="button"

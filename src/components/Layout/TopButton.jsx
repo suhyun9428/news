@@ -31,7 +31,7 @@ const TopButton = () => {
   return (
     <footer>
       <button type="button" className="button__top" onClick={moveToTop}>
-        <FaArrowUp />
+        <FaArrowUp fill="#000" />
       </button>
     </footer>
   );

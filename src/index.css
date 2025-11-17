@@ -16,3 +16,7 @@
 @import "../src/css/account_form.css";
 @import "../src/css/interest.css";
 @import "../src/css/footer.css";
+
+main {
+  padding-top: 55px;
+}

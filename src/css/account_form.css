@@ -16,6 +16,7 @@
     flex-direction: column;
     label {
       margin-top: 20px;
+      margin-bottom: 8px;
       text-indent: 5px;
     }
     input {
@@ -23,17 +24,31 @@
       height: 40px;
       border: 0;
       border-bottom: 1px solid var(--gray-300);
+      background: none;
       font-size: 16px;
       font-weight: 400;
+      color: var(--Black);
       line-height: 40px;
-      text-indent: 10px;
+      text-indent: 5px;
       appearance: none;
+      &[type='password']{
+        padding-right: 40px;
+      }
+      & ~ .button__visible {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        transform: translateY(-50%);
+      }
     }
     .button__signup,
     .button__login {
       height: 48px;
       border-radius: 8px;
       background-color: var(--gray-300);
+      color: #000;
     }
   }
   .text__hi-there {
@@ -44,6 +59,19 @@
       margin-top: 12px;
       border-radius: 8px;
       background-color: var(--gray-300);
+      color: #000;
+    }
+  }
+}
+
+:root[data-theme="dark"] {
+  .box__signup-container,
+  .box__login-container {
+    input {
+      &:-webkit-autofill,
+      &:-webkit-autofill:focus {
+        color-scheme: dark;
+      }
     }
   }
 }

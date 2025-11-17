@@ -15,7 +15,7 @@ const ControlDarkMode = () => {
       {isDarkMode ? (
         <MdDarkMode className="image" fill="#fff" />
       ) : (
-        <GoSun className="image" />
+        <GoSun className="image" fill="#000" />
       )}
     </button>
   );

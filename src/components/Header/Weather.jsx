@@ -8,6 +8,7 @@ const Weather = () => {
   // 상태 : 로딩인지 성공인지 에러인지
   // 컨텍스트 : 성공이면 api 데이터 저장, 에러났으면 에러 정보 저장
   const { data, err } = state.context; // 성공인지 아닌지 여기서 분리
+  // console.log(data)
 
   // const [weather, setWeather] = useState(null);
 
@@ -45,11 +46,10 @@ const Weather = () => {
       <img
         className="image"
         src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
-        alt={data.weather.weather[0].description}
+        alt={data.weather[0].main}
       />
-      <p className="text__temp">{weather.main.temp}°C</p>
+      <p className="text__temp">{data.main.temp}°C</p>
     </div>
-
   );
 };
 export default Weather;

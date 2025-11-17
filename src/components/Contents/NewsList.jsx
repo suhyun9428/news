@@ -40,7 +40,7 @@ const NewsList = ({ data }) => {
     if (!isLoggedin) {
       console.log("헤이헤이 로그인 먼저");
       window.alert("로그인 해주세요!");
-      navigate('/login');
+      navigate("/login");
       return;
     } else {
       console.log("ok 로그인 완료");
@@ -122,13 +122,19 @@ const NewsList = ({ data }) => {
           <MdOutlineFavorite
             className="image"
             color="#fff"
-            style={{ width: "32px", height: "32px" }}
+            size={32}
+            style={{
+              filter: "drop-shadow(0px 4px 12px rgba(0,0,0,0.5))",
+            }}
           />
         ) : (
           <MdOutlineFavoriteBorder
             className="image"
             color="#fff"
-            style={{ width: "32px", height: "32px" }}
+            size={32}
+            style={{
+              filter: "drop-shadow(0px 4px 12px rgba(0,0,0,0.4))",
+            }}
           />
         )}
         <span className="for-a11y">관심</span>
