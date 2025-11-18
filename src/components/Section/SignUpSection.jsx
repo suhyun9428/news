@@ -12,17 +12,28 @@ function SignupSection() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [pwVisible, setPwVisible] = useState(false);
+  const [hasErr, setHasErr] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
+  const [emailErr, setEmailErr] = useState(false);
+  const [passwordErr, setPasswordErr] = useState(false);
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
     e.preventDefault(); // 새로고침 방지!
 
+    // const trimmedName = name.trim();
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
 
-    if (!trimmedEmail || !trimmedPassword) {
-      alert("이메일과 비밀번호를 입력해주세요");
-      return;
+    // if(trimmedName === ''){
+    //   setErrMessage('이름을 입력해주세요.')
+    // }
+
+    if (trimmedEmail === "") {
+      setEmailErr(true);
+    }
+    if (trimmedPassword === "") {
+      setPasswordErr(true);
     }
 
     try {
@@ -34,16 +45,17 @@ function SignupSection() {
       console.log("회원가입 성공!");
       navigate("../login");
     } catch (err) {
+      setHasErr(true);
       if (err.code === "auth/email-already-in-use") {
-        window.alert("이미 회원 가입된 정보입니다. 로그인해주세요");
+        setErrMessage("이미 회원 가입된 정보입니다. 로그인해주세요");
         navigate("../login");
       } else if (err.code === "auth/invalid-email") {
-        window.alert("유효하지 않은 이메일 형식입니다");
+        setErrMessage("이메일을 확인해주세요.");
       } else if (err.code === "auth/weak-password") {
-        window.alert("비밀번호가 너무 약합니다 (최소 6자리 필요)");
+        setErrMessage("비밀번호가 너무 약합니다 (최소 6자리 필요)");
       } else {
         console.log("회원가입 에러:", err);
-        window.alert("회원가입 중 오류가 발생했습니다");
+        setErrMessage("회원가입 중 오류가 발생했습니다");
       }
     }
   };
@@ -56,37 +68,35 @@ function SignupSection() {
     <div className="box__signup-container">
       <h2 className="text__title">회원가입</h2>
       <form className="form__signup" onSubmit={onSubmit}>
-        {/* 이름이랑 비밀번호 찾을 이메일 정보도 받으면 그럴듯해 보일거 같은데..! */}
-        {/* 길어지니까 이 영역을 flex로 잡으면 안되겠네;; */}
         <label htmlFor="name">이름</label>
         <input
           id="name"
           type="text"
+          className={passwordErr ? "form__input form__err" : "form__input"}
           placeholder="이름 입력"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          required
         />
         <label htmlFor="email">이메일</label>
         <input
           id="email"
           type="email"
+          className={passwordErr ? "form__input form__err" : "form__input"}
           placeholder="이메일 입력"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          required
         />
         <label htmlFor="password">비밀번호</label>
-        <div style={{ position: "relative", "marginBottom": "20px" }}>
+        <div style={{ position: "relative", marginBottom: "20px" }}>
           <input
             id="password"
-            type={pwVisible ? ("text") : ("password")}
+            type={pwVisible ? "text" : "password"}
+            className={passwordErr ? "form__input form__err" : "form__input"}
             placeholder="비밀번호 입력"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            required
           />
           <button
             type="button"
@@ -96,6 +106,7 @@ function SignupSection() {
             {pwVisible ? <LuEye className="image" /> : <HiEyeSlash />}
           </button>
         </div>
+      {hasErr && <p className="text__err">{errMessage}</p>}
         <button type="submit" className="button__signup">
           회원가입
         </button>
