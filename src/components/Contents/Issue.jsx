@@ -42,6 +42,7 @@ const IssueContent = ({ data }) => {
                     e.currentTarget.src = dummyImage;
                   }}
                   alt={article.title}
+                  loading="lazy"
                 />
               </div>
             </a>

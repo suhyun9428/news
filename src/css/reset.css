@@ -14,7 +14,7 @@ body {
 
 body {
   font-family: var(--Font, "Inter", sans-serif);
-  background: var(--White);
+  background: var(--gray-600);
   color: var(--text-default);
   overflow-x: hidden;
 }

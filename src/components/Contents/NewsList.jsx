@@ -86,6 +86,7 @@ const NewsList = ({ data }) => {
             }}
             alt={data.title}
             className="image"
+            loading="lazy"
           />
         </div>
       </a>

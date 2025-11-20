@@ -5,7 +5,7 @@ const ShowInterested = () => {
   const [bookmark, setBookmark] = useAtom(bookmarkAtom);
   const someBookmark = Array.from(
     new Map(bookmark.map((item) => [item.url, item])).values()
-  )
+  );
   // console.log("isInterest", bookmark, someBookmark);
 
   return (
@@ -17,7 +17,12 @@ const ShowInterested = () => {
             <li className="list-item" key={`interested-${idx}`}>
               <a href={item.url} className="link__news">
                 <div className="box__image">
-                  <img className="image" src={item.image} alt={item.title} />
+                  <img
+                    className="image"
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                  />
                 </div>
                 <div className="box__info">
                   <p className="text">{item.title}</p>

@@ -47,6 +47,7 @@ const Weather = () => {
         className="image"
         src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
         alt={data.weather[0].main}
+        loading="lazy"
       />
       <p className="text__temp">{data.main.temp}°C</p>
     </div>

@@ -8,7 +8,12 @@ const Column = ({ data }) => {
             <li className="list-item" key={`item-${idx}`}>
               <a href="#" className="link__article">
                 <div className="box__image">
-                  <img className="image" src={item.imgUrl} alt="" />
+                  <img
+                    className="image"
+                    src={item.imgUrl}
+                    alt=""
+                    loading="lazy"
+                  />
                 </div>
                 <div className="box__info">
                   <p className="text__subtitle">{item.title}</p>

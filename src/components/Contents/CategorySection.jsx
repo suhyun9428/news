@@ -33,6 +33,7 @@ const Contents = ({ data }) => {
           }}
           alt={data.title}
           className="image"
+          loading="lazy"
         />
       </div>
       <div className="box__info">
