@@ -12,10 +12,12 @@ function SignupSection() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [pwVisible, setPwVisible] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
   const [hasErr, setHasErr] = useState(false);
   const [errMessage, setErrMessage] = useState("");
   const [emailErr, setEmailErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
+  const fillColor = isDarkMode ? "#fff" : "#000";
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
@@ -103,7 +105,7 @@ function SignupSection() {
             onClick={() => setPwVisible((prev) => !prev)}
             className="button__visible"
           >
-            {pwVisible ? <LuEye className="image" /> : <HiEyeSlash />}
+            {pwVisible ? <LuEye className="image"  style={{ color: fillColor }}/> : <HiEyeSlash  style={{ color: fillColor }}/>}
           </button>
         </div>
       {hasErr && <p className="text__err">{errMessage}</p>}
