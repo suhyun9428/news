@@ -14,8 +14,7 @@
   }
   .tag__blue {
     display: inline-block;
-    margin-right: 5px;
-    margin-bottom: 1px;
+    margin: 7px 5px;
     padding: 0 4px;
     border-radius: 2px;
     background-color: var(--blue-500);
@@ -23,6 +22,6 @@
     font-weight: 600;
     color: #fff;
     line-height: 18px;
-    vertical-align: text-bottom;
+    vertical-align: top;
   }
 }

@@ -2,17 +2,19 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: calc(100% - 24px);
   height: 55px;
+  margin: 0 12px;
   z-index: 100;
+  border-bottom: 3px solid var(--Black);
   background-color: var(--White);
   .box__header {
     position: sticky;
-    width: calc(100% - 24px);
+    width: 100%;
+    max-width: 768px;
     height: 55px;
-    margin: 0 12px;
+    margin: 0 auto;
     font-size: 0;
-    border-bottom: 3px solid var(--Black);
     .button__menu {
       position: absolute;
       top: 10px;
@@ -216,20 +218,17 @@ header {
       left: 0;
     }
   }
-  &:has(.box__category-wrap) {
-    header {
-      .box__header {
-        border-bottom: 1px solid var(--gray-400);
-      }
-    }
-  }
   &.js-fixed {
     header {
       .box__header {
         position: fixed;
         top: 0;
+        left: 50%;
+        width: calc(100% - 24px);
         max-width: 768px;
+        border-bottom: 3px solid var(--Black);
         background: var(--White);
+        transform: translateX(-50%);
         z-index: 1;
       }
       .box__search-bar {

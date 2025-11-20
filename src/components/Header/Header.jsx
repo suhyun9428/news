@@ -45,11 +45,11 @@ const Header = () => {
             <RxHamburgerMenu className="image" style={{ color: fillColor }} />
           )}
         </button>
+        <Weather />
+        <ControlDarkMode />
         <Link to="/" className="link__main" onClick={moveToMain}>
           <h1 className="text__title">SUN NEWS</h1>
         </Link>
-        <Weather />
-        <ControlDarkMode />
         <Member />
         {isLoggedin && isMenuOpen && (
           <button

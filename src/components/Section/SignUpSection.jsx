@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LuEye } from "react-icons/lu";
 import { HiEyeSlash } from "react-icons/hi2";
+import { useAtom } from "jotai";
+import { isDarkModeAtom } from "../../atom/atom";
 
 const auth = getAuth(app);
 
