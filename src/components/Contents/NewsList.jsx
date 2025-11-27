@@ -7,7 +7,7 @@ import {
 } from "../../atom/atom";
 import { useAtom } from "jotai";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NewsList = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
@@ -19,7 +19,7 @@ const NewsList = ({ data }) => {
 
   // 팝업 관련
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
-  const popupRef = useLink(() => setIsOpen(false));
+  // const popupRef = useLink(() => setIsOpen(false));
   // 북마크 atom
   const [bookmark, setBookmark] = useAtom(bookmarkAtom);
 
@@ -62,19 +62,29 @@ const NewsList = ({ data }) => {
       }
     }
   };
+
   return (
     <>
-      <a
+      <Link
         className="link__news"
-        href={data.url}
-        ref={popupRef}
+        // ref={popupRef}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          setIsOpen(true);
-          setTimeout(() => {
-            window.location.href = data.url;
-          }, 3000);
+          const lastSeen = localStorage.getItem("popupLastSeen");
+          const today = new Date().toISOString().slice(0, 10);
+          if (lastSeen !== today) {
+            setIsOpen(true);
+          } else {
+            navigate("/detail", {
+              state: {
+                title: data.title,
+                content: data.content,
+                image: data.image,
+                url: data.url,
+              },
+            });
+          }
         }}
       >
         <div className="box__image">
@@ -89,18 +99,27 @@ const NewsList = ({ data }) => {
             loading="lazy"
           />
         </div>
-      </a>
+      </Link>
       <a
         className="link__news-stories"
-        href={data.url}
-        ref={popupRef}
+        // ref={popupRef}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          setIsOpen(true);
-          setTimeout(() => {
-            window.location.href = data.url;
-          }, 3000);
+          const lastSeen = localStorage.getItem("popupLastSeen");
+          const today = new Date().toISOString().slice(0, 10);
+          if (lastSeen !== today) {
+            setIsOpen(true);
+          } else {
+            navigate("/detail", {
+              state: {
+                title: data.title,
+                content: data.content,
+                image: data.image,
+                url: data.url,
+              },
+            });
+          }
         }}
       >
         <div className="box__info">

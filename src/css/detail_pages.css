@@ -1,0 +1,53 @@
+.detail__container {
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 860px;
+  height: 100vh;
+}
+
+.detail__back {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--gray-600);
+  margin-bottom: 16px;
+  cursor: pointer;
+}
+
+.detail__image-wrapper {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.detail__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.detail__title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.detail__content {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--gray-600);
+  white-space: pre-wrap;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 480px) {
+  .detail__title {
+    font-size: 20px;
+  }
+  .detail__content {
+    font-size: 15px;
+  }
+}

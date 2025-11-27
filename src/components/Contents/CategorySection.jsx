@@ -4,24 +4,36 @@ import { useNewsApi } from "../../hooks/useNewsApi";
 import { mischiefPopupAtom } from "../../atom/atom";
 import { useLink } from "../../hooks/useLink";
 import NewsList from "./NewsList";
+import { useNavigate } from "react-router-dom";
 
 const Contents = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
-  const popupRef = useLink(() => setIsOpen(false));
+  // const popupRef = useLink(() => setIsOpen(false));
+  const navigate = useNavigate();
 
   return (
     <a
       href={data.url}
       className="link__article"
-      ref={popupRef}
+      // ref={popupRef}
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        setIsOpen(true);
-        setTimeout(() => {
-          window.location.href = data.url;
-        }, 3000);
+        const lastSeen = localStorage.getItem("popupLastSeen");
+        const today = new Date().toISOString().slice(0, 10);
+        if (lastSeen !== today) {
+          setIsOpen(true);
+        } else {
+          navigate("/detail", {
+            state: {
+              title: data.title,
+              content: data.content,
+              image: data.image,
+              url: data.url,
+            },
+          });
+        }
       }}
     >
       <div className="box__image">
@@ -58,9 +70,9 @@ const CategorySection = () => {
           {articles.map((item, idx) => {
             return (
               <li className="list-item" key={`item-${idx}`}>
-                {/* <Contents data={item} /> */}
                 <div className="box__card">
                   <NewsList data={item} />
+                  {/* <Contents data={item} /> */}
                 </div>
               </li>
             );

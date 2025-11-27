@@ -10,6 +10,7 @@
 @import "../src/css/issue.css";
 @import "../src/css/mischief_popup.css";
 @import "../src/css/account_form.css";
+@import "../src/css/detail_pages.css";
 
 main {
   padding-top: 55px;

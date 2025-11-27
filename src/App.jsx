@@ -12,6 +12,7 @@ import Issue from "./components/Contents/Issue";
 import MenuBar from "./components/Header/MenuBar";
 
 import dummyData from "./dummyData/dummyData";
+import DetailContent from "./components/Contents/DetailContent";
 
 function App() {
   const [isLoggedin, setIsLoggedIn] = useAtom(isLoggedInAtom);
@@ -59,6 +60,7 @@ function App() {
         <Route path="interest" element={<ShowInterested />} />
         <Route path="issue" element={<Issue />} />
         <Route path="menubar" element={<MenuBar data={dummyData.MenuBar} />} />
+        <Route path="detail" element={<DetailContent />} />
       </Route>
     </Routes>
   );

@@ -23,10 +23,20 @@ const IssueContent = ({ data }) => {
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                setIsOpen(true);
-                setTimeout(() => {
-                  window.location.href = data.url;
-                }, 3000);
+                const lastSeen = localStorage.getItem("popupLastSeen");
+                const today = new Date().toISOString().slice(0, 10);
+                if (lastSeen !== today) {
+                  setIsOpen(true);
+                } else {
+                  navigate("/detail", {
+                    state: {
+                      title: data.title,
+                      content: data.content,
+                      image: data.image,
+                      url: data.url,
+                    },
+                  });
+                }
               }}
             >
               <div className="box__info">

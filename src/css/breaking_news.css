@@ -47,6 +47,7 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       vertical-align: text-bottom;
+      word-break: break-all;
     }
     .text__description {
       display: -webkit-box;

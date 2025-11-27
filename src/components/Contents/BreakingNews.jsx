@@ -1,6 +1,7 @@
 import NewsList from "./NewsList";
 
 const BreakingNews = ({ data }) => {
+
   return (
     <div className="box__breaking-news">
       <ul className="list-breaking-news">
