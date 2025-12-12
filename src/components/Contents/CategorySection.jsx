@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import { selectedPageAtom } from "../../atom/atom";
 import { useNewsApi } from "../../hooks/useNewsApi";
 import { mischiefPopupAtom } from "../../atom/atom";
-import { useLink } from "../../hooks/useLink";
+// import { useLink } from "../../hooks/useLink";
 import NewsList from "./NewsList";
 import { useNavigate } from "react-router-dom";
 

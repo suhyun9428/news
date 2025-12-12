@@ -2,7 +2,6 @@
 .box__recent {
   width: 100%;
   padding: 0 20px;
-  box-sizing: border-box;
   .list__recent {
     max-width: 768px;
     padding: 16px 0;

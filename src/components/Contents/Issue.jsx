@@ -1,12 +1,12 @@
 import { useAtom } from "jotai";
 import { selectedKeywordAtom, mischiefPopupAtom } from "../../atom/atom";
 import { useNewsApi } from "../../hooks/useNewsApi";
-import { useLink } from "../../hooks/useLink";
+// import { useLink } from "../../hooks/useLink";
 
 const IssueContent = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
-  const popupRef = useLink(() => setIsOpen(false));
+  // const popupRef = useLink(() => setIsOpen(false));
 
   return (
     <li className="list-item">
@@ -19,7 +19,7 @@ const IssueContent = ({ data }) => {
             <a
               href={article.url}
               className="link__news"
-              ref={popupRef}
+              // ref={popupRef}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();

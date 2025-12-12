@@ -7,7 +7,7 @@ const TopButton = () => {
   useEffect(() => {
     const handleTopButton = () => {
       const currentY = window.scrollY;
-      if (currentY > 200) {
+      if (currentY > 130) {
         setShowTop(true);
       } else {
         setShowTop(false);

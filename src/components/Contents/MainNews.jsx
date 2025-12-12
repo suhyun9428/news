@@ -1,6 +1,7 @@
+import { Link, useNavigate } from "react-router-dom";
 import { mischiefPopupAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
-import { useLink } from "../../hooks/useLink";
+// import { useLink } from "../../hooks/useLink";
 
 const MainNewsContents = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
@@ -9,14 +10,15 @@ const MainNewsContents = ({ data }) => {
   const isExclusive =
     data.content.includes("exclusive") || data.description.includes("scoop");
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
-  const popupRef = useLink(() => setIsOpen(false));
+  // const popupRef = useLink(() => setIsOpen(false));
+  const navigate = useNavigate();
 
   return (
     <li className="list-item">
-      <a
+      <Link
         href={data.url}
         className="link__news"
-        ref={popupRef}
+        // ref={popupRef}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -55,7 +57,7 @@ const MainNewsContents = ({ data }) => {
             loading="lazy"
           />
         </div>
-      </a>
+      </Link>
     </li>
   );
 };
