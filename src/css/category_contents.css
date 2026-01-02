@@ -31,7 +31,7 @@
           }
         }
         .box__info {
-          margin-top: 14px;
+          padding-top: 14px;
           .text__title {
             padding: 0;
             -webkit-line-clamp: 3;
@@ -59,7 +59,6 @@
         .button__favorite {
           position: absolute;
           right: 10px;
-          top: 158px;
           width: 32px;
           height: 32px;
           background: transparent;

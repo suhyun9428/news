@@ -1,6 +1,6 @@
 .box__detail {
   max-width: 860px;
-  height: 100vh;
+  height: calc(100vh - 55px);
   margin: 0 auto;
   padding: 20px;
   .box__image {
@@ -21,17 +21,22 @@
     flex-direction: column;
     align-items: end;
     .text__title {
+      display: -webkit-box;
+      margin-bottom: 12px;
       font-size: 22px;
       font-weight: bold;
-      margin-bottom: 12px;
-      line-height: 1.4;
+      line-height: 1.25;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      word-break: break-all;
     }
     .text__contents{
       margin-bottom: 10px;
       font-size: 16px;
       color: var(--gray-600);
       line-height: 1.7;
-      white-space: pre-wrap;
+      word-break: break-all;
     }
     .link__article{
       display: inline-block;

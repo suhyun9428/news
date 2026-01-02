@@ -6,7 +6,7 @@ import {
   isLoggedInAtom,
 } from "../../atom/atom";
 import { useAtom } from "jotai";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const NewsList = ({ data }) => {
@@ -19,7 +19,6 @@ const NewsList = ({ data }) => {
 
   // 팝업 관련
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
-  // const popupRef = useLink(() => setIsOpen(false));
   // 북마크 atom
   const [bookmark, setBookmark] = useAtom(bookmarkAtom);
 
@@ -62,6 +61,24 @@ const NewsList = ({ data }) => {
       }
     }
   };
+
+  const [itemHeight, setItemHeight] = useState(0);
+  const infoRef = useRef(null);
+  const [infoPaddingTop, setInfoPaddingTop] = useState(0);
+
+  useEffect(() => {
+    if(!infoRef.current) return;
+
+    const observer = new ResizeObserver(([entry]) => {
+      setItemHeight(entry.contentRect.height);
+    });
+    const paddingStyle = getComputedStyle(infoRef.current);
+    setInfoPaddingTop(parseFloat(paddingStyle.paddingTop))
+    observer.observe(infoRef.current);
+
+    return () =>  observer.disconnect();  
+    
+  }, []);
 
   return (
     <>
@@ -122,7 +139,7 @@ const NewsList = ({ data }) => {
           }
         }}
       >
-        <div className="box__info">
+        <div className="box__info" ref={infoRef}>
           <strong className="text__title">
             {isExclusive && <span className="tag__blue">exclusive</span>}
             {isBreakingNews && <span className="tag__red">breaking</span>}
@@ -137,6 +154,7 @@ const NewsList = ({ data }) => {
         type="button"
         className="button__favorite"
         onClick={handelFavorite}
+        style={{'bottom': `${itemHeight+infoPaddingTop+8}px`}}
       >
         {isInterest ? (
           <MdOutlineFavorite
