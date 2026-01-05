@@ -70,7 +70,7 @@ function SignupSection() {
 
   return (
     <div className="box__signup-container">
-      <h2 className="text__title">회원가입</h2>
+      <h2 className="text__title">SignUp</h2>
       <form className="form__signup" onSubmit={onSubmit}>
         <label htmlFor="name">이름</label>
         <input
@@ -112,7 +112,7 @@ function SignupSection() {
         </div>
       {hasErr && <p className="text__err">{errMessage}</p>}
         <button type="submit" className="button__signup">
-          회원가입
+          SignUp
         </button>
       </form>
       <p className="text__hi-there">회원이신가요?</p>

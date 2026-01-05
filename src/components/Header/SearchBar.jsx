@@ -40,8 +40,11 @@ const SearchBar = () => {
     if(!normalized || keywordList.includes(normalized)) return;
 
     setKeywordList([normalized, ...keywordList]);
+    // 키워드 검색 데이터 저장할 때 날짜도 같이 저장해야 나중에 비교 가능할텐데
   };
 
+  // console.log(keywordList, 'keywordListsearch');
+  
   return (
     <form className="box__search-bar" onSubmit={handleSubmit}>
       <label>

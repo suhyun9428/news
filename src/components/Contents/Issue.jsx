@@ -1,13 +1,11 @@
 import { useAtom } from "jotai";
 import { selectedKeywordAtom, mischiefPopupAtom } from "../../atom/atom";
 import { useNewsApi } from "../../hooks/useNewsApi";
-// import { useLink } from "../../hooks/useLink";
 
 const IssueContent = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
-  // const popupRef = useLink(() => setIsOpen(false));
-
+  console.log('IssueContent data:', data);
   return (
     <li className="list-item">
       <p className="text__date">
@@ -19,7 +17,6 @@ const IssueContent = ({ data }) => {
             <a
               href={article.url}
               className="link__news"
-              // ref={popupRef}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -66,10 +63,8 @@ const IssueContent = ({ data }) => {
 const Issue = () => {
   const [newKeyword] = useAtom(selectedKeywordAtom);
   const { articles } = useNewsApi("general", newKeyword);
-
-  const sorted = articles.sort((a, b) => {
-    return new Date(b.publishAt) - new Date(a.publishAt);
-  });
+  // articles.map(({ publishedAt }) => console.log(publishedAt,'publishedAt'));
+  const sorted = articles.sort(({ publishedAt: a }, { publishedAt: b }) => new Date(b) - new Date(a))
 
   const grouped = sorted.reduce((acc, item) => {
     const date = new Date(item.publishedAt);
@@ -110,12 +105,12 @@ const Issue = () => {
   return (
     <div className="box__issue">
       <div className="box__issue-title">
-        <h3 className="text__title">이슈</h3>
+        <h3 className="text__title">Issue</h3>
         <p className="text__issue">{newKeyword}</p>
       </div>
       <div className="box__issue-contents">
         <p className="text__title">
-          전체 기사 <span className="text__emphasis">{articles.length}</span>건
+          Total <span className="text__emphasis">{articles.length}</span>
         </p>
         <ul className="list__issue">
           {merged.map((group, idx) => (

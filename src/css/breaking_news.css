@@ -1,5 +1,5 @@
 .box__breaking-news {
-  padding: 0 16px 40px;
+  padding: 0 16px 20px;
   .list-breaking-news {
     & > .list-item {
       & + .list-item {

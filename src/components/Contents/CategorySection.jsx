@@ -64,7 +64,6 @@ const CategorySection = () => {
 
   return (
     <div className="box__category-contents">
-      <h3 className="text__title">전체</h3>
       <div className="box__inner">
         <ul className="list__articles">
           {articles.map((item, idx) => {

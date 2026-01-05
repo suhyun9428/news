@@ -2,13 +2,23 @@ import HotKeywords from "../Contents/HotKeywords";
 import BreakingNews from "../Contents/BreakingNews";
 import MainNews from "../Contents/MainNews";
 import dummyData from "../../dummyData/dummyData";
+import { useNewsApi } from "../../hooks/useNewsApi";
+import {selectedKeywordAtom} from '../../atom/atom';
+import {useAtom} from 'jotai';
 
-const GeneralSection = ({ data }) => (
-  <>
-    <HotKeywords data={dummyData.HotKeywords} />
-    <BreakingNews data={data} />
-    <MainNews data={data} />
-  </>
-);
+const GeneralSection = ({ data }) => {
+  const [newKeyword] = useAtom(selectedKeywordAtom);
+  const { articles } = useNewsApi("general", newKeyword);
+  const breakingArticles = articles.slice(0, 2);
+  const mainArticles = articles.slice(2, 6);
+  
+  return(
+    <>
+      <HotKeywords data={dummyData.HotKeywords} />
+      <BreakingNews data={breakingArticles} />
+      <MainNews data={mainArticles} />
+    </>
+  )
+};
 
 export default GeneralSection;

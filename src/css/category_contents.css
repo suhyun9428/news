@@ -1,13 +1,8 @@
 .box__category-contents {
   margin: 0 20px;
   padding-bottom: 52px;
-  .text__title {
-    padding: 14px 0 16px;
-    font-size: 20px;
-    color: var(--gray-900);
-    line-height: 24px;
-  }
   .box__inner {
+    margin-top: 18px;
     padding: 20px;
     border-radius: 8px;
     background: var(--gray-100);

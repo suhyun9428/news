@@ -16,11 +16,14 @@ export const useNewsApi = (category = "general", keyword = "") => {
     const cacheKey = normalizedKeyword || `category-${category}`; // 캐시 키 생성. 검색어가 있으면 검색어를, 없으면 카테고리명으로 고유 키 생성
 
     if (newsCache[cacheKey]) {
-      // atom에 cacheKey에 해당하는 데이터가 있으면 api 호출 없이 바로 호출.
-      // 검색 결과인 articles 값 있으면 걔를 캐시 값으로 바로 세팅, 로딩 상태 중지
-      setArticles(newsCache[cacheKey]);
-      setLoading(false);
-      return;
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      if(newsCache[cacheKey].savedAt >= today.getTime()){
+        setArticles(newsCache[cacheKey].articles);
+        setLoading(false);
+        return;
+      }
     }
 
     const fetchNews = async () => {
@@ -39,7 +42,7 @@ export const useNewsApi = (category = "general", keyword = "") => {
           // api 쿼리 파라미터 설정
           apikey: import.meta.env.VITE_NEWS_API_KEY,
           lang: "en",
-          max: 5,
+          max: 7,
           // max:10
         });
 
@@ -60,7 +63,14 @@ export const useNewsApi = (category = "general", keyword = "") => {
         const fetchedArticles = data.articles || []; // 기사 배열 추출 및 상태 업데이트, api 결과에 articles 없으면 빈 배열 뱉음
         setArticles(fetchedArticles);
         // console.log('category : ', category, 'keyword : ', keyword,"?!")
-        setNewsCache((prev) => ({ ...prev, [cacheKey]: fetchedArticles })); // atom에 값 저장해서 같은 값이면 재호출하지 않아도 되게!
+        setNewsCache((prev) => ({
+          ...prev,
+            [cacheKey]: {
+              articles: fetchedArticles,
+              savedAt: Date.now(),
+          },
+        })); // atom에 값 저장해서 같은 값이면 재호출하지 않아도 되게!
+        // console.log('캐시 저장됨:', cacheKey, fetchedArticles);
       } catch (err) {
         console.log("newsapi err", err);
         setArticles([]);
