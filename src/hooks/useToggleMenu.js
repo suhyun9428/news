@@ -1,21 +1,14 @@
 import { useAtom } from "jotai";
-import {
-  selectedSectionIndexAtom,
-  doesMenuOpenAtom,
-  doesSearchOpenAtom,
-  selectedKeywordAtom,
-  isLoggedInAtom,
-  isDarkModeAtom,
-} from "../atom/atom";
+import { selectedSectionIndexAtom, doesMenuOpenAtom, doesSearchOpenAtom, selectedKeywordAtom, isLoggedInAtom, isDarkModeAtom } from "../atom/atom";
 import { useNavigate } from "react-router-dom";
 
 const useToggleMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
   const [searchOpen, setSearchOpen] = useAtom(doesSearchOpenAtom);
-  const [index, setIndex] = useAtom(selectedSectionIndexAtom);
-  const [newKeyword, setNewKeyword] = useAtom(selectedKeywordAtom);
-  const [isLoggedin, setIsLoggedin] = useAtom(isLoggedInAtom);
-  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
+  const [, setIndex] = useAtom(selectedSectionIndexAtom);
+  const [, setNewKeyword] = useAtom(selectedKeywordAtom);
+  const [isLoggedin, ] = useAtom(isLoggedInAtom);
+  const [isDarkMode, ] = useAtom(isDarkModeAtom);
 
   const navigate = useNavigate();
 
@@ -30,7 +23,7 @@ const useToggleMenu = () => {
   };
 
   const moveToMain = () => {
-    console.log("메인으로~");
+    // console.log("메인으로~");
     setIndex(null);
     setIsMenuOpen(false);
     setNewKeyword(null);

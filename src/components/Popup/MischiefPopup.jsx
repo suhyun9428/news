@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import { mischiefPopupAtom } from "../../atom/atom";
 
 const MischiefPopup = () => {
-  const [isOpen, setIsOpen] = useAtom(mischiefPopupAtom);
+  const [, setIsOpen] = useAtom(mischiefPopupAtom);
 
   return (
     <div className="box__mischief-overlay" role="dialog" aria-modal="true">

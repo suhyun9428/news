@@ -1,39 +1,16 @@
 import { useAtom } from "jotai";
-import { useState } from "react";
-import {
-  selectedSectionIndexAtom,
-  doesMenuOpenAtom,
-  selectedPageAtom,
-  isDarkModeAtom,
-} from "../../atom/atom";
+import { selectedSectionIndexAtom, doesMenuOpenAtom, selectedPageAtom, isDarkModeAtom } from "../../atom/atom";
 import { FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 const MenuBarItem = ({ data }) => {
   const [, setIndex] = useAtom(selectedSectionIndexAtom);
   const [, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
-  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
+  const [isDarkMode, ] = useAtom(isDarkModeAtom);
   
   const fillColor = isDarkMode ? "#fff" : "#000";
-  const [toggleOpen, setToggleOpen] = useState(
-    new Array(data.length).fill(false)
-  );
   const [, setPage] = useAtom(selectedPageAtom);
   const navigate = useNavigate();
-
-  // const handleToggle = (e, idx) => {
-  //   const newToggleOpen = [...toggleOpen];
-  //   if (!newToggleOpen[idx]) {
-  //     newToggleOpen[idx] = true;
-  //     e.target.classList.add("button__toggle-active");
-  //   } else {
-  //     newToggleOpen[idx] = false;
-  //     if (e.target.classList.contains("button__toggle-active")) {
-  //       e.target.classList.remove("button__toggle-active");
-  //     }
-  //   }
-  //   setToggleOpen(newToggleOpen);
-  // };
 
   const handleIndex = (e, idx, id) => {
     e.preventDefault();
@@ -57,30 +34,6 @@ const MenuBarItem = ({ data }) => {
                 {item.id}
                 <FaPlus className="image" style={{ color: fillColor }}/>
               </a>
-              {/* <button
-                type="button"
-                className="button__toggle"
-                onClick={(e) => {
-                  handleToggle(e, idx);
-                }}
-              >
-                <span className="for-a11y">펼치기</span>
-              </button> */}
-            </div>
-            <div
-              className={`box__submenu ${
-                toggleOpen[idx] ? "box__submenu--active" : ""
-              }`}
-            >
-              {/* <ul className="list__submenu">
-                {item.submenu.map((item, idx) => {
-                  return (
-                    <li key={`item-${idx}`} className="list-item">
-                      <a href="#">{item}</a>
-                    </li>
-                  );
-                })}
-              </ul> */}
             </div>
           </div>
         );

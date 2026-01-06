@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { FaArrowUp } from "react-icons/fa";
+import { isDarkModeAtom } from "../../atom/atom";
+import { useAtom } from "jotai";
 
 const TopButton = () => {
   const [showTop, setShowTop] = useState(false);
+  const [isDarkMode, ] = useAtom(isDarkModeAtom);
+  const fillColor = isDarkMode ? '#fff' : '#000';
 
   useEffect(() => {
     const handleTopButton = () => {
@@ -31,7 +35,7 @@ const TopButton = () => {
   return (
     <footer>
       <button type="button" className="button__top" onClick={moveToTop}>
-        <FaArrowUp fill="#000" />
+        <FaArrowUp fill={fillColor} />
       </button>
     </footer>
   );

@@ -1,9 +1,5 @@
 import { useAtom } from "jotai";
-import {
-  selectedSectionIndexAtom,
-  selectedKeywordAtom,
-  selectedPageAtom,
-} from "../../atom/atom";
+import { selectedSectionIndexAtom, selectedKeywordAtom, selectedPageAtom } from "../../atom/atom";
 import { useNewsApi } from "../../hooks/useNewsApi";
 import { Loading } from "../Loading";
 import GeneralSection from "../Section/GeneralSection";

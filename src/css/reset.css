@@ -13,6 +13,7 @@ body {
 }
 
 body {
+  height: 100vh;
   font-family: var(--Font, "Inter", sans-serif);
   background: var(--gray-600);
   color: var(--text-default);

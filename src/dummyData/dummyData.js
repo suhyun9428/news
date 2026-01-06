@@ -10,7 +10,7 @@ const dummyData = {
     { id: "Science", label: "과학" },
     { id: "Health", label: "건강" },
   ],
-  Column: [
+  Editorial: [
     {
       title: "Daily Tar Heel",
       summary: "Column: The press secretary is helping quell the free press",

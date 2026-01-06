@@ -11,7 +11,7 @@ const DetailContent = () => {
   if (!state) return navigate("/");
 
   const { title, content, image, url } = state;
-  const sliceContent = content.substr(0, 250);
+  const sliceContent = content?.substr(0, 250);
   
   const containerRef = useRef(null)
   const startXRef = useRef(0);
@@ -79,14 +79,14 @@ const DetailContent = () => {
       </div>
       <div className="box__contents">
         <h2 className="text__title">{title}</h2>
-        <p className="text__contents">{sliceContent ? `${sliceContent}...` : "내용이 제공되지 않은 기사입니다."}</p>
+        <p className="text__contents">{sliceContent ? `${sliceContent}...` : "Full content is not available for this article."}</p>
         <a
           href={url}
           className="link__article"
           target="_blank"
           rel="noopener noreferrer"
         >
-          기사 원문 보러가기
+          View the full article
           <FaArrowRight className="icon__go" />
         </a>
       </div>

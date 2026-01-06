@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
 export const useImageValidation = (url) => {
-  const [isValid, setIsValid] = useState(null); // null: 검사 전, true/false: 결과
+  const [isValid, setIsValid] = useState(null);
+  // null: 검사 전, true/false: 결과
 
   useEffect(() => {
     if (!url) return;

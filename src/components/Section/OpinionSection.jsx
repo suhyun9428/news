@@ -6,7 +6,7 @@ const OpinionSection = ({ categoryList }) => {
   return (
     <>
       <Opinion data={categoryList} />
-      <Column data={dummyData.Column} />
+      <Column data={dummyData.Editorial} />
     </>
   );
 };

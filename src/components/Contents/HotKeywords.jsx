@@ -1,37 +1,22 @@
 import { useAtom } from "jotai";
-import {
-  selectedKeywordAtom,
-  keywordListAtom,
-  isDarkModeAtom,
-  newsCacheAtom,
-} from "../../atom/atom";
+import { selectedKeywordAtom, keywordListAtom, isDarkModeAtom, newsCacheAtom } from "../../atom/atom";
 import { IoIosClose } from "react-icons/io";
 
-const normalize = (str) => str.trim().toLocaleLowerCase(); // trim하고 소문자로 통일
+const normalize = (str) => str.trim().toLocaleLowerCase(); 
+// trim하고 소문자로 통일
 
 const HotKeywords = () => {
-  const [newKeyword, setNewKeyword] = useAtom(selectedKeywordAtom);
+  const [, setNewKeyword] = useAtom(selectedKeywordAtom);
   const [keywordList, setKeywordList] = useAtom(keywordListAtom);
-  // const [cacheList, setCacheList] = useAtom(newsCacheAtom);
-  // const cacheArray = Object.entries(cacheList);
   const [newCache] = useAtom(newsCacheAtom);
-  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
+  const [isDarkMode, ] = useAtom(isDarkModeAtom);
   const fillColor = isDarkMode ? "#fff" : "#000";
 
-  // console.log('HotKeywords newsCache:', newCache);
-
-  // const hotKeywordsList = cacheArray.map(
-  //   ([keyword, items]) =>{
-  //     return keyword;
-  //     // items는 사실 여기서 필요 없어!
-  //   }
-  // );
   const hotKeywordsList = Object.keys(newCache).filter((key)=> !key.startsWith('category-'));
   const delKeyword = (keyword) => {
     const normalized = normalize(keyword);
     setKeywordList(keywordList.filter((item) => item !== normalized));
   };
-  // 삭제하기 위해서 키워드 비교하는거
 
   return (
     <>

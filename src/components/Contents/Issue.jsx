@@ -1,21 +1,22 @@
 import { useAtom } from "jotai";
 import { selectedKeywordAtom, mischiefPopupAtom } from "../../atom/atom";
 import { useNewsApi } from "../../hooks/useNewsApi";
+import { Link, useNavigate } from "react-router-dom";
 
 const IssueContent = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
-  console.log('IssueContent data:', data);
+  const navigate = useNavigate();
+  
   return (
     <li className="list-item">
       <p className="text__date">
-        {data.date.year}년 {data.date.month}월 {data.date.date}일
+        {data.date.year}. {data.date.month}. {data.date.date}
       </p>
       <ul className="list__issue-perday">
         {data.articles.map((article, i) => (
           <li className="list-item" key={i}>
-            <a
-              href={article.url}
+            <Link
               className="link__news"
               onClick={(e) => {
                 e.preventDefault();
@@ -27,10 +28,10 @@ const IssueContent = ({ data }) => {
                 } else {
                   navigate("/detail", {
                     state: {
-                      title: data.title,
-                      content: data.content,
-                      image: data.image,
-                      url: data.url,
+                      title: article.title,
+                      content: article.content,
+                      image: article.image,
+                      url: article.url,
                     },
                   });
                 }
@@ -52,7 +53,7 @@ const IssueContent = ({ data }) => {
                   loading="lazy"
                 />
               </div>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -63,7 +64,6 @@ const IssueContent = ({ data }) => {
 const Issue = () => {
   const [newKeyword] = useAtom(selectedKeywordAtom);
   const { articles } = useNewsApi("general", newKeyword);
-  // articles.map(({ publishedAt }) => console.log(publishedAt,'publishedAt'));
   const sorted = articles.sort(({ publishedAt: a }, { publishedAt: b }) => new Date(b) - new Date(a))
 
   const grouped = sorted.reduce((acc, item) => {

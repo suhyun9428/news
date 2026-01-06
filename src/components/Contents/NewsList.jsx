@@ -1,21 +1,13 @@
-// import { useLink } from "../../hooks/useLink";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
-import {
-  bookmarkAtom,
-  mischiefPopupAtom,
-  isLoggedInAtom,
-} from "../../atom/atom";
+import { bookmarkAtom, mischiefPopupAtom, isLoggedInAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const NewsList = ({ data }) => {
   const dummyImage = "/image__hi.jpg";
-  const isBreakingNews =
-    data.content?.includes("breaking") ||
-    data.description?.includes("breaking");
-  const isExclusive =
-    data.content.includes("exclusive") || data.description.includes("scoop");
+  const isBreakingNews = data.content?.includes("breaking") || data.description?.includes("breaking");
+  const isExclusive = data.content.includes("exclusive") || data.description.includes("scoop");
 
   // 팝업 관련
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
@@ -37,28 +29,26 @@ const NewsList = ({ data }) => {
   // 관심 토글 함수
   const handelFavorite = () => {
     if (!isLoggedin) {
-      console.log("헤이헤이 로그인 먼저");
-      window.alert("로그인 해주세요!");
+      // console.log("헤이헤이 로그인 먼저");
+      window.alert("Please log in to continue!");
       navigate("/login");
       return;
+    }
+    const exists = bookmark.some((a) => a.url === data.url);
+    if (exists) {
+      // 이미 북마크 있음 -> 제거
+      setBookmark(bookmark.filter((a) => a.url !== data.url));
+      setIsInterest(false);
     } else {
-      console.log("ok 로그인 완료");
-      const exists = bookmark.some((a) => a.url === data.url);
-
-      if (exists) {
-        // 이미 북마크 있음 -> 제거
-        setBookmark(bookmark.filter((a) => a.url !== data.url));
-        setIsInterest(false);
-      } else {
-        // 북마크 추가
-        const newItem = {
-          url: data.url,
-          title: data.title,
-          image: data.image,
-        };
-        setBookmark([newItem, ...bookmark]);
-        setIsInterest(true);
-      }
+      // 북마크 추가
+      const newItem = {
+        url: data.url,
+        title: data.title,
+        content: data.content,
+        image: data.image,
+      };
+      setBookmark([newItem, ...bookmark]);
+      setIsInterest(true);
     }
   };
 
@@ -84,7 +74,6 @@ const NewsList = ({ data }) => {
     <>
       <Link
         className="link__news"
-        // ref={popupRef}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -119,7 +108,6 @@ const NewsList = ({ data }) => {
       </Link>
       <a
         className="link__news-stories"
-        // ref={popupRef}
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();

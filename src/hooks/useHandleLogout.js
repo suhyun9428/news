@@ -4,7 +4,7 @@ import { doesMenuOpenAtom } from "../atom/atom";
 import { useNavigate } from "react-router-dom";
 
 const useHandleLogout = () => {
-  const [isMenuOpen, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
+  const [, setIsMenuOpen] = useAtom(doesMenuOpenAtom);
   const navigate = useNavigate();
 
   const handleLogout = async (e) => {

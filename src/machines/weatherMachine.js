@@ -1,6 +1,5 @@
 import { createMachine, fromPromise } from "xstate";
 
-
 const WeatherMachine = createMachine({
   id: "weather", // 머신 이름
   initial: "loading", // 초기 상태는 loading으로 둠

@@ -5,8 +5,8 @@ import { GoPerson } from "react-icons/go";
 import { GoPersonFill } from "react-icons/go";
 
 const Member = () => {
-  const [isLoggedin, setIsLoggedin] = useAtom(isLoggedInAtom);
-  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
+  const [isLoggedin, ] = useAtom(isLoggedInAtom);
+  const [isDarkMode, ] = useAtom(isDarkModeAtom);
 
   const fillColor = isDarkMode ? "#fff" : "#000";
   const navigate = useNavigate();

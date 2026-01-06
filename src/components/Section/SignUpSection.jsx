@@ -14,24 +14,18 @@ function SignupSection() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [pwVisible, setPwVisible] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
+  const [isDarkMode, ] = useAtom(isDarkModeAtom);
   const [hasErr, setHasErr] = useState(false);
   const [errMessage, setErrMessage] = useState("");
-  const [emailErr, setEmailErr] = useState(false);
+  const [, setEmailErr] = useState(false);
   const [passwordErr, setPasswordErr] = useState(false);
   const fillColor = isDarkMode ? "#fff" : "#000";
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
-    e.preventDefault(); // 새로고침 방지!
-
-    // const trimmedName = name.trim();
+    e.preventDefault();
     const trimmedEmail = email.trim();
     const trimmedPassword = password.trim();
-
-    // if(trimmedName === ''){
-    //   setErrMessage('이름을 입력해주세요.')
-    // }
 
     if (trimmedEmail === "") {
       setEmailErr(true);
@@ -51,15 +45,15 @@ function SignupSection() {
     } catch (err) {
       setHasErr(true);
       if (err.code === "auth/email-already-in-use") {
-        setErrMessage("이미 회원 가입된 정보입니다. 로그인해주세요");
+        setErrMessage("This email is already registered.");
         navigate("../login");
       } else if (err.code === "auth/invalid-email") {
-        setErrMessage("이메일을 확인해주세요.");
+        setErrMessage("Please check your email address.");
       } else if (err.code === "auth/weak-password") {
-        setErrMessage("비밀번호가 너무 약합니다 (최소 6자리 필요)");
+        setErrMessage("Password must be at least 6 characters.");
       } else {
         console.log("회원가입 에러:", err);
-        setErrMessage("회원가입 중 오류가 발생했습니다");
+        setErrMessage("An error occurred while creating your account.");
       }
     }
   };
@@ -72,52 +66,65 @@ function SignupSection() {
     <div className="box__signup-container">
       <h2 className="text__title">SignUp</h2>
       <form className="form__signup" onSubmit={onSubmit}>
-        <label htmlFor="name">이름</label>
-        <input
-          id="name"
-          type="text"
-          className={passwordErr ? "form__input form__err" : "form__input"}
-          placeholder="이름 입력"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <label htmlFor="email">이메일</label>
-        <input
-          id="email"
-          type="email"
-          className={passwordErr ? "form__input form__err" : "form__input"}
-          placeholder="이메일 입력"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <label htmlFor="password">비밀번호</label>
-        <div style={{ position: "relative", marginBottom: "20px" }}>
+        <label htmlFor="name">
           <input
-            id="password"
-            type={pwVisible ? "text" : "password"}
+            id="name"
+            type="text"
             className={passwordErr ? "form__input form__err" : "form__input"}
-            placeholder="비밀번호 입력"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            placeholder="User Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
-          <button
-            type="button"
-            onClick={() => setPwVisible((prev) => !prev)}
-            className="button__visible"
-          >
-            {pwVisible ? <LuEye className="image"  style={{ color: fillColor }}/> : <HiEyeSlash  style={{ color: fillColor }}/>}
-          </button>
-        </div>
+        </label>
+        <label htmlFor="email">
+          <input
+            id="email"
+            type="email"
+            className={passwordErr ? "form__input form__err" : "form__input"}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </label>
+        <label htmlFor="password">
+          <div style={{ position: "relative", marginBottom: "20px" }}>
+            <input
+              id="password"
+              type={pwVisible ? "text" : "password"}
+              className={passwordErr ? "form__input form__err" : "form__input"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            <button
+              type="button"
+              onClick={() => setPwVisible((prev) => !prev)}
+              className="button__visible"
+            >
+              {pwVisible ? (
+                <>
+                  <span className="for-a11y">비밀번호 표시</span>
+                  <LuEye className="image"  style={{ color: fillColor }}/>
+                </>
+              ) : (
+                <>
+                  <span className="for-a11y">비밀번호 숨기기</span>
+                  <HiEyeSlash  style={{ color: fillColor }}/>
+                </>
+              )}
+            </button>
+          </div>
+        </label>
       {hasErr && <p className="text__err">{errMessage}</p>}
         <button type="submit" className="button__signup">
           SignUp
         </button>
       </form>
-      <p className="text__hi-there">회원이신가요?</p>
+      <p className="text__hi-there">Have an account?</p>
       <button type="button" className="button__login" onClick={moveToLogin}>
-        로그인하러 가기
+        Sign in here
       </button>
     </div>
   );

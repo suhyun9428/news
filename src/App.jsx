@@ -10,44 +10,28 @@ import LoginSection from "./components/Section/LoginSection";
 import ShowInterested from "./components/Contents/ShowInterested";
 import Issue from "./components/Contents/Issue";
 import MenuBar from "./components/Header/MenuBar";
-
 import dummyData from "./dummyData/dummyData";
 import DetailContent from "./components/Contents/DetailContent";
 import MischiefPopup from "./components/Popup/MischiefPopup";
 
 function App() {
-  const [isLoggedin, setIsLoggedIn] = useAtom(isLoggedInAtom);
-  const [isDarkMode, setIsDarkMode] = useAtom(isDarkModeAtom);
-  const [isOpen, setIsOpen] = useAtom(mischiefPopupAtom);
+  const [, setIsLoggedIn] = useAtom(isLoggedInAtom);
+  const [isDarkMode, ] = useAtom(isDarkModeAtom);
+  const [isOpen, ] = useAtom(mischiefPopupAtom);
 
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("로그인 되어 있음", user);
+        // console.log("로그인 되어 있음", user);
         setIsLoggedIn(true);
       } else {
-        console.log("로그아웃 상태");
+        // console.log("로그아웃 상태");
         setIsLoggedIn(false);
       }
     });
     return () => unsubscribe();
   }, [setIsLoggedIn]);
-
-  //   const container = document.documentElement;
-  //   container.dataset.theme = 'light';
-
-  //   useEffect(() => {
-  //   container.dataset.theme = isDarkMode ? "dark" : "light";
-  //     // if(isDarkMode){
-  //     //   container.dataset.theme = 'dark'
-  //     // }else{
-  //     //   container.dataset.theme = 'light'
-  //     // }
-  // console.log("isDarkMode:", isDarkMode);
-  //   }, [isDarkMode]);
-  //   const container = document.documentElement; // <html> 선택
-  // container.dataset.theme = isDarkMode ? 'dark' : 'light';
 
   useEffect(() => {
     document.documentElement.dataset.theme = isDarkMode ? "dark" : "light";
@@ -63,10 +47,7 @@ function App() {
           <Route path="login" element={<LoginSection />} />
           <Route path="interest" element={<ShowInterested />} />
           <Route path="issue" element={<Issue />} />
-          <Route
-            path="menubar"
-            element={<MenuBar data={dummyData.MenuBar} />}
-          />
+          <Route path="menubar" element={<MenuBar data={dummyData.MenuBar} />}/>
           <Route path="detail" element={<DetailContent />} />
         </Route>
       </Routes>
