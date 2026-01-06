@@ -13,7 +13,6 @@
 @import "../src/css/detail_pages.css";
 
 main {
-  height: 100vh;
   padding-top: 55px;
   background-color: var(--White);
   .box__container {
@@ -73,6 +72,10 @@ main {
       font-size: 32px;
       font-weight: 700;
       line-height: 42px;
+    }
+    .button__edit{
+      width: 42px;
+      height: 42px;
     }
   }
   .list__interested {

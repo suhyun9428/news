@@ -3,6 +3,7 @@ import { bookmarkAtom } from "../../atom/atom";
 import { useAtom } from "jotai";
 import { IoCloseOutline } from "react-icons/io5";
 import { FiEdit3 } from "react-icons/fi";
+import { useState } from "react";
 
 const ShowInterested = () => {
   const [bookmark, setBookmark] = useAtom(bookmarkAtom);
@@ -10,19 +11,26 @@ const ShowInterested = () => {
     new Map(bookmark.map((item) => [item.url, item])).values()
   );
   const navigate = useNavigate();
+  const [isEdit, setIsEdit] = useState(false);
+
   const handleDelete = (e, itemUrl) => {
     e.preventDefault();
     e.stopPropagation();
     console.log(itemUrl)
     setBookmark(prev =>
       prev.filter(item => item.url !== itemUrl)
-  );
+    );
+  }
+  const handleEdit = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsEdit(!isEdit);
   }
   return (
     <div className="box__interested">
       <div className="box__title">
         <h2 className="text__title">Interested</h2>
-        <button type="button" className="button__edit">
+        <button type="button" className={`button__edit ${isEdit ? 'button__edit--active': ''}`} onClick={(e)=>handleEdit(e)}>
           <span className="for-a11y">편집</span>
           <FiEdit3 />
         </button>
