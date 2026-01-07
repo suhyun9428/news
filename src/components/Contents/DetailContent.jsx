@@ -1,6 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useRef } from "react";
-import { FaArrowRight } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
+import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import { IoIosArrowForward } from "react-icons/io";
+import { bookmarkAtom, isLoggedInAtom } from '../../atom/atom';
+import { useAtom } from 'jotai';
 
 const DetailContent = () => {
   const dummyImage = "/image__hi.jpg";
@@ -17,7 +20,37 @@ const DetailContent = () => {
   const startXRef = useRef(0);
   const startYRef = useRef(0);
   const isScrollingRef = useRef(false);
+  const [bookmark, setBookmark] = useAtom(bookmarkAtom);
+  const [isInterest, setIsInterest] = useState(false);
+  const [isLoggedin, setIsLoggedIn] = useAtom(isLoggedInAtom);
 
+  useEffect(() => {
+    setIsInterest(bookmark.some((a) => a.url === state.url));
+  }, [bookmark, state.url]);
+
+  const handelFavorite = () => {
+    if (!isLoggedin) {
+      window.alert("Please log in to continue!");
+      navigate("/login");
+      return;
+    }
+    const exists = bookmark.some((a) => a.url === state.url);
+    if (exists) {
+      // 이미 북마크 있음 -> 제거
+      setBookmark(bookmark.filter((a) => a.url !== state.url));
+      setIsInterest(false);
+    } else {
+      // 북마크 추가
+      const newItem = {
+        url: state.url,
+        title: state.title,
+        content: state.content,
+        image: state.image,
+      };
+      setBookmark([newItem, ...bookmark]);
+      setIsInterest(true);
+    }
+  };
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -80,15 +113,37 @@ const DetailContent = () => {
       <div className="box__contents">
         <h2 className="text__title">{title}</h2>
         <p className="text__contents">{sliceContent ? `${sliceContent}...` : "Full content is not available for this article."}</p>
-        <a
-          href={url}
-          className="link__article"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          View the full article
-          <FaArrowRight className="icon__go" />
-        </a>
+        <div className="box__move-wrap">
+          <button
+            type="button"
+            className="button__favorite"
+            onClick={handelFavorite}
+          >
+            {isInterest ? (
+              <MdOutlineFavorite
+                className="image"
+                color="red"
+                size={32}
+              />
+            ) : (
+              <MdOutlineFavoriteBorder
+                className="image"
+                color="red"
+                size={32}
+              />
+            )}
+            <span className="for-a11y">관심</span>
+          </button>
+          <a
+            href={url}
+            className="link__article"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View the full article
+            <IoIosArrowForward className="icon__go"/>
+          </a>
+        </div>
       </div>
     </div>
   );

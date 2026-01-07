@@ -11,6 +11,8 @@
 @import "../src/css/mischief_popup.css";
 @import "../src/css/account_form.css";
 @import "../src/css/detail_pages.css";
+@import "../src/css/mypage.css";
+@import "../src/css/preferences.css";
 
 main {
   padding-top: 55px;
@@ -61,72 +63,7 @@ main {
   }
 }
 
-/* 관심 */
-.box__interested {
-  .box__title {
-    display: flex;
-    margin: 0 20px;
-    padding-top: 20px;
-    justify-content: space-between;
-    .text__title{
-      font-size: 32px;
-      font-weight: 700;
-      line-height: 42px;
-    }
-    .button__edit{
-      width: 42px;
-      height: 42px;
-    }
-  }
-  .list__interested {
-    padding: 0 16px 30px;
-    .list-item {
-      display: flex;
-      gap: 10px;
-      padding: 11px 0 12px;
-      border-top: 1px solid var(--gray-400);
-      align-items: center;
-      .link__news {
-        display: flex;
-        width: 100%;
-        gap: 12px;
-        align-items: center;
-        .box__info {
-          width: calc(100% - 120px);
-          .text__title {
-            display: -webkit-box;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-          }
-        }
-        .box__image {
-          position: relative;
-          width: 108px;
-          height: 72px;
-          background: var(--gray-650);
-          border-radius: 4px;
-          overflow: hidden;
-          .image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            aspect-ratio: 16 / 9;
-          }
-        }
-      }
-      .button__delete{
-        width: 30px;
-        height: 30px;
-        .image{
-          width: 100%;
-          height: 100%;
-        }
-      }
-    }
-  }
-}
+
 
 /* 로딩 */
 .box__loading {

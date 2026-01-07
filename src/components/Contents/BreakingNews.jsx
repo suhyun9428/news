@@ -3,6 +3,7 @@ import NewsList from "./NewsList";
 const BreakingNews = ({ data }) => {
   return (
     <div className="box__breaking-news">
+      <strong className="text__title">Breaking News</strong>
       <ul className="list-breaking-news">
         {data.map((item, idx) => {
           return (

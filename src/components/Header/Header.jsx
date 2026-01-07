@@ -19,10 +19,10 @@ const Header = () => {
     searchOpen,
     toggleSearch,
     moveToMain,
-    isLoggedin,
+    // isLoggedin,
     isDarkMode,
   } = useToggleMenu();
-  const { handleLogout } = useHandleLogout();
+  // const { handleLogout } = useHandleLogout();
 
   const fillColor = isDarkMode ? "#fff" : "#000";
   useFixedHeader();
@@ -51,7 +51,7 @@ const Header = () => {
           <h1 className="text__title">SUN NEWS</h1>
         </Link>
         <Member />
-        {isLoggedin && isMenuOpen && (
+        {/* {isLoggedin && isMenuOpen && (
           <button
             type="button"
             className="button__logout"
@@ -61,7 +61,7 @@ const Header = () => {
             <FiLogOut className="image" />
             <span className="for-a11y">로그아웃</span>
           </button>
-        )}
+        )} */}
         <button
           type="button"
           className={`button__search ${

@@ -15,8 +15,8 @@ const Member = () => {
     if (!isLoggedin) {
       navigate("/signup");
     } else {
-      // 로그인 상태일 때 관심 리스트 노출
-      navigate("/interest");
+      // 로그인 상태일 때 마이페이지 노출
+      navigate("/mypage");
     }
   };
 

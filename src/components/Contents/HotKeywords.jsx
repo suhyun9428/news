@@ -7,8 +7,8 @@ const normalize = (str) => str.trim().toLocaleLowerCase();
 
 const HotKeywords = () => {
   const [, setNewKeyword] = useAtom(selectedKeywordAtom);
-  const [keywordList, setKeywordList] = useAtom(keywordListAtom);
   const [newCache] = useAtom(newsCacheAtom);
+  const [keywordList, setKeywordList] = useAtom(keywordListAtom);
   const [isDarkMode, ] = useAtom(isDarkModeAtom);
   const fillColor = isDarkMode ? "#fff" : "#000";
 

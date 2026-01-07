@@ -10,9 +10,10 @@ import LoginSection from "./components/Section/LoginSection";
 import ShowInterested from "./components/Contents/ShowInterested";
 import Issue from "./components/Contents/Issue";
 import MenuBar from "./components/Header/MenuBar";
-import dummyData from "./dummyData/dummyData";
 import DetailContent from "./components/Contents/DetailContent";
 import MischiefPopup from "./components/Popup/MischiefPopup";
+import MypageSection from "./components/Section/MypageSection";
+import dummyData from "./dummyData/dummyData";
 
 function App() {
   const [, setIsLoggedIn] = useAtom(isLoggedInAtom);
@@ -49,6 +50,7 @@ function App() {
           <Route path="issue" element={<Issue />} />
           <Route path="menubar" element={<MenuBar data={dummyData.MenuBar} />}/>
           <Route path="detail" element={<DetailContent />} />
+          <Route path="mypage" element={<MypageSection />}/>
         </Route>
       </Routes>
     </>

@@ -1,9 +1,14 @@
 .box__breaking-news {
   padding: 0 16px 20px;
+  .text__title{
+    font-size: 28px;
+    line-height: 48px;
+  }
   .list-breaking-news {
+    margin-top: 5px;
     & > .list-item {
       & + .list-item {
-        padding-top: 30px;
+        padding-top: 20px;
       }
     }
   }
@@ -16,7 +21,7 @@
     .box__image {
       position: relative;
       width: 100%;
-      border-radius: 8px;
+      border-radius: 18px;
       overflow: hidden;
       .image {
         width: 100%;
