@@ -3,21 +3,33 @@ import useHandleLogout from '../../hooks/useHandleLogout';
 import { isDarkModeAtom } from '../../atom/atom';
 import { useAtom } from 'jotai';
 import { FiLogOut } from "react-icons/fi";
+import dummyData from '../../dummyData/dummyData';
 
 const MypageSection = () => {
-  //
+  // 1. 마이페이지에서 관심 카테고리 설정하고
   const { handleLogout } = useHandleLogout();
   const [isDarkMode, ] = useAtom(isDarkModeAtom);
   const fillColor = isDarkMode ? "#fff" : "#000";
-
+  const MenuBar = dummyData.MenuBar;
+  
   return(
     <div className="box__mypage-container">
       <div className='box__inner'>
         <div className="box__title">
           <strong className="text__title">Preferences</strong>
         </div>
-        {/* 카테고리 선택 */}
-        {/* 키워드 관리 */}
+        <div className='box__select-category'>
+          {MenuBar.map((item, idx) => {
+            return(
+              <div key={`category-${idx}`} className='box__category'>
+                <label htmlFor={`checkbox-${idx}`}>
+                  <input type="checkbox" className='form__checkbox' id={`checkbox-${idx}`}/>
+                  <span className="text">{item.id}</span>
+                </label>
+              </div>
+            )
+          })}
+        </div>
       </div>
       <div className='box__inner'>
         <ShowInterested />

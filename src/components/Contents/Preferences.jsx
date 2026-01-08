@@ -1,4 +1,5 @@
 import { useAtom } from "jotai";
+import { useEffect } from "react";
 import { selectedPageAtom, mischiefPopupAtom } from "../../atom/atom";
 import { useNewsApi } from "../../hooks/useNewsApi";
 import { Link, useNavigate } from "react-router-dom";
@@ -12,7 +13,6 @@ const Preferences = () => {
     { id: "Health", label: "건강" },
   ]
 
-  // 1. 마이페이지에서 관심 카테고리 설정하고
   // 2. 설정한 관심 카테고리 값 받아와서 홈에서 뿌리고
   const [page, setPage] = useAtom(selectedPageAtom);
   const [, setIsOpen] = useAtom(mischiefPopupAtom);
@@ -20,6 +20,10 @@ const Preferences = () => {
   const oneArticle = articles.slice(0, 2);
   const dummyImage = "/image__hi.jpg";
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setPage(dummyInterestCategory[0].id);
+  }, []);
 
   const handleInterestCategory = (e, selectedCategory) => {
     e.preventDefault();
